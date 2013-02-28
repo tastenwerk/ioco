@@ -1,4 +1,4 @@
 ioco
 ====
 
-io database connection and abstraction library
+ioco is a content manager with built-in access control (per application basis).
