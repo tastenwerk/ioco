@@ -16,7 +16,8 @@
   },
   "main": "lib/ioco",
   "dependencies": {
-    "colors": "*"
+    "colors": "*",
+    "mongoose": "3.5.7"
   },
   "devDependencies": {
     "should": "x.x.x",
