@@ -13,6 +13,10 @@ describe('ioco users', function(){
     });
   });
 
+  after( function( done ){
+    ioco.db.close( done );
+  });
+
   it('has 0 users when starting the tests', function( done ){
     this.User.count( function( err, num ){
       num.should.eql(0);
