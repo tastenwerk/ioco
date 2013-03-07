@@ -1,0 +1,40 @@
+{
+  "error": "Fehler",
+  "info": "Info",
+  "name": "Name",
+  "cancel": "Abbrechen",
+  "saving": {
+    "ok": "__name__ wurde gespeichert",
+    "failed": "__name__ konnte nicht gespeichert werden"
+  },
+  "creation": {
+    "ok": "__name__ wurde erstellt",
+    "failed": "Dokument konnte nicht erstellt werden"
+  },
+  "user": {
+    "email": "Email Adresse",
+    "password": "Passwort",
+    "login": "Anmelden",
+    "login_required": "Anmeldung erforderlich",
+    "forgot_password": "Passwort vergessen?",
+    "session_timeout": "Sitzung abgelaufen (__timeout__ min)",
+    "logout": "Abmelden",
+    "logged_off": "Sie sind jetzt abgemeldet"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "folders": {
+    "title": "Dateien verwalten",
+    "new": "Neuen Ordner erstellen"
+  },
+  "preferences": {
+    "title": "Einstellungen",
+    "saved": "Einstellungen wurden gespeichert",
+    "common": {
+      "title": "Allgemein",
+      "hosts": "Entfernte Hosts",
+      "locale": "Sprache"
+    }
+  }
+}

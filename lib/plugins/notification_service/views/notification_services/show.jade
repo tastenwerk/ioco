@@ -1,0 +1,152 @@
+:stylus
+  .notification_service-content
+    padding: 20px
+    position: absolute
+    top: 20px
+    left: 20px
+    bottom: 20px
+    width: 550px
+    ul.messages{ list-style: none; }
+    li.message{ margin: 5px 0; border: 1px solid #eee; padding: 5px 0 }
+    input.receipient{ border: none; width: auto; box-shadow: none; border-radius: 1px; background: inherit; }
+    form#notification-form textarea{ width: 513px; margin: 20px 10px 5px; border: 1px solid #aaa; height: 5em; }
+    .post-content{ display: none; text-align: right; margin-right: 10px; }
+    .notifications-overflow{ position: absolute; top: 70px; left: 0; right: 0; bottom: 0; overflow: auto; }
+    #notifications-list{ list-style: none; }
+    #notifications-list li.notification{ font-size: 10px; margin: 20px 10px; height: 40px }
+    #notifications-list li.notification .userpic{ width: 32px; height: 32px; margin-right: 10px }
+    #notifications-list li.notification .head{ color: #999 }
+    #notifications-list li.sys-notification{ height: 20px; margin: 5px 10px; }
+    #notifications-list li.sys-notification .lbl{ width: 80px; text-align: center }
+    #notifications-list li.sys-notification .icn{ width: 16px; height: 16px; margin: -2px 10px 0; }
+    #notifications-list li.sys-notification .action{ width: 50px; text-transform: uppercase; }
+    #notifications-list li.sys-notification span,
+    #notifications-list li.sys-notification a{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 5px }
+    #notifications-list li.sys-notification .date{ margin-right: 0 }
+    #notifications-list li.sys-notification .affected-user{ width:auto }
+    #notifications-list li.sys-notification .pull-right{ color: #999 }
+    #notifications-list li.sys-notification .title{ width: 220px }
+
+.notification_service-content
+
+  h1.title Aktivitäten & Nachrichten
+
+  .notifications-overflow
+    form#notification-form( data-bind='submit: postMessage' )
+      span.textarea-caret
+      textarea(data-bind='value: message' )
+      .post-content
+        span#cancel-post.btn Abbrechen
+        button.btn( type='submit' ) Posten
+
+
+    ul.dashboard-list#notifications-list( data-bind='template: { name: \'notificationTemplate\', foreach: notifications }' )
+
+  script( type='text/html', id='notificationTemplate' )
+    <!-- ko if: type === 'Message' -->
+    li.notification( data-bind='attr: { \'data-id\': _id, id: _id }' )
+      img.pull-left.userpic( data-bind='attr: { src: \'/users/\'+_creator._id+\'/pic\'}' )
+      p.head
+        span.pull-right.live-tipsy( data-bind='text: formattedCreatedAt(true), attr: {\'original-title\': formattedCreatedAt()}' )
+        span( data-bind='text: _creator.name.nick' )
+      p.content( data-bind='text: message' )
+    <!-- /ko -->
+    <!-- ko if: type !== 'Message' -->
+    li.notification.sys-notification( data-bind='attr: { \'data-id\': _id, id: _id }' )
+      span.lbl.action.pull-left(data-bind='if: message.indexOf(\'creation\') === 0, css: {green: message.match(/^creation|^sharing/), red: message.indexOf(\'unsharing\') === 0 }, text: t(message.split(\'.\')[0]+\'.title\')')
+      span.icn.pull-left( data-bind='css: \'icn-\'+docType.replace(/s$/,\'\')' )
+      a.title.live-tipsy-l.pull-left( data-bind='text: docName, attr: {\'original-title\': docName, href: \'#/\'+docType+\'/\'+docId+\'?fio=true&app=\'+docType}', data-link='true' )
+      <!-- ko if: typeof(affectedUserName) !== 'undefined' && affectedUserName -->
+      span.affected-user.pull-left.lbl( data-bind='text: affectedUserName === \'anybody\' ? t(\'anybody\') : affectedUserName')
+      <!-- /ko -->
+      span.pull-right.date.live-tipsy( data-bind='text: formattedCreatedAt(true), attr: {\'original-title\': formattedCreatedAt()}' )
+      span.by.pull-right( data-bind='text: _creator.name.nick, attr: {\'original-title\': _creator.name.full}' )
+    <!-- /ko -->
+
+  script
+    $('#notification_service-docklets-stream').css( {width: 400, height: 400 })
+      .find('.new-message').on('click', function(){
+        $(this).closest('div').find('textarea').slideToggle(200).delay(50).focus();
+      });
+
+    ioco.notificationService = {
+
+      notificationMessagesModel: {
+
+        notifications: ko.observableArray([]),
+
+        load: function(){
+          var self = this;
+          $.getJSON( '/notification_service.json', function( data ){
+            if( data.success && data.data )
+              for( var i in data.data )
+                self.notifications.push( new ioco.notificationService.NotificationModel( data.data[i] ) );
+          });
+        }
+      },
+
+      NotificationModel: function NotificationModel( args ){
+        
+        var self = this;
+
+        args = args || { message: '', _id: (new Date()).getTime().toString(36) };
+
+        for( var i in args)
+          self[i] = args[i];
+
+        ko.observable(self.message);
+
+        self.t = function(txt){
+          return $.i18n.t(txt);
+        }
+
+        self.postMessage = function(){
+          ioco.notificationService.socket.emit('postMessage', { message: self.message, userId: '#{currentUser._id}' });
+          $('#notification-form textarea').val('').slideUp().closest('div').find('.post-content').hide();
+        }
+
+        self.formattedCreatedAt = function(human){
+          if( human )
+            return moment(self.createdAt).fromNow();
+          else
+            return moment(self.createdAt).format('DD.MM.YYYY HH:MM');
+        }
+
+      },
+
+      setup: function(){
+
+        if( this.socket )
+          return;
+
+        var self = this;
+
+        self.socket = io.connect( ioco.socket.native + '/mainStream' );
+
+        this.notificationMessagesModel.load();
+
+        ko.cleanNode($('#notification-form').get(0));
+        ko.applyBindings( new self.NotificationModel(), $('#notification-form').get(0) );
+        ko.cleanNode($('#notifications-list').get(0));
+        ko.applyBindings( self.notificationMessagesModel, $('#notifications-list').get(0) );
+
+        $('#notification-form').on('mouseleave', function(){
+          if( $(this).find('textarea').val().length === 0 )
+            $(this).closest('form').find('.post-content').slideUp(200);
+        }).find('textarea').on('keydown', function(){
+          if( $(this).val().length > 0 )
+            $(this).closest('form').find('.post-content').slideDown(200);
+        }).end().find('#cancel-post').on('click', function(){
+          $(this).closest('form').find('textarea').val('');
+          $(this).closest('form').find('.post-content').slideUp(200);
+        });
+
+        self.socket.on('updateStream', function (data) {
+          self.notificationMessagesModel.notifications.unshift( new self.NotificationModel( data ) );
+        });
+
+
+      }
+    };
+
+    ioco.notificationService.setup();

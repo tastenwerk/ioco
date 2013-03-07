@@ -1,0 +1,121 @@
+ul.top-tabs-action-nav
+  li.action-nav
+    a.btn( href='/users/#{user._id}/edit', data-remote='true' )=t('edit')
+  li.action-nav
+    a.btn( href='/users/#{user._id}/change_password_modal', data-remote='true' )=t('user.change_password')
+
+h1.title=t('user.profile_of', {name: user.name.full})
+
+.content-padding-w-overflow( style='top: 50px; left: 40px')
+
+  fieldset
+    legend=t('user.contact')
+
+    .pull-right
+
+    .userpic.userpic96.pull-left
+      img( src='/users/#{user._id}/pic?size=96', class='userpic-#{user._id}' )
+      .editpic
+        =t('user.picture.edit')
+
+    p
+      label=t('user.name')
+      br
+      span=user.name.full
+
+    p
+      label=t('user.nick')
+      br
+      span=user.name.nick
+
+    p
+      label=t('user.email')
+      br
+      span=user.email
+
+  fieldset
+    legend=t('user.administrational_privileges')
+
+    div(style='margin-left: 160px')
+      p
+        label=t('user.roles.title')
+
+      table
+        -each role in ioco.config.userRoles
+          tr
+            td( style='padding-right: 20px')=t('user.roles.'+role)
+            td
+              span.icn.icn-checkbox( class=(user.roles.indexOf(role) >= 0 ? 'checked' : null) )
+
+script
+  $('#ioco-menubar').find('.active').removeClass('active');
+  var container = $('#ioco-main-content');
+  container.find('.editpic').on('click', function(){
+
+  ioco.modal({url: '/users/#{ user._id }/change_pic_modal', title: $.i18n.t('user.picture.of', {name: '#{user.name.full}'}),
+
+    before: function( modal ){
+
+      function showPreview(coords){
+        modal.find('input[name=w]').val( parseInt(coords.w) );
+        modal.find('input[name=h]').val( parseInt(coords.h) );
+        modal.find('input[name=x]').val( Math.round(coords.x) );
+        modal.find('input[name=y]').val( Math.round(coords.y) );
+      }
+
+      var selectOpts = [0,0,100,100];
+      if( !{currentUser.picCropCoords.w} && !{currentUser.picCropCoords.w} > 0 )
+        selectOpts = [ !{currentUser.picCropCoords.x},
+                       !{currentUser.picCropCoords.y},
+                       !{currentUser.picCropCoords.x + currentUser.picCropCoords.w},
+                       !{currentUser.picCropCoords.y + currentUser.picCropCoords.h}];
+
+      modal.find('#user-profile-pic').Jcrop({
+        onChange: showPreview,
+        onSelect: showPreview,
+        aspectRatio: 1,
+        setSelect: ( selectOpts || null )
+      });
+
+      modal.find('#uploader').fineUploader({
+
+        request: {
+          endpoint: '/users/#{ user._id }/change_pic_modal',
+          params: {
+            _csrf: ioco._csrf
+          }
+        },
+
+        text: {
+          uploadButton: '<i class="icn icn-upload pull-left"></i> <span class="pull-left">' + $.i18n.t('user.picture.select') +'</span>'
+        }
+
+      }).on('upload', function(){
+        modal.find('#uploader').slideUp(200);
+        modal.find('#upload-progress').show();
+        modal.find('.qq-upload-list').remove();
+      }).on('progress', function( e, id, fileName, uploadedBytes, totalBytes ){
+        var percent = uploadedBytes / (totalBytes / 100);
+        modal.find('#upload-progress .bar').css('width', percent+'%');
+      }).on('complete', function( e, id, fileName, response ){
+
+        if( response.flash.error && response.flash.error.length > 0 ){
+          $('#ioco-modal form').slideDown(200);
+          $('#upload-progress').hide();
+        }
+
+        modal.find('#upload-progress .bar').css('width', '100%');
+        ioco.notify(response.flash);
+
+        modal.find('#user-profile-pic').attr('src', $('#user-profile-pic').attr('src').split('?')[0]+'?'+(new Date()).getTime().toString()).Jcrop({
+          onChange: showPreview,
+          onSelect: showPreview,
+          aspectRatio: 1
+        });
+
+        setTimeout( function(){ modal.find('#upload-progress').after('<p>'+ $.i18n.t('finished') +'</p>'); }, 1500 );
+      });
+
+     }
+    });
+  }); 

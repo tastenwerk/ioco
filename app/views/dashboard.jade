@@ -1,0 +1,55 @@
+#ioco-dashboard.dashboard-plugin.content-padding
+
+  .dropdown.pull-right
+    a#dashboard-settings( data-toggle='dropdown' )
+      span.icn.icn-preferences.white
+      span.icn.icn-caret.white
+    ul.dropdown-menu.right-hand.select-docklets
+      -for( var i in ioco.plugins )
+        -if( ioco.plugins[i].docklets )
+          -for( var j=0, docklet; docklet=ioco.plugins[i].docklets[j]; j++ )
+            -dockletPath = ioco.plugins[i].name+'/docklets/'+docklet;
+            li(data-docklet-path=dockletPath)
+              span.icn.icn-checkbox.pull-left( class=(currentUser.preferences.docklets && currentUser.preferences.docklets.indexOf( dockletPath ) >= 0 ? 'checked' : null) )
+              span=t(ioco.plugins[i].name+'.docklets.'+docklet+'.title')
+
+  h1.title Dashboard
+
+  .docklets-container.content-padding-w-overflow(style='top: 47px')
+    if( currentUser.preferences.docklets )
+      -currentUser.preferences.docklets.forEach(function( docklet ){
+        .ioco-docklet(id=docklet.replace(/\//g,'-'))
+          .loader
+            .circle
+            .circle
+            .circle
+            .circle
+            .circle
+      -})
+
+script
+  $(function(){
+    $('.dashboard-plugin .select-docklets .icn-checkbox').on('click', function(){
+      $(this).toggleClass('checked');
+      if( $(this).hasClass('checked') ){
+        var dockletPath = $(this).closest('li').attr('data-docklet-path');
+        var docklet = $('<div class="ioco-docklet"><div class="loader"><div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle"></div><div class="circle"></div></div></div>');
+        docklet.attr('id', dockletPath.replace(/\//g,'-') )
+        $('.docklets-container').append( docklet );
+        $.ajax({ url: '/users/#{currentUser._id}/docklets', dataType: 'script', data: {_csrf: ioco._csrf, docklets: dockletPath }, 
+                type: 'post',
+                success: function( response ){
+                  ioco.notify( response.flash );
+                } 
+        });
+        docklet.load( ioco.host.native + '/' + dockletPath )
+      }
+    });
+  });
+
+if( currentUser.preferences.docklets )
+  -each docklet in currentUser.preferences.docklets
+    script
+      $(function(){
+        $('#' + '#{docklet.replace(new RegExp('\/','g'),'-')}').load( ioco.host.native + '/#{docklet}' )
+      });

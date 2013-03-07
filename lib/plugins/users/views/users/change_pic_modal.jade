@@ -1,0 +1,26 @@
+.modal-sidebar
+
+  ul.sidebar-nav
+    li=t('user.picture.upload.title')
+    li=t('user.picture.edit')
+
+  .sidebar-content
+
+    .content-padding
+
+      #uploader
+
+      #upload-progress.progress(style='display:none')
+        .bar(style='width:0%')
+
+    .content-padding
+
+      .pull-right(style='margin-left: 170px')
+        p(style='color: #555;font-size:12px; margin: 20px 100px 0 0; text-align:left')=t('user.picture.edit_desc')
+        form( action='/users/#{user._id}/change_pic_modal', method='put', data-remote='true', style='text-align:right;margin-top:50px')
+          input(type='hidden', name='x')
+          input(type='hidden', name='y')
+          input(type='hidden', name='w')
+          input(type='hidden', name='h')
+          input.btn( type='submit', value=t('save') )
+      img#user-profile-pic( src='/users/#{currentUser._id}/pic?#{new Date().getTime().toString()}=0&orig=true')

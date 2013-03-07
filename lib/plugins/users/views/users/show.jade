@@ -1,0 +1,18 @@
+#user-show.top-tabs
+
+  ul.top-tabs-nav
+    li=t('user.general')
+    li=t('user.preferences')
+
+  .top-tabs-content
+
+    .content-padding
+
+      include snippets/general.jade
+
+    .content-padding
+
+      include snippets/preferences.jade
+
+script( type='text/javascript' )
+  $('#user-show').iocoTopTabs();

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  include toppanel
+
+  #ioco-main-panel
+
+    #ioco-account-info
+      a.userpic( data-user-img=currentUser._id, href='#/users/'+currentUser._id, data-link='true' )
+        img( class='userpic-#{currentUser._id}', src='/users/'+currentUser._id+'/pic?size=128' )
+
+      .user-actions
+        a.edit.live-tipsy-r( href='#/users/'+currentUser._id, data-link='true', original-title=t('user.edit_profile') )
+          span.icn.icn-edit2.white
+        a.logout.live-tipsy-r( href='/logout', original-title=t('user.logout') )
+          span.icn.icn-exit.white
+
+    include menubar
+
+    #ioco-main-content.hide
+
+    include dashboard
+
+    include ../../lib/plugins/comments/snippets/comments-list-template.jade
+    include ../../lib/plugins/comments/snippets/comment-form-template.jade

@@ -1,0 +1,11 @@
+.span400
+  h1=t('folders.new')
+  form( action='/folders', method='post', data-remote='true' )
+    p
+      input.span400.js-get-focus( type='text', name='folder[name]' )
+      input.parent( type='hidden', name='folder[parent]' )
+      br
+      span.label.parent
+    p.control
+      button.btn( type='button', onclick="ioco.modal('close');")=t('cancel')
+      button.btn( type='submit' )=t('save')

@@ -1,0 +1,1194 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,
+p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,
+dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,
+var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,
+details,figcaption,figure,footer,header,hgroup,menu,nav,
+section,summary,time,mark,audio,video
+  margin: 0
+  padding: 0
+
+@import "styles/colors"
+@import "styles/icns"
+@import "styles/dropdown"
+@import "styles/loader"
+@import "styles/upload"
+
+//@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700,800);
+
+@font-face
+  font-family: OpenSans
+  font-weight: 300
+  src: url('/fonts/OpenSans-Light.ttf')
+
+@font-face
+  font-family: OpenSans
+  font-weight: 500
+  src: url('/fonts/OpenSans-Regular.ttf')
+
+@font-face
+  font-family: OpenSans
+  font-weight: 900
+  src: url('/fonts/OpenSans-Bold.ttf')
+
+html
+  font-family: "OpenSans", 'Arial', sans-serif
+  font-size: 100%
+  background-color: IO_BLACK
+
+[draggable]
+  -moz-user-select: none
+  -khtml-user-select: none
+  -webkit-user-select: none
+  user-select: none
+
+.pull-right
+  float: right
+
+.pull-left
+  float: left
+
+.hide
+  display: none
+
+.clearfix
+  zoom: 1
+  &:before, &:after
+    content: ""
+    display: p
+  &:after
+    clear: both
+
+.desc
+  color: #777
+  font-size: 12px
+  font-weight: 300
+
+.span400
+  width: 400px
+
+.span6
+  width: 50%
+
+.span-full, .span12
+  width: 100%
+
+table
+  font-size: 12px
+  td.right
+    text-align: right
+
+fieldset
+  border: none
+  border-top: 1px solid #ddd
+  padding: 20px
+
+  legend
+    background: IO_WHITE
+    padding: 2px 10px 2px 0
+    font-weight: 300
+
+  label
+    font-size: 10px
+    color: IO_FONT_LIGHTGREY
+
+form
+  p
+    margin: 8px 0 
+  label
+    font-weight: 300
+    color: #999
+    font-size: 12px
+    &.pull-left
+      width: 100px
+      color: #777
+      margin: 5px
+
+.path-info
+  &.w-margin
+    margin-bottom: 10px
+  label
+    &.pull-left
+      width: 50px
+      color: #777
+      margin: 5px
+
+.userpic
+  //border: 3px solid IO_WHITE
+  //box-shadow: -1px 1px 3px IO_BLACK
+  position: relative
+  .editpic
+    background-color: rgba( 0, 0, 0, 0.5 )
+    color: white
+    padding: 10px
+    text-align: center
+    display: none
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    font-weight: 300
+    font-size: 12px
+    cursor: pointer
+  &:hover
+    .editpic
+      display: block
+  &.userpic96
+    width: 96px
+    height: 96px
+    margin: 10px 50px 10px 10px
+    img
+      width: 96px
+      height: 96px
+
+
+a
+  color: #55b
+
+h1
+  font-size: 24px
+  line-height: 28px
+
+#ioco-top-panel
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  height: 40px
+  background-color: IO_BLACK
+  padding: 5px
+
+  #logo
+    float: left
+    margin-left: 23px
+    img
+      width: 40px
+      height: 40px
+  .dashboard
+    cursor: pointer
+
+  #logo-text
+    font-size: 23px
+    color: #ccc
+    margin: 5px 0 0 8px
+    float: left
+
+  #useractions
+    position: absolute
+    top: 15px
+    right: 20px
+    max-width: 50%
+    line-height: 14px
+    text-align: right
+    font-size: 12px
+    color: white
+    a
+      color: white
+      text-decoration: none
+      opacity: 0.7
+      &.site-title
+        color: #aaa
+        font-size: 10px
+      &:hover
+        opacity: 1
+
+  #click-here-for-advanced
+    text-align: center
+    font-size: 12px
+    color: rgba( 255,255,255, 0.5 )
+    margin-top: 5px
+    opacity: 0.4
+    cursor: pointer
+    .adv-close
+      display: none
+
+  &:hover
+    #click-here-for-advanced
+      opacity: 1
+
+#search-container
+
+  #search-form
+    margin: 0
+    position: relative
+
+    .query-options
+      list-style: none
+      position: absolute
+      top: 5px
+      left: 0
+      width: 460px
+      z-index: 1
+      li
+        background: IO_GREY_BG
+        border-top: 1px solid #ddd
+        border-left: 1px solid #ddd
+        border-radius: 1px
+        padding: 3px 5px
+        float: left
+        font-size: 11px
+        &:last-child
+          border-right: 1px solid #ddd
+        &.active
+          background: white
+    .query
+      border: 1px solid #ddd
+      background: white
+      border-radius: 1px
+      input
+        border: none
+        background: none
+        width: 500px
+        font-size: 16px
+        &:hover, &:focus
+          box-shadow: none
+      button
+        border: none
+        background: none
+        outline: none
+        float: right
+        margin: 5px 0 0 5px
+        cursor: pointer
+        &[type=submit]
+          img
+            width: 24px
+            height: 24px
+            opacity: 0.5
+        &.options
+          width: 24px
+          height: 24px
+          position: relative
+          .caret
+            border-color: rgba(0,0,0,0.5) transparent transparent transparent
+            border-style: solid
+            border-width: 5px
+            height: 0
+            width: 0
+            position: absolute
+            top: 12px
+            right: 14px
+
+#ioco-search-results
+  list-style: none
+  margin: 0
+  li
+    margin: 5px 0
+    padding: 5px
+    border-bottom: 1px solid #ddd
+    .title
+      margin: 0
+    .updated-date
+      font-size: 12px
+      color: #555
+      margin-top: 4px
+    .icn
+      margin: 3px 5px 0 0
+    &:last-child
+      border: none
+
+#ioco-main-panel
+  position: absolute
+  top: 50px
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: IO_BLACK
+
+#ioco-dashboard
+  IO_POS_ABSOLUTE()
+  top: 10px
+  left: 170px
+  bottom: 10px
+  right: 10px
+  color: #ccc
+
+  h1.title
+    font-size: 32px
+    font-weight: 100
+
+
+#ioco-main-content
+  position: absolute
+  top: 10px
+  left: 75px
+  right: 10px
+  bottom: 10px
+  background-color: IO_WHITE
+  //box-shadow: -2px 2px 4px #bbb
+
+  h1.title
+    font-size: 32px
+    color: #777
+    font-weight: 100
+
+  .main-control, .main-control-r
+    position: absolute
+    top: 12px
+    right: 10px
+  .main-control-l
+    position: absolute
+    top: 12px
+    left: 10px
+
+
+  .ioco-sidebar
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    width: 250px
+    background: IO_GREY_BG
+
+    .title
+      font-weight: 100
+      font-size: 16px
+      margin: 5px 10px
+      padding: 0 5px
+      border-bottom: 1px solid #ccc
+
+  .ioco-content
+    position: absolute
+    top: 0
+    left: 250px
+    bottom: 0
+    right: 0
+    border-left: 1px solid #ccc
+    padding: 10px
+
+    h1
+      font-weight: 100
+
+    .click-for-details
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      margin: auto
+      width: 100%
+      height: 20px
+      text-align: center
+      font-weight: 100
+      font-size: 14px
+      color: #999
+
+#ioco-account-info
+  position: absolute
+  top: 10px
+  left: 0
+
+  .userpic, .userpic img
+    width: 96px
+    height: 96px
+    border: none
+  .userpic img
+    IO_GREYSCALE()
+
+  .user-actions
+    background-color: #222
+    border-bottom: 1px solid #000
+    margin-top: -5px
+    height: 24px
+    width: 100%
+    a
+      float: left
+      margin: 2px 0
+      opacity: 0.3
+      padding: 0 10px
+      &.edit
+        border-right: 1px solid #555
+      &:hover
+        opacity: 1
+
+
+
+
+ul#ioco-menubar
+  position: absolute
+  top: 150px
+  left: 0
+  bottom: 10px
+  list-style: none
+  li
+    margin: 0
+    height: 25px
+    padding: 2px 5px 2px 24px
+    min-width: 68px
+    img.icon
+      background-size: 24px
+      width: 24px
+      height: 24px
+      opacity: 0.7
+    .desc
+      color: white
+      opacity: 0.3
+      font-size: 14px
+      margin: 2px 0 0 10px
+    &.active
+      background-color: #111
+      img.icon
+        opacity: 0.8
+    &:hover
+      img.icon
+        opacity: 1
+      .desc
+        opacity: 0.8
+    .loader
+      width: 16px
+      height: 16px
+      margin: 4px 0 0 0
+      .circle
+        width: 16px
+        height: 16px
+        &:after
+          width: 3px
+          height: 3px
+
+.content-padding
+  padding: 12px 20px
+
+.content-padding-w-overflow
+  position: absolute
+  top: 12px
+  left: 10px
+  right: 10px
+  bottom: 10px
+  overflow-y: auto
+  overflow-x: hidden
+
+  .form-content
+    width: 99%
+
+.progress
+  width: 300px
+  height: 10px
+  background-color: IO_GREY_BG
+  border: 1px solid IO_DARK_GREY
+  .bar
+    width:0%
+    height:100%
+    color: #ffffff
+    float:left
+    font-size:12px
+    text-align:center
+    text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25)
+    background-color: IO_ORANGE
+    -webkit-transition: width 0.6s ease
+    -moz-transition:width 0.6s ease
+    -o-transition:width 0.6s ease
+    transition:width 0.6s ease
+
+#ioco-modal
+  IO_POS_ABSOLUTE()
+  width: 800px
+  height: 600px
+  background-color: IO_WHITE
+  box-shadow: IO_BOX_SHADOW
+  border-radius: 1px
+  margin: auto
+  z-index: 1000
+
+  .modal-win-ctrl
+    position: absolute
+    top: 9px
+    padding: 0
+    opacity: 0.5
+    &:hover
+      opacity: 1
+
+  .close-icn
+    top: 5px
+    font-size: 20px
+
+  .modal-title
+    position: absolute
+    top: 10px
+    left: 10px
+    font-weight: 900
+
+  .modal-inner-wrapper
+    IO_POS_ABSOLUTE()
+    top: 40px
+    overflow: auto
+    border-top: 1px solid #ddd
+
+    .modal-sidebar
+
+      .sidebar-nav
+        IO_POS_ABSOLUTE()
+        width: 150px
+        overflow: auto
+        border-right: 1px solid #ddd
+        list-style: none
+        padding: 20px 0
+        li
+          padding: 5px
+          font-weight: 300
+          cursor: pointer
+          border-left: 5px solid transparent
+          font-size: 0.9em
+          &:hover
+            background-color: IO_GREY_BG
+          &.active
+            border-color: IO_ORANGE
+            font-weight: 900
+            color: IO_ORANGE
+      .sidebar-content
+        IO_POS_ABSOLUTE()
+        left: 160px
+        overflow: auto
+        >div
+          display: none
+
+      .offset-details-view
+        margin-right: 220px
+      .modal-details-view
+        width: 240px
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        border-left: 1px solid #ddd
+
+  &.arrange-left
+    margin: 0
+    left: 0
+    bottom: 0
+    width: 150px
+    IO_TRANSITION(0.3s)
+    .sidebar-nav
+      display: none
+    .modal-details-view
+      display: none
+    .modal-sidebar 
+      .sidebar-content
+        left: 0
+      .offset-details-view
+        margin-right: 0
+    .modal-title
+      display: none
+    .web-files-control div
+      display: none
+    .selected-counter
+      display: none
+
+.side-tabs
+
+  .side-tabs-nav
+    IO_POS_ABSOLUTE()
+    width: 30px
+    overflow: auto
+    border-right: 1px solid #ddd
+    list-style: none
+    padding: 10px 0
+    li
+      padding: 3px 0 0 4px
+      font-weight: 300
+      cursor: pointer
+      border-left: 5px solid transparent
+      font-size: 0.9em
+      &:hover
+        background-color: IO_GREY_BG
+        .icn
+          opacity: 1
+      &.active
+        border-color: IO_ORANGE
+        font-weight: 900
+        color: IO_ORANGE
+      .icn
+        opacity: 0.5
+  .side-tabs-content
+    IO_POS_ABSOLUTE()
+    left: 31px
+    overflow: auto
+    padding: 10px
+    >div
+      display: none
+
+
+#ioco-modal-overlay
+  IO_POS_ABSOLUTE()
+  width: 100%
+  height: 100%
+  background-color: rgba(0,0,0,0.7)
+  z-index: 11
+  
+.btn
+  IO_GRADIENT( #f5f5f5, #f1f1f1 )
+  border: 1px solid #DCDCDC
+  border-radius: 1px
+  color: #333333;
+  cursor: pointer;
+  font-weight: bold
+  padding: 4px 12px
+  text-shadow: -1px 1px 0 #FFFFFF
+  white-space: nowrap
+  border-radius: 1px
+  text-decoration: none
+  font-size: 12px
+  cursor: pointer
+  &:hover
+    background-color: IO_BUTTON_WHITE_HOVER;
+    background-image: -moz-linear-gradient(center top , #F8F8F8, #F1F1F1);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#F8f8f8), to(#F8f8f8))
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    border-color: #C6C6C6;
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.1);
+    color: #333333;
+    text-shadow: none;
+    transition: none 0s ease 0s;
+    z-index: 2;
+  &.w-icn-only
+    padding: 4px 8px 2px
+    .icn
+      opacity: 0.5
+  &.no-bg
+    background: none
+    box-shadow: none
+    opacity: 0.8
+    border: none
+    &:hover
+      background: none
+      box-shadow: none
+      opacity: 1
+  &.blue
+    IO_GRADIENT(#118be7, #007ad6)
+    color: white
+    text-shadow: none
+    font-weight: 500
+    border: 1px solid #118be7
+  &.green
+    IO_GRADIENT(#8a0, #9b1)
+    color: white
+    text-shadow: none
+    font-weight: 500
+    border: 1px solid #8a0
+    &:hover
+      border: 1px solid #790
+      box-shadow: -1px 1px 1px rgba(0,0,0,0.3)
+
+.cntBox
+  padding: 1px 6px
+  border: 1px solid #aaa
+  background-color: #ccc
+  color: black
+  margin: 0 5px
+  font-size: 10px
+  font-weight: 900
+  border-radius: 1px
+  .new
+    background-color: IO_ORANGE
+    border-color: IO_ORANGE
+    color: black
+
+input[type=text],input[type=password]
+  border: 1px solid #dcdcdc;
+  border-radius: 1px
+  padding: 8px 0
+  text-indent: 5px
+
+  &:focus, &:hover
+    border: 1px solid #bbb;
+    //box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3) inset;
+    outline: medium none;
+    transition: none 0s ease 0s;
+
+.ioco-docklet
+  width: 200px
+  height: 200px
+  //IO_GRADIENT(#F5F5F5, #F1F1F1)
+  //background-repeat: repeat-x;
+  //box-shadow: -1px 1px 4px rgba(0,0,0,0.5);
+  position: relative
+  float: left
+  margin: 5px
+  color: white
+  padding: 20px
+  .loader
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    height: 40px
+    color: white
+  h1.messages-count
+    font-size: 40px
+    font-weight: 100
+    margin-bottom: 5px
+  h2.messages-text
+    font-size: 14px
+    font-weight: 100
+  .action-btn
+    position: absolute
+    top: 8px
+    right: 40px
+    padding: 4px 12px 3px
+    color: #aaa
+    font-size: 12px
+    cursor: pointer
+    &:hover
+      color: #555
+  .close-icn
+    top: 8px
+    padding: 2px 8px
+
+.close-icn
+  position: absolute
+  top: 9px
+  right: 9px
+  color: #aaa
+  padding: 0 7px
+  cursor: pointer
+  font-size: 14px
+  &:hover
+    color: #555
+
+.ioco-vertical-tabs
+  .tab-container
+    top: 100px
+    margin-left: 0
+    .tab
+      height: 20px
+      font-size: 16px
+      font-family: 'SegoeUI', sans-serif
+      background-color: #ddd
+      padding: 10px 20px 15px
+      &:hover
+        background-color: #444
+        color: #fff
+  .tab-content-container
+    top: 100px
+
+.ioco-tree
+  &.outer-decoration
+    margin: 5px
+  li
+    margin: 0 0 5px 2px
+    a
+      text-decoration: none
+      color: #333
+      TEXT_OVERFLOW()
+  > ul
+    list-style: none
+    position: absolute
+    top: 70px
+    left: 10px
+    right: 0
+    bottom: 0
+    padding-bottom: 10px
+    overflow: auto
+    ul
+      list-style: none
+      margin: 5px 0 0 10px
+  .placeholder
+    outline: 1px dashed IO_ORANGE
+    border-radius: 1px
+  .tree-item
+    IO_GRADIENT(#F3F3F3, #EfEfEf)
+    IO_TRANSITION(0.3s)
+    padding: 10px 5px
+    font-size: 12px
+    border-radius: 1px
+    border: 1px solid #ddd
+    height: 15px
+    position: relative
+    overflow: hidden
+    &:hover
+      box-shadow: -1px 1px 2px rgba(0,0,0,0.3)
+      .tree-trigger
+        opacity: 1
+
+    .title
+      font-size: 14px
+    a.show-details-arr
+      padding-left: 3px
+      border-left: 1px solid rgba(0,0,0,0.1)
+      line-height: 22px
+      margin: -3px 5px 0 8px
+      cursor: pointer
+      .icn
+        margin-top: 2px
+        float: right
+        opacity: 0.3
+    &.selected
+      box-shadow: -1px 1px 2px rgba(0,0,0,0.3) inset
+      IO_GRADIENT(#118be7, #007ad6)
+      color: white
+      a
+        color: white
+      .children-caret
+        border-color: transparent transparent transparent rgba(255,255,255,0.5)
+      .show-options-trigger .caret
+        border-color: rgba(255,255,255,0.5) transparent transparent transparent
+    &.show-options
+      IO_TRANSITION(0.3s)
+      height: 45px
+    .published-status
+      opacity: 0.3
+      margin-right: 25px
+      &.unlocked
+        opacity: 0
+    .tree-trigger
+      cursor: pointer
+    .tree-trigger
+      opacity: 0
+    .show-options-trigger
+      top: 5px
+      right: 5px
+      position: absolute
+      width: 30px
+      height: 30px
+      .caret
+        border-color: rgba(0,0,0,0.5) transparent transparent transparent
+        border-style: solid
+        border-width: 5px
+        height: 0
+        width: 0
+        position: absolute
+        top: 11px
+        right: 8px
+    .tree-item-control
+      margin-top: 12px
+      text-align: right
+      .btn
+        padding: 6px 2px 0
+        margin-right: 2px
+        border: none
+        background: none
+        box-shadow: none
+        opacity: 0.5
+        &:hover
+          opacity: 1
+
+    .children-caret
+      border-color: transparent transparent transparent rgba(0,0,0,0.5) 
+      border-style: solid
+      border-width: 5px
+      height: 0
+      width: 0
+      float: left
+      margin: 4px
+      &.open
+        transform: rotate(45deg)
+        IO_TRANSITION(0.5)
+      &.loading
+        animation-iteration-count: infinite
+        animation-name: orbit
+        animation-duration: 2s
+
+  .tree-controls
+    height: 16px
+    padding: 0 5px
+
+    .btn
+      background: none
+      box-shadow: none
+      border: none
+      opacity: 0.8
+      float: left
+      &:hover
+        opacity: 1
+    .enableable
+      opacity: 0.2
+      &.enabled
+        opacity: 0.8
+
+.second-sidebar
+  width: 25%
+  position: absolute
+  top: 10px
+  left: 10px
+  bottom: 10px
+  .ioco-tree-list
+    overflow: auto
+    position: absolute
+    bottom: 0
+    left: 0
+    top: 30px
+    right: 0
+
+.second-main-container
+  position: absolute
+  top: 10px
+  left: 25%
+  margin-left: 20px
+  right: 10px
+  bottom: 10px
+
+#info-modal
+  min-height: 300px
+  width: 300px
+  position: absolute
+  border: 1px solid #ddd
+  background-color: IO_WHITE
+  box-shadow: -1px 1px 3px #ddd
+  .info-modal-title
+    border-bottom: 1px solid #ddd
+    padding: 10px
+  h1.title
+    font-size: 14px
+    line-height: 14px
+  .side-tabs
+    position: absolute
+    left: 0
+    top: 35px
+    bottom: 0
+    right: 0
+  .side-tabs-content
+    div
+      font-size: 12px
+      label.pull-left
+        width: 100px
+        color: #777
+      p
+        margin: 10px 0
+
+  .comments
+    margin: 0
+    div
+      padding: 0
+    h1
+      font-size: 14px
+      text-transform: uppercase
+
+
+.comments-list
+  list-style: none
+  ul
+    list-style: none
+
+.comment-item
+  margin: 10px 0
+  padding: 5px
+  .userpic
+    width: 24px
+    height: 24px
+  .actions
+    float: right
+    a
+      cursor: pointer
+      opacity: 0.5
+      &:hover
+        opacity: 1
+  .content
+    margin: 5px 0 0 30px
+    .info
+      font-size: 10px
+      color: rgba(0,0,0,0.5)
+      text-align: right
+  &:hover
+    background: rgba(0,0,0,0.05)
+
+  .content-edit
+    display: none
+
+  .follow-up-form
+    display: none
+
+  textarea
+    border: 1px solid rgba(255,255,255,0.7)
+    width: 100%
+    height: 5em
+
+
+
+
+
+
+#info-modal-caret
+  position: absolute
+  height: 0
+  width: 0
+  .caret-inner
+    border-color: transparent IO_WHITE transparent transparent
+    border-style: solid
+    border-width: 10px
+    height: 0
+    width: 0
+    position: absolute
+    top: 1px
+    left: 2px
+    z-index: 102
+  .caret-outer
+    border-color: transparent #ddd transparent transparent
+    border-style: solid
+    border-width: 11px
+    height: 0
+    width: 0
+    position: absolute
+    top: 0
+    z-index: 101
+    left: 0
+
+.lbl
+  background-color: IO_DARK_GREY
+  padding: 0.1em 5px
+  font-size: 0.8em
+  color: white
+  border-radius: 1px
+  &.public-status
+    background-color: IO_PUBLISH_GREEN
+    cursor: pointer
+    &.locked
+      background-color: IO_RED
+  &.green
+    background-color: IO_GREEN
+  &.red
+    background-color: IO_RED
+  &.black
+    background-color: #333
+    color: white
+
+// jquery.notice
+.notice-wrap
+  position: fixed
+  top: 50px
+  right: 0
+  width: 250px
+  z-index: 9999
+
+* html .notice-wrap
+  position: absolute
+ 
+.notice-item
+  min-height: 60px
+  background-color: #01A31C
+  color: white
+  padding: 10px 20px
+  font-family: 'SegoeUI', sans-serif
+  font-size: 14px
+  display: block
+  position: relative
+  margin: 0 0 12px 0
+  &.error
+    background-color: #D44A26
+
+  a
+    color: white
+
+.notice-item-close
+  position: absolute
+  font-family: Arial
+  font-size: 20px
+  font-weight: bold
+  right: 2px
+  top: 2px
+  cursor: pointer
+  padding: 2px 7px 0
+  &:hover
+    background-color: white
+    color: black
+    opacity: 0.7
+
+.ioco-controls, .ioco-editor-controls
+  height: 25px
+  margin: 5px 10px 0 0
+  .btn
+    background: none
+    box-shadow: none
+    border: none
+    opacity: 0.5
+    &:hover
+      opacity: 1
+
+.ioco-editor-content
+  margin: 5px
+  //border: 1px solid #ddd
+  padding: 5px
+  //box-shadow: -2px 2px 2px #ccc
+  overflow: auto
+  //background-color: white
+
+.top-tabs-nav
+  list-style: none
+  position: absolute
+  top: -2px
+  left: 50px
+  right: 0
+  > li
+    float: left
+    margin: 0 5px
+    padding: 7px 20px 12px
+    font-weight: 100
+    cursor: pointer
+    position: relative
+    border-radius: 2px
+    &.active
+      background: IO_BLACK
+      color: white
+
+      .active-caret
+        border-color: transparent transparent IO_WHITE transparent
+        border-style: solid
+        border-width: 8px
+        height: 0
+        width: 0
+        position: absolute
+        bottom: 0
+        right: 50%
+        margin-right: -8px
+
+.top-tabs-content
+  position: absolute
+  top: 50px
+  left: 0
+  right: 0
+  bottom: 0
+
+  .top-tabs-action-nav
+    position: absolute
+    top: -50px
+    right: 5px
+    list-style: none
+    li
+      float: right
+      margin-left: 5px
+      padding: 7px 0 12px
+      cursor: pointer
+
+.ioco-form
+  label
+    font-weight: 100
+    font-size: 14px
+    color: #555
+  input[type=text]
+    width: 100%
+  table
+    td
+      padding-right: 10px
+      &:last-child
+        padding: 0
+        
+/* ------------------------------------------------ tipys */
+.tipsy
+  font-size: 10px
+  position: absolute
+  padding: 5px
+  z-index: 100000
+
+.tipsy-inner
+  background-color: rgba(0,0,0,0.8)
+  color: #FFF
+  max-width: 200px
+  padding: 5px 8px 4px 8px
+  text-align: center
+  border-radius: 1px
+
+.tipsy-arrow { position: absolute; width: 0; height: 0; line-height: 0; border: 5px dashed rgba(0,0,0,0.95); }
+
+/* Rules to colour arrows */
+.tipsy-arrow-n { border-bottom-color: rgba(0,0,0,0.95); }
+.tipsy-arrow-s { border-top-color: rgba(0,0,0,0.95); }
+.tipsy-arrow-e { border-left-color: rgba(0,0,0,0.95); }
+.tipsy-arrow-w { border-right-color: rgba(0,0,0,0.95); }
+
+.tipsy-n .tipsy-arrow { top: 0px; left: 50%; margin-left: -5px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent; }
+.tipsy-nw .tipsy-arrow { top: 0; left: 10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent;}
+.tipsy-ne .tipsy-arrow { top: 0; right: 10px; border-bottom-style: solid; border-top: none;  border-left-color: transparent; border-right-color: transparent;}
+.tipsy-s .tipsy-arrow { bottom: 0; left: 50%; margin-left: -5px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+.tipsy-sw .tipsy-arrow { bottom: 0; left: 10px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+.tipsy-se .tipsy-arrow { bottom: 0; right: 10px; border-top-style: solid; border-bottom: none; border-left-color: transparent; border-right-color: transparent; }
+.tipsy-e .tipsy-arrow { right: 0; top: 50%; margin-top: -5px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
+.tipsy-w .tipsy-arrow { left: 0; top: 50%; margin-top: -5px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent; }

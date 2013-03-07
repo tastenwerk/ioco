@@ -1,0 +1,56 @@
+IO_ORANGE = #D44A26
+IO_GREEN = #8a0
+IO_PUBLISH_GREEN = #338000
+IO_RED = #c55
+IO_GREY_BG = #eaeaea
+IO_GREY_HOVER = #dfdfdf
+IO_DARK_GREY = #aaa
+IO_BLACK = #333
+IO_PITCHBLACK = #111
+IO_BUTTON_WHITE = #F3F3F3
+IO_LIGHT_GREY = #F3F3F3
+IO_WHITE = #f8f8f8
+IO_BUTTON_WHITE_HOVER = #F5F5F5
+
+TREE_BG = #DDD
+
+IO_FONT_LIGHTGREY = #777
+
+IO_POS_ABSOLUTE()
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+IO_GREYSCALE()
+  filter: gray
+  filter: url('/images/ff-greyscale-filter.svg#grayscale')
+  -webkit-filter: grayscale(1);
+  -o-filter: grayscale(100%)
+
+IO_GRADIENT(col1, col2)
+  background-color: col1;
+  background-image: -moz-linear-gradient(center top , col1, col2)
+  background-image: -webkit-gradient(linear, left top, left bottom, from(col1), to(col2))
+  background-repeat: repeat-x
+
+IO_TRANSITION(duration)
+  -webkit-transition-property: all
+  -moz-transition-property: all
+  -o-transition-property: all
+  -ms-transition-property: all
+  transition-property: all
+
+  -webkit-transition-duration: duration
+  -moz-transition-duration: duration
+  -o-transition-duration: duration
+  -ms-transition-duration: duration
+  transition-duration: duration
+
+IO_BOX_SHADOW = -1px 1px 3px rgba( 0, 0, 0, 0.5 )
+
+TEXT_OVERFLOW()
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis

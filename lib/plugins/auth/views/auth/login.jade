@@ -1,0 +1,48 @@
+extends ../../../../../app/views/layout
+
+block header
+  link(rel='stylesheet', href='/stylesheets/login.css')
+
+block content
+
+
+  #login-content
+
+    #login-logo
+      img( src='/images/logo_200x200.png')
+    #login-logo-text box
+
+    form.content-padding( action='/login', method='post' )
+      input( type='hidden', name='_csrf', value=_csrf )
+
+      p
+        label=t('user.email')
+        br
+        input.js-get-focus( type='text', name='email', placeholder=t('user.email') )
+      p
+        label=t('user.password')
+        br
+        input( type='password', name='password', placeholder=t('user.password') )
+
+      p(style='text-align: right')
+        a.btn( href='/forgot_password' )= t('user.forgot_password')
+        button.btn(type='submit')= t('user.login')
+
+
+  -if( flash.error )
+    -for( var i=0,msg; msg=flash.error[i]; i++ )
+      script
+        $(function(){
+          ioco.notify('#{msg}', 'error');
+        });
+  -else if( flash.notice )
+    -for( var i=0,msg; msg=flash.notice[i]; i++ )
+      script
+        $(function(){
+          ioco.notify('#{msg}');
+        });
+
+  script
+    $(function(){
+      $('.js-get-focus:first').focus();
+    })

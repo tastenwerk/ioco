@@ -1,0 +1,23 @@
+#ioco-tree-browser
+
+script
+  var Contents = new kendo.data.HierarchicalDataSource({
+    type: "odata",
+    transport: {
+      read: {
+        url: ioco.host.native+'/contents'
+      }
+    },
+    schema: {
+        model: {
+            hasChildren: "Contents",
+            id: "CategoryID",
+            children: Products
+        }
+    }
+  });
+
+  $("#treeview").kendoTreeView({
+    dataSource: Categories,
+    dataTextField: ["Contents"]
+  });

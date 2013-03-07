@@ -1,0 +1,7 @@
+-sbs = typeof( sideBySide ) !== 'undefined' && sideBySide
+p.path-info.hide( class=( sbs ? 'w-margin' : null ) )
+  label.desc( class=( sbs ? 'pull-left' : null ) )=t('path')
+  -if( !sbs )
+    br
+  span.lbl
+  input.parent( type='hidden' )

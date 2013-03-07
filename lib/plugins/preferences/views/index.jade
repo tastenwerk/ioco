@@ -1,0 +1,111 @@
+form.content-padding( action='/preferences', method='post', data-remote='true' )
+
+  .main-control
+    button( type='submit', style='border:none; background: none; margin-right: 5px; curosr: pointer' )
+      i.icn.icn-save
+
+  h1.title
+    span= t('preferences.title')
+
+  .content-padding-w-overflow( style='top:47px')
+
+      .tab-content-container.main-content
+        -for( var i in currentUser.preferences )
+          .tab-content
+            table.preferences
+              -if( currentUser.preferences[i] instanceof Array )
+                tr
+                  td
+                    input(type='text', value=t('preferences.'+i+'.title'), disabled)
+                  td
+                    -for( var j in currentUser.preferences[i] )
+                      input(type='text', value=currentUser.preferences[i][j], name='preferences['+i+'][]')  
+                      i.icn.icn-small.icn-minus
+                      -if( currentUser.preferences[i].length === parseInt(j+1) )
+                        i.icn.icn-small.icn-plus(style='right: 25px')
+                      br
+              -else
+                -for( var j in currentUser.preferences[i] )
+                  -if( typeof(currentUser.preferences[i][j]) === 'object' && currentUser.preferences[i][j] instanceof Array )
+                      tr
+                        td
+                          input(type='text', value=t('preferences.'+i+'.'+j), disabled)
+                        td
+                          -for( var k in currentUser.preferences[i][j] )
+                            input(type='text', value=currentUser.preferences[i][j][k], name='preferences['+i+']['+j+'][]')  
+                            i.icn.icn-small.icn-minus
+                            -if( currentUser.preferences[i][j].length === parseInt(k)+1 )
+                              i.icn.icn-small.icn-plus(style='right: 25px')
+                            br
+                  -else if( typeof(currentUser.preferences[i][j]) === 'object' )
+                    tr
+                      td
+                        h3=t('preferences'+i+'.'+j)
+                      td
+                    -for( var k in currentUser.preferences[i][j] )
+                      tr
+                        td
+                          input(type='text', value=t('preferences.'+i+'.'+j+'.'+k), disabled)
+                        td
+                          input(type='text', value=currentUser.preferences[i][j][k], name='preferences['+i+']['+j+']['+k+']')
+                  -else
+                    tr
+                      td
+                        input(type='text', value=t('preferences.'+i+'.'+j), disabled)
+                      td
+                        input(type='text', value=currentUser.preferences[i][j], name='preferences['+i+']['+j+']')
+
+style
+  body table.preferences {
+    border-spacing: 0;
+    width: 100%;
+  }
+  body table.preferences td {
+    vertical-align: top;
+    padding: 0;
+    position: relative;
+  }
+  body table.preferences td:first-child {
+    width: 30%;
+  }
+  body table.preferences td:last-child {
+    width: 60%;
+  }
+  body table.preferences td input[type=text] {
+    width: 100%;
+    margin-bottom: 2px;
+    padding: 5px 0;
+    margin-left: -2px;
+  }
+  body table.preferences td input[type=text]:disabled {
+    background: #eee;
+  }
+  body table.preferences .icn-small {
+    cursor: poioco;
+    opacity: 0.2;
+    position: absolute;
+    right: 5px;
+    margin-top: 6px;
+  }
+  body table.preferences .icn-small:hover {
+    opacity: 1;
+  }
+
+script
+  $('#ioco-menubar').find('.active').removeClass('active');
+
+  // the plus icon
+  // adds inputs (for array elements)
+  $('table.preferences .icn-plus').on('click', function(){
+    var input = $(this).closest('td').find('input:first').clone();
+    $(this).prev().prev('input').before( input.after('<i class="icn icn-small icn-minus" />').after( '<br/>' ) );
+    $(this).prev().prev('input').val('').focus();
+  });
+
+  // the minus icon
+  // removes inputs (for array elements)
+  $('table.preferences .icn-minus').live('click', function(){
+    $(this).prev('input').remove();
+    $(this).next('br').remove();
+    $(this).remove();
+  });

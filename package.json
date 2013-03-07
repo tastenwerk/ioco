@@ -1,6 +1,6 @@
 {
   "name": "ioco",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "preferGlobal": "true",
   "author": "thorsten zerha <thorsten.zerha@tastenwerk.com>",
   "description": "ioco is a content management system",
@@ -30,5 +30,6 @@
   "scripts": {
     "test" : "mocha --reporter list",
     "doc": "node_modules/.bin/doc_generator"
-  }
+  },
+  "bin" : { "ioco" : "./bin/ioco" }
 }

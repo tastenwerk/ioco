@@ -1,0 +1,401 @@
+{
+  "error": "Fehler",
+  "info": "Info",
+  "name": "Name",
+  "cancel": "Abbrechen",
+  "edit": "bearbeiten",
+  "rename": "umbenennen",
+  "create": "erstellen",
+  "really_delete": "Wirklich löschen?",
+  "delete": "löschen",
+  "delete_selected": "ausgewählte löschen",
+  "save": "Speichern",
+  "path": "Pfad",
+  "close": "Schließen",
+  "preview": "Vorschau",
+  "refresh": "Aktualisieren",
+  "updatedAt": "Letzte Änderung",
+  "createdAt": "Erstellt",
+  "privileges": "Zugriffsrechte",
+  "security_transgression": "Zugriffsverletzung: __name__ (nicht genügend Rechte)",
+  "fileSize": "Dateigröße",
+  "you_are_creating": "Sie erstellen diese Seite gerade",
+  "last_edited_ago": "Zuletzt geändert __mins__ von __by__",
+  "last_edited_at": "Zuletzt geändert am __date__",
+  "by": "von",
+  "of": "von",
+  "never": "nie",
+  "undo": "rückgängig machen",
+  "history": "Verlauf",
+  "finished": "fertig",
+  "not_found": "Dokument nicht gefunden",
+  "insufficient_rights": "Nicht genügend Zugriffsrechte auf dieses Objekt",
+  "select_all": "Alle markieren",
+  "delete_selected": "Markierte Dokumente löschen",
+  "edit_selected": "Markiertes Dokument bearbeiten",
+  "anybody": "jeder",
+  "duplicate_error": "Ein Dokument mit dem Namen __name__ existiert bereits (gleiche Namen nicht erlaubt)",
+  "bye": "\n\nIhr __site__-Team",
+  "saving": {
+    "ok": "__name__ wurde gespeichert",
+    "failed": "__name__ konnte nicht gespeichert werden"
+  },
+  "creation": {
+    "title": "erstellt",
+    "ok": "__name__ wurde erstellt",
+    "failed": "Dokument konnte nicht erstellt werden"
+  },
+  "removing": {
+    "ok": "__name__ wurde vom System gelöscht",
+    "permanent": {
+      "ok": "__name__ wurde unwiederruflich vom System gelöscht",
+      "failed": "__name__ konnte nicht unwiederruflich vom System gelöscht werden"
+    },
+    "failed": "Löschen fehlgeschlagen",
+    "denied": "Sie besitzen nicht ausreichend Rechte um dieses Dokument zu löschen",
+    "undo": "Rückgängig machen"
+  },
+  "sharing": {
+    "title": "geteilt",
+    "ok_for": "__name__ wurde freigegeben für",
+    "failed_for": "__name__ konnte nicht mit geteilt werden mit"
+  },
+  "unsharing": {
+    "title": "entzogen",
+    "ok_for": "Zugriff auf __name__ wurde entzogen für",
+    "failed_for": "Zugriff auf __name__ konnte nicht entzogen werden für"
+  },
+  "user": {
+    "cannot_remove_yourself": "Sie können sich selbst nicht vom System löschen",
+    "email": "Email Adresse",
+    "email_invalid": "Email Adresse ungültig",
+    "password": "Passwort",
+    "login": "Anmelden",
+    "login_required": "Anmeldung erforderlich",
+    "login_failed": "Anmeldung fehlgeschlagen",
+    "forgot_password": "Passwort vergessen?",
+    "session_timeout": "Sitzung abgelaufen (__timeout__ min)",
+    "logout": "Abmelden",
+    "edit_profile": "Profil bearbeiten",
+    "your_messages": "Ihre Nachrichten",
+    "my_profile": "Mein Profil",
+    "profile_of": "Profil von __name__",
+    "contact": "Kontakt",
+    "verification_required": "Fast fertig! Eine Email wurde an die angegebene Adresse gesendet",
+    "mail_already_registered": "Diese Emailadresse ist bereits registriert (Posteingang bzw. Spamordner prüfen)",
+    "send_confirmation_again": "Email noch einmal versenden (__tries__ Versuche übrig)",
+    "send_confirmation_email": "Anmeldelink mit Option zum Passwort-setzen versenden",
+    "too_many_tries": "Zu viele fehlgeschlagne Versuche. Support kontaktieren",
+    "confirmation_sent_again": "Bestätigungsemail wurde noch einmal versandt an __email__ (__tries__ verbleibende Versuche)",
+    "welcome": "Ein TASTENbox Account wurde für dich erstellt",
+    "welcome_text": "Hallo,\n\n__name__ hat einen Account für Sie erstellt. Sie können Ihr Passwort setzen und sich gleich anmelden, wenn Sie auf untenstehenden Link klicken",
+    "confirmation_email": {
+      "ok": "Einladungsemail wurde versandt"
+    },
+    "registration": {
+      "ok": "Die Registrierung abgeschlossen",
+      "failed": "Registrierung konnte nicht durchgeführt werden. Bitte kontaktieren Sie den Support"
+    },
+    "options": "Andere Einstellungen",
+    "suspended": "Account suspendiert",
+    "suspending": {
+      "failed": "Account __name__ konnte nicht suspendiert werden. Grund: ",
+      "ok": "Account __name__ wurde suspendiert",
+      "restored": "Account __name__ wurde wieder aktiviert"
+    },
+    "saving": {
+      "ok": "Profileinstellungen gespeichert",
+      "failed": "Profileinstellungen konnten nicht gespeichert werden"
+    },
+    "creation": {
+      "ok": "Account wurde erfolgreich angelegt",
+      "failed": "Account konnte nicht angelegt werden"
+    },
+    "removing": {
+      "ok": "Account wurde vom System gelöscht",
+      "failed": "Account konnte nicht vom System gelöscht werden"
+    },
+    "logged_off": "Sie sind jetzt abgemeldet",
+    "administrational_privileges": "Administrative Rechte",
+    "email": "Email",
+    "name": "Name",
+    "general": "Allgemein",
+    "preferences": "Voreinstellungen",
+    "firstname": "Vorname",
+    "lastname": "Nachname",
+    "nick": "Nick",
+    "picture": {
+      "of": "Profilbild von __name__",
+      "select": "Bild wählen",
+      "upload": {
+        "title": "Hochladen",
+        "ok": "Profilbild wurde gespeichert",
+        "failed": "Profilbild konnte nicht gespeichert werden"
+      },
+      "cropped_and_saved": "Zuschnitt des Profilbildes wurde gespeichert",
+      "edit": "Bearbeiten",
+      "edit_desc": "Sie können den sichtbaren Bereich markieren, indem Sie mit dem Mauszeiger über dem Bild einen Rahmen ziehen, bzw. diesen in Größe und Proportion verändern"
+    },
+    "roles": {
+      "title": "Rollen",
+      "prawn": "Bauer/Bäurin",
+      "manager": "AdministratorIn",
+      "user": "StandardbenutzerIn",
+      "editor": "EditorIn",
+      "title": "Rollen"
+    },
+    "key_not_found": "Die angegebene Kombination aus Schlüssel und Email führte zu keinem Ergebnis",
+    "change_password": "Passwort ändern",
+    "complete_registration": "Registration abschließen",
+    "choose_nick": "Wähle einen \"Nick\"-Name",
+    "optional": "optional",
+    "choose_password": "Wähle ein Passwort",
+    "confirm_password": "Wiederhole das Passwort",
+    "create_profile": "Profil anlegen",
+    "old_password": "Aktuelles Passwort",
+    "new_password": "Neues Passwort",
+    "new_password_confirm": "Neues Passwort wiederholen",
+    "password_does_not_match": "Aktuelles Passwort stimmt nicht",
+    "new_passwords_missmatch": "Die eingegebenen Passwörter stimmen nicht überein",
+    "password_saved": "Neues Passwort gespeichert"
+  },
+  "forgot_password": {
+    "desc": "Sie können Ihr Passwort zurücksetzen, wenn Sie die Email-Adresse Ihres Accounts hier eingeben. <b>Hinweis:</b> Ihr Passwort bleibt unverändert, bis Sie auf den Link in der Email klicken.",
+    "reset_request": "Anfrage auf Passwortzurücksetzen",
+    "reset_request_text": "Hallo,\n\nSie haben eine Anfrage gestellt, dass Ihr Passwort \nzurückgesetzt werden soll. Der folgende Link führt Sie \nzu einer Maske wo Sie ein neues Passwort setzen können.\n\n",
+    "reset_request_send": "Eine Email wurde an die angegebene Adresse versand.",
+    "email_not_found": "Die angegebene Adresse existiert nicht in unserem System",
+    "key_not_found": "Der Schlüssel oder die Email Adresse passen nicht zusammen",
+    "send": "Senden",
+    "set": "Setzen",
+    "set_desc": "Sie können jetzt ein neues Passwort festlegen.",
+    "reset_finished": "Sie haben Ihr Passwort erfolgreich geändert"
+  },
+  "users": {
+    "title": "Accounts",
+    "new": "Neuer Account",
+    "click_for_details": "Klicken Sie auf einen Account um Details anzeigen",
+    "delete_selected": "Ausgewählte Accounts löschen"
+  },
+  "notification_service": {
+    "docklets": {
+      "summary": {
+        "title": "Neue Nachrichten",
+        "new_messages": "Neue Nachrichten"
+      },
+      "clock": {
+        "title": "Uhr"
+      },
+      "stream": {
+        "title": "Persönliche Nachrichten"
+      }
+    },
+    "messages": {
+      "center": "Nachrichtenzentrale",
+      "new_message": "Neue Nachricht",
+      "to": "An",
+      "new": "eine neu",
+      "new_plural_0": "keine neu",
+      "new_plural_2": "__count__ neu",
+      "add_receipients": "Empfänger Email oder Name",
+      "send": "Abschicken",
+      "none": "Keine Nachrichten"
+    },
+    "title": "Nachrichtenstrom"
+  },
+  "document": {
+    "click_for_details": "Klicken Sie auf ein Dokument um Details anzeigen",
+    "order": {
+      "saving": {
+        "ok": "Sortierung gespeichert",
+        "failed": "Sortierung konnte nicht gespeichert werden"
+      }
+    },
+    "tags": {
+      "title": "Tags"
+    },
+    "public_status": "öffentl. Zugriff",
+    "published": "Veröffentlicht",
+    "locked": "Gesperrt",
+    "has_been_published": "__name__ wurde für die Öffentlichkeit freigeschaltet",
+    "has_been_locked": "__name__ wurde für den öffentlichen Zugriff gesperrt",
+    "click_to_change_public_status": "Zum Ändern des öffentlichen Zugfriffs hier klicken",
+    "publishing_failed_unknown": "Veröffentlichung ist aus unbekanntem Grund fehlgeschlagen",
+    "info": {
+      "general": "Allgemein",
+      "comments": "Kommentare"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "folders": {
+    "title": "Dateien verwalten",
+    "new": "Neuen Ordner erstellen"
+  },
+  "advanced": {
+    "click_here_for_adv": "Hier klicken um erweiterte Einstellungen und Suche anzuzeigen",
+    "click_here_to_close": "Einstellungen und Suche schließen"
+  },
+  "comments": {
+    "title": "Kommentare",
+    "post": "Abschicken",
+    "edit": "Kommentar bearbeiten",
+    "remove": "Kommentar entfernen",
+    "follow_up": "Antwort schreiben",
+    "posting": {
+      "ok": "Kommentar wurde gespeichert",
+      "failed": "Kommentar konnte nicht gespeichert werden"
+    },
+    "saving": {
+      "ok": "Kommentar wurde gespeichert",
+      "failed": "Kommentar konnte nicht gespeichert werden"
+    },
+    "removing": {
+      "ok": "Kommentar wurde gelöscht",
+      "failed": "Kommentar konnte nicht gelöscht werden"
+    }
+  },
+  "search": {
+    "title": "Suche",
+    "saved": "Gespeicherte Suchen"
+  },
+  "preferences": {
+    "title": "Einstellungen",
+    "saved": "Einstellungen wurden gespeichert",
+    "common": {
+      "title": "Allgemein",
+      "hosts": "Entfernte Hosts",
+      "locale": "Sprache"
+    },
+    "docklets": {
+      "title": "Docklets"
+    }
+  },
+  "files": {
+    "title": "Dateien",
+    "upload": "Datei(en) oder Bild(er) hochladen",
+    "drag_here_to_upload": "Datei(en) oder Bild(er) hier herziehen zum Hochladen",
+    "select": "Datei(en) oder Bild(er) auswählen",
+    "description": "Beschreibung",
+    "copyright": "Copyright",
+    "upload": "Hochladen",
+    "success": "__name__ wurde auf den Server hochgeladen",
+    "failed": "__name__ konnte nicht auf den Server hochgeladen werden",
+    "failed_to_save_rel_path": "Konnte relativen Pfad für __name__ nicht setzen",
+    "already_exists_path": "Eine Datei dem Namen __name__ existiert bereits in diesem Pfad"
+  },
+  "web_pages": {
+    "title": "Webseiten",
+    "new": "Neue Webseite"
+  },
+  "web_page": {
+    "hidden": "Versteckt",
+    "hidden_desc": "Diese Seite wird nicht in der Navigation / Menü angezeigt",
+    "frontpage": "Startseite",
+    "frontpage_desc": "Diese Seite soll als Startseite verwendet werden (nur eine Seite kann Startseite sein)",
+    "no_robots": "Keine SEO",
+    "no_robots_desc": "Suchmaschinen anweisen, diese Seite nicht in ihre Ergebnisliste miteinzubeziehen",
+    "slug": "Slug (ID)",
+    "layout": "Layout",
+    "properties": "Eigenschaften"
+  },
+  "web_bit": {
+    "name": "Name des WebBits"
+  },
+  "webelement": {
+    "layout": "Layout",
+    "title": "Titel der Seite",
+    "design": "Gestalten",
+    "preferences": "Einstellungen",
+    "name": "Titel",
+    "template": "Vorlage",
+    "layout": "Layout",
+    "content": "Text",
+    "startpage": "Startpage",
+    "locked_for_public": "Nicht für die Öffentlichkeit freigeschaltet",
+    "hidden": "Versteckt",
+    "hidden_desc": "Diese Seite wird nicht in der Navigation / Menü angezeigt",
+    "frontpage": "Startseite",
+    "frontpage_desc": "Diese Seite soll als Startseite verwendet werden (nur eine Seite kann Startseite sein)",
+    "no_robots": "Keine SEO",
+    "no_robots_desc": "Suchmaschinen anweisen, diese Seite nicht in ihre Ergebnisliste miteinzubeziehen",
+    "slug": "Slug (ID)"
+  },
+  "web": {
+    "title": "Web",
+    "pages": "Webseiten",
+    "articles": "Artikel",
+    "content": "Inhalt",
+    "short_content": "Kurzinhalt",
+    "navigation": "Navigation",
+    "new": "Neues Web Element",
+    "source": {
+      "refresh": "neu laden von original",
+      "save": "Quellcode ins Original übertragen",
+      "title": "Quellcode bearbeiten"
+    },
+    "subtypes": {
+      "webpage": "Seite",
+      "blogpost": "Blogeintrag",
+      "article": "Artikel",
+      "newsticker": "Newsticker"
+    },
+    "change_subtype": "Typ ändern",
+    "files": {
+      "manage": "Medien verwalten",
+      "upload": "Hochladen",
+      "pictures": "Bilder",
+      "files": "Dateien",
+      "images_in_total": "Bilder",
+      "images_in_total": "Dateien",
+      "selected": "ausgewählt",
+      "deleted": "Eine Datei wurde gelöscht",
+      "deleted_plural_2": "__count__ Dateien wurden gelöscht",
+      "click_for_details": "Auf ein Bild oder eine Datei klicken, um Details anzuzeigen",
+      "name": "Dateiname",
+      "description": "Beschreibung",
+      "copyright": "Copyright-Verweise",
+      "file_size": "Dateigröße",
+      "content_type": "Dateityp",
+      "rel_path": "Relativer Pfad",
+      "dimensions": "Dimension",
+      "files_in_total": "Dateien"
+    },
+    "editor": {
+      "bold": "Fett",
+      "italic": "Kursiv",
+      "underline": "Unterstrichen",
+      "strikeThrough": "Durchgestrichen",
+      "justifyLeft": "Linksbündig",
+      "justifyRight": "Rechtsbündig",
+      "justifyCenter": "Zentrieren",
+      "justifyFull": "Blocksatz",
+      "insertUnorderedList": "Aufzählungsliste",
+      "insertOrderedList": "Geordnete Aufzählungsliste",
+      "link": "Verknüpfung",
+      "image": "Bild / Medien",
+      "paste": "Einfügen",
+      "preview": "Vorschau",
+      "preferences": "Eigenschaften",
+      "save": "Speichern",
+      "unsaved_changes": "Änderungen am Dokument verwerfen?",
+      "source": "Quellcode bearbeiten"
+    }
+  },
+  "articles": {
+    "title": "Artikel",
+    "new": "Neuer Artikel",
+    "published": "Veröffentlicht",
+    "waiting": "Wartend",
+    "mine": "Meine",
+    "name": "Titel",
+    "template": "Vorlage",
+    "content": "Text",
+    "locked_for_public": "Nicht für die Öffentlichkeit freigeschaltet",
+    "connect_with_project": "Veranstaltung"
+  },
+  "trash": {
+    "title": "Papierkorb"
+  }
+}

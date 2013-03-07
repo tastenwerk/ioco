@@ -1,0 +1,8 @@
+script( type='text/html', id='commentFormTemplate' )
+  if( typeof(currentUser) !== 'undefined' && currentUser )
+    form.comment-item( data-bind='submit: saveComment' )
+      img.pull-left.userpic( src='/users/'+currentUser._id+'/pic' )
+      .content
+        textarea( data-bind='value: content' )
+        .info
+          button.btn( type='submit' )=t('comments.post')

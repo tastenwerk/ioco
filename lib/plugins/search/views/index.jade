@@ -1,0 +1,56 @@
+#search-container
+
+  ul.top-tabs-nav
+    li=t('search.title')
+    li=t('search.saved')
+
+  .top-tabs-content
+
+    .content-padding
+
+      form#search-form.clearfix
+
+        .query
+          button.options
+            span.caret
+          button( type='submit' )
+            img(src='/images/app-icons/search/96x96.png')
+          input.search-query.js-get-focus( type='text', name='query' )
+
+      ul#ioco-search-results( data-bind='template: { name: "searchItemTemplate", foreach: data} ' )
+
+    .content-padding
+
+      h1.title=t('search.saved')
+
+script(type='text/html', id='searchItemTemplate')
+  li(data-bind='attr: { "data-id": _id}')
+    span( data-bind='attr: {class: "icn pull-left icn-"+_type.toLowerCase()}' )
+    span.pull-right.updated-date(data-bind='text: moment(updatedAt).format("dd., DD.MM.YYYY HH:mm")')
+    a.title(data-bind='text: name, attr: {href: "#/"+_type.toLowerCase()+"s/"+_id+"?fio=true&app="+_type.toLowerCase()+"s"}')
+    http://localhost:3001/admin#/webelements/50ec3243ecc1a1a13c00000d?fio=true&app=webelements
+
+script
+  var searchResults = {
+    data: ko.observableArray([])
+  };
+
+  $('#search-container').iocoTopTabs();
+
+  ko.applyBindings( searchResults, $('#ioco-search-results').get(0) );
+
+  $('#search-form .search-query').on('keydown', function(e){
+    if( $(this).val().length > 2 )
+      $.ajax({ url: '/search.json',
+                type: 'post',
+                dataType: 'json',
+                data: { _csrf: $('#_csrf').val(), query: $(this).val() },
+                success: function( response ){
+                  searchResults.data.removeAll();
+                  if( response.data ){
+                    for( var i in response.data )
+                      searchResults.data.push( response.data[i] );
+                  }
+                }
+      });
+  });

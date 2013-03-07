@@ -1,0 +1,26 @@
+script( type='text/html', id='commentsListTemplate' )
+  // ko if: typeof(deletedAt) === 'undefined' || !deletedAt
+  li.clearfix.comment-item( data-bind='attr: { \'data-id\': _id, id: _id }' )
+    img.pull-left.userpic( data-bind='attr: { src: \'/users/\'+userId()+\'/pic\'}' )
+    .content
+      if( typeof(currentUser) !== 'undefined' && currentUser )
+        .actions( data-bind='if: userId === "#{currentUser._id}" || #{currentUser.roles.indexOf("manager") >= 0}')
+          a.live-tipsy( data-bind='click: toggleFollowUpComment', original-title=t('comments.follow_up'))
+            span.icn.icn-reply
+          a.live-tipsy( data-bind='click: toggleEditComment', original-title=t('comments.edit'))
+            span.icn.icn-pencil
+          a.live-tipsy( data-bind='click: removeComment', original-title=t('comments.remove'))
+            span.icn.icn-trash
+      a.username( data-bind='text: userName' )
+      br
+      p.content-view( data-bind='html: simpleFormattedContent' )
+      form.content-edit( data-bind='submit: saveComment' )
+        textarea( data-bind='value: content')
+        .info
+          a.btn( type='click: toggleEditComment')=t('cancel')
+          button.btn( type='submit' )=t('save')
+      .info
+        span.pull-right.live-tipsy( data-bind='text: formattedDate("createdAt", true), attr: {\'original-title\': formattedDate("createdAt")}' )
+      ul.follow-ups.follow-up-form( data-bind='template: { name: "commentFormTemplate", data: newFollowUp() }' )
+      ul.follow-ups( data-bind='template: { name: "commentsListTemplate", foreach: comments }' )
+  // /ko

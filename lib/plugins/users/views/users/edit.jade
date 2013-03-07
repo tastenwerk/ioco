@@ -1,0 +1,32 @@
+.content-padding
+  form
+    input(type='hidden', name='_csrf', value=_csrf)
+    if( currentUser.roles.indexOf('manager') > 0 )
+      .pull-right
+        h1=t('user.roles.title')
+        table
+          -each role in ioco.config.userRoles
+            tr
+              td
+                input(type='checkbox', name='user[roles][]', value=role, checked=(user.roles.indexOf(role) < 0 ? false : true) )
+              td( style='padding-right: 20px')=t('user.roles.'+role)
+    p
+      label.desc=t('user.nick')
+      br
+      input#user-nick.span400( type='text', name='user[name][nick]', value=user.name.nick )
+    p
+      label.desc=t('user.firstname')
+      br
+      input#user-first.span400( type='text', name='user[name][first]', value=user.name.first )
+    p
+      label.desc=t('user.lastname')
+      br
+      input#user-last.span400( type='text', name='user[name][last]', value=user.name.last )
+
+    p
+      label.desc=t('user.email')
+      br
+      input.span400( type='text', name='user[email]', value=user.email )
+
+    p( style='text-align:right')
+      input.btn( type='submit', value=t('save') )

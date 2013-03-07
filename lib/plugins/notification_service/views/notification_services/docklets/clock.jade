@@ -1,0 +1,13 @@
+h1.messages-count#docklet-n-time
+h2.messages-text#docklet-n-date
+
+script
+  var curDockletTimeColonEven = false;
+  function startTime(){
+    $('#docklet-n-date').text( moment().format('dddd, DD. MMMM YYYY'));
+    //$('#docklet-n-time').html( moment().format('HH')+(curDockletTimeColonEven ? '<span>:</span>' : '<span style="opacity:0">:</span>')+moment().format('mm'))
+    $('#docklet-n-time').text( moment().format('HH:mm') );
+    curDockletTimeColonEven = !curDockletTimeColonEven;
+    t=setTimeout(function(){startTime()},1000);
+  }
+  startTime();

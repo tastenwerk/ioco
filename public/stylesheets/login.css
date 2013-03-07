@@ -1,0 +1,63 @@
+html {
+  background-color: #333;
+  font-family: 'OpenSans', sans;
+}
+#login-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 380px;
+  height: 350px;
+  margin: auto;
+}
+#login-content #login-logo {
+  float: left;
+  margin-left: 10px;
+}
+#login-content #login-logo img {
+  width: 100px;
+  height: 100px;
+}
+#login-content #login-logo-text {
+  font-size: 30px;
+  color: #ccc;
+  margin: 30px 0 0 120px;
+}
+#login-content form {
+  margin-top: 25px;
+  background: #fafafa;
+}
+#login-content form .desc {
+  font-size: 12px;
+}
+#login-content input[type=text],
+#login-content input[type=password] {
+  padding: 7px 0;
+  width: 338px;
+}
+#login-content input[type=text]:hover,
+#login-content input[type=password]:hover,
+#login-content input[type=text]:focus,
+#login-content input[type=password]:focus {
+  background: #ffe;
+  color: #333;
+}
+#login-content a {
+  font-size: 12px;
+}
+#login-content a[href='/forgot_password'],
+#login-content a[href='/login'] {
+  margin-right: 10px;
+  margin-top: 5px;
+  opacity: 0.5;
+}
+#login-content a[href='/forgot_password']:hover,
+#login-content a[href='/login']:hover {
+  opacity: 1;
+}
+#login-content label {
+  color: #777;
+  font-size: 12px;
+}

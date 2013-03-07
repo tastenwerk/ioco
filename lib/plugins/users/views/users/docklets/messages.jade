@@ -1,0 +1,35 @@
+span.close-icn.btn &times;
+a.action-btn.btn.new-message=t('user.messages.new_message')
+h1
+  =t('user.messages.center')
+  span.cntBox( class=(currentUser.unreadMessages > 0 ? 'new' : null) )=currentUser.unreadMessages
+
+  .content-padding-w-overflow( style='top: 50px' )
+    form.new-message.hide( action='/users/messages', method='post', data-remote='true' )
+      p
+        label=t('user.messages.to')+':'
+        input.receipient(type='text', name='receipientId', placeholder=t('user.messages.add_receipients'))
+      textarea( name='message[content]', style='width: 100%; height: 5em;' )
+      p( style='text-align:right' )
+        input.btn( type='submit', value=t('user.messages.send') )
+
+    ul.messages
+    -if( currentUser.messages.length === 0 )
+      p(style='text-align:center; margin: 50px 0; color: #777 ')=t('user.messages.none')
+
+
+style
+  ul.messages{ list-style: none; }
+  li.message{ margin: 5px 0; border: 1px solid #eee; padding: 5px 0 }
+  form.new-message .k-widget{ background: none; border: none }
+  form.new-message .k-widget.k-state-hover{ background: none; border: none; box-shadow: none }
+  input.receipient{ border: none; width: auto; box-shadow: none; border-radius: 1px; background: inherit; }
+
+script
+  $('#users-docklets-messages').css( {width: 400, height: 400 })
+    .find('.new-message').on('click', function(e){
+      e.preventDefault();
+      $('#users-docklets-messages form').slideToggle(200);
+    })
+    .end()
+    .find('input.receipient') // do autocomplete here

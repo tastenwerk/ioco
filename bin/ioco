@@ -1,0 +1,233 @@
+#!/usr/bin/env node
+
+var program = require('commander')
+  , fs = require('fs')
+  , path = require('path')
+  , os = require('os')
+  , version = JSON.parse( fs.readFileSync( __dirname+'/../package.json' ) ).version
+
+program.version(version);
+
+var eol = 'win32' == os.platform() ? '\r\n' : '\n'
+
+var app_js = [
+"var express = require('express')",
+"  , http = require('http')",
+"  , path = require('path')",
+"  , fs = require('fs')",
+"  , stylus = require('stylus')",
+"  , ioco = require('ioco')",
+"  , ioweb = require('ioweb')",
+"",
+"var access_logfile = fs.createWriteStream('./app.log', {flags: 'a'})",
+"  , app = express();",
+"",
+"app.set('port', process.env.PORT || ioco.port);",
+"",
+"var server = require('http').createServer(app)",
+", io = require('socket.io').listen(server);",
+"",
+"server.listen(app.get('port'), function(){",
+"  console.log('IOkit server listening on port ' + app.get('port'));",
+"  ioco.startDBConnection();",
+"});",
+"",
+"app.configure(function(){",
+"",
+"  //app.use(express.logger({stream: access_logfile }));",
+"  app.use(express.logger('dev'));",
+"",
+"  // use app's static files and routes first",
+"  app.use( stylus.middleware( __dirname + '/public' ) );",
+"  app.use( express.static( __dirname + '/public' ) );",
+"",
+"  ioco.inject( express, app, io ); // inject app with ioco defaults and plugins",
+"",
+"  // load external ioweb plugins",
+"  for( var i=0, iowebPlugin; iowebPlugin=ioweb[i]; i++ )",
+"    ioco.plugin( app, iowebPlugin );",
+"",
+"  app.use( express.favicon( __dirname + '/public/favicon.ico' ));",
+"",
+"  // override ioco's views with your own views",
+"  // and devine new ones.",
+"  ioco.view.paths = [ __dirname + '/app/views' ].concat( ioco.view.paths );",
+"",
+"  app.use(express.methodOverride());",
+"  app.use(app.router);",
+"});",
+"",
+"app.configure('development', function(){",
+"  app.use(express.errorHandler());",
+"  app.locals.pretty = true;",
+"});",
+"",
+"app.get('/', function( req, res ){",
+"  res.redirect('/admin');",
+"});",
+""
+].join(eol);
+
+var settings_json = [
+'{',
+'"hostname": "http://localhost:3000",',
+'"site": {',
+'  "title": "__appName__",',
+'  "locales": ["de", "en"],',
+'  "fallbackLocale": "en",',
+'  "layouts": ["default"]',
+'  },',
+'  "session": {',
+'    "timeout": {',
+'      "mins": 30',
+'    }',
+'  },',
+'  "datastore": {',
+'    "absolutePath": "__absolutePath__",',
+'    "maxUploadSizeMB": 50,',
+'    "resizeDefaultPX": 500',
+'  },',
+'  "db": {',
+'    "url": "mongodb://localhost:27017/__appName__?auto_reconnect",',
+'    "debug": true',
+'  },',
+'  "userRoles": ["manager", "user"],',
+'  "mailerSettings": { "host": "localhost.loc", "port": 25, "domain": "localhost.loc", "authentication": false }',
+'  "mailerFrom": "__appName__ <automailer@IObox.com>',
+'}'
+].join(eol);
+
+var package_json = [
+'{',
+'  "name": "__appName__",',
+'  "version": "0.0.1",',
+'  "preferGlobal": "true",',
+'  "main": "index",',
+'  "dependencies": {',
+'    "moment": "1.7.x",',
+'    "socket.io": "0.9.x",',
+'    "express": "3.0.x",',
+'    "jade": "0.27.x",',
+'    "stylus": "0.30.x",',
+'    "ioco": "git://github.com/tastenwerk/ioco.git#0.1.0",',
+'    "ioweb": "git://github.com/tastenwerk/ioweb.git#0.1.1"',
+'  },',
+'  "license": "GPL3",',
+'  "engine": {',
+'    "node": ">=0.8"',
+'  }',
+'}'
+].join(eol);
+
+program
+  .command('new <name>')
+  .description('create a new ioco scaffold')
+  .action( function createScaffold( name ){
+    var normalizedName = name.replace(/ /g, '_');
+    mkdir( name );
+    mkdir( name + '/app');
+    mkdir( name + '/app/plugins');
+    mkdir( name + '/app/views');
+    mkdir( name + '/config');
+    mkdir( name + '/public');
+    mkdir( name + '/datastore');
+    mkdir( name + '/datastore/files');
+    mkdir( name + '/datastore/users');
+    mkdir( name + '/public/stylesheets');
+    mkdir( name + '/public/javascripts');
+    mkdir( name + '/public/images');
+    write( name + '/app.js', app_js );
+    write( name + '/public/stylesheets/ioco-page.styl', 'body\n  .ioco-page\n    margin: 0' );
+    write( name + '/config/ioco.json', settings_json.replace( /__appName__/g, normalizedName ).replace(/__absolutePath__/g, process.cwd()+path.sep+normalizedName) );
+    write( name + '/package.json', package_json.replace( /__appName__/g, name.replace(/ /g, '_') ) );
+    write( name + '/README.md', name + ' README' );
+    console.log();
+    console.log('   \x1b[32msuccess\x1b[0m');
+    console.log();
+  });
+
+program
+  .command('setup [username] [password]')
+  .description('setup a manager user and if specified in the configuration website and -pages. If config/tas10_settings.json is not present, it should be passed as argument')
+  .action( function setupScaffold( username, password ){
+    console.log();
+    configfile = './config/ioco.json';
+    if( !fs.existsSync( './' + configfile ) )
+      return console.log('   \033[31merror\033[0m : ', configfile, ' was not found (if not config/ioco.json, please pass it as argment)');
+    openConnection( configfile, username, password );
+    console.log();
+  })
+
+program.parse(process.argv);
+
+/**
+ * echo str > path.
+ *
+ * @param {String} path
+ * @param {String} str
+ */
+
+function write(path, str) {
+  fs.writeFile(path, str);
+  console.log('   \x1b[36mcreate\x1b[0m : ' + path);
+}
+
+/**
+ * Mkdir -p.
+ *
+ * @param {String} path
+ * @param {Function} fn
+ */
+
+function mkdir(path) {
+  try{
+    fs.mkdirSync( path );
+    console.log('   \033[36mcreate\033[0m : ' + path);
+  } catch( e ){
+    console.log('   \033[31mskipped\033[0m : ' + path + ' exists');
+  }
+}
+
+function openConnection( configfile, username, password ){
+
+  var username = username || 'manager'
+    , password = password || 'mgr'
+    , settings = JSON.parse( fs.readFileSync( configfile ) )
+    , iomapper = require('iomapper')
+    , User = iomapper.models.User
+    , domain = settings.hostname.split(':')[1];
+
+  domain = domain ? domain.replace('//','') : 'localhost.loc';
+
+  if( !settings.db )
+    return exitError( configfile + ' does not provide db information. Please check')
+  iomapper.connect( settings.db.url );
+
+  User.findOne({ email: username+'@'+domain }, function( err, user ){
+    var domainName = domain;
+    if( domainName === 'localhost' )
+      domainName = 'localhost.loc';
+    if( err ) exitError( err.message );
+    if( user ){
+      console.log('   \033[31mskipped\033[0m : user ' + username + ' already exists');
+      console.log();
+      process.exit(0);
+    } else
+      User.create({ email: username+'@'+domainName, name: {nick: username}, roles: ['user','manager'], password: password}, function( err, user ){
+        if( err )
+          exitError( 'error creating user: ' + err + ' email: ' + username+'@'+settings.site.domain );
+        else
+          console.log('   \033[36mcreate\033[0m : user:' + user.name.nick + ' email:' + user.email + ' with password:' + password );
+        console.log();
+        
+        process.exit(0);
+
+      });
+
+  });
+
+}
+
+function exitError( msg ){
+  console.log('   \033[31merror\033[0m : ' + msg );
+}

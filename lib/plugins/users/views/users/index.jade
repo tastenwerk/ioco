@@ -1,0 +1,76 @@
+#ioco-users
+  .ioco-sidebar
+    .ioco-tree
+
+      h1.title=t('users.title')
+
+      .tree-controls
+        a.btn.w-icn-only.live-tipsy( href='/users/new', original-title=t('users.new'), data-bind='click: newItemForm' )
+          span.icn-plus.icn
+        a.btn.w-icn-only.live-tipsy( href='#', original-title=t('refresh'), data-bind='click: fetchData' )
+          span.icn.icn-refresh
+        a.btn.w-icn-only.live-tipsy.enableable( href='#', original-title=t('users.delete_selected'), data-bind='css: {enabled: selectedItems().length > 0}, click: deleteSelected')
+          span.icn.icn-trash
+
+      br.clearfix
+
+      ul.tree-content( data-bind='template: {name: "userItemTemplate", foreach: items}' )
+
+  .ioco-content
+
+    .click-for-details.no-item-form
+      h1.title=t('users.title')
+      span=t('users.click_for_details')
+
+    #ioco-user-form.item-form( data-bind='template: {name: "userItemForm"}' )
+
+script(type='text/html', id='userItemTemplate')
+  // ko if: $parent.showSuspended() || !suspended()
+  li.tree-li( data-bind='attr: { "data-id": _id }, click: markSelected')
+    .tree-item
+      a.pull-right.show-details-arr( data-bind='click: showForm')
+        span.icn.icn-arr-right
+        | &nbsp;
+      a.pull-right( data-bind='click: toggleSuspendUser' )
+        // ko if: suspended()
+        span.icn.icn-locked( data-bind='css: {unlocked: !suspended()}' )
+        // /ko
+        // ko if: roles().indexOf('manager') >= 0
+        span.icn.icn-user.role-admin(style='opacity:0.3')
+        // /ko
+      a.link-trigger( href='#', data-bind='text: name().nick, click: showForm' )
+  // /ko
+
+script(type='text/html', id='userItemForm')
+
+  .top-tabs
+
+    ul.top-tabs-nav
+      li=t('user.general')
+      li=t('user.preferences')
+
+    .top-tabs-content
+
+      .content-padding
+
+        include snippets/form
+
+      .content-padding
+
+        include snippets/preferences
+
+
+script(type='text/javascript')
+  $('#ioco-users .ioco-tree').iocoTree({
+    url: '/users.json',
+    saveUrl: '/users/',
+    saveKey: 'user',
+    saveAttrs: ['name', 'email', 'sendConfirmationEmail', 'roles', 'suspended'],
+    defaultValues: { name: {nick: ''}, email: ''},
+    before: function( tree ){
+      tree.treeViewModel.showSuspended = ko.observable(false);
+      tree.TreeItemModel.prototype.toggleSuspendUser = function( item, e ){
+        console.log('toggle suspend');
+      };
+    }
+  })

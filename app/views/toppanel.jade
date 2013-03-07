@@ -1,0 +1,19 @@
+#ioco-top-panel.ioco-top-panel
+
+  #logo.dashboard
+    img( src='/images/logo_200x200.png')
+  span#logo-text.dashboard box
+
+  #useractions.useractions
+    a.pull-right( href='#/users/'+currentUser._id, data-link='true' )
+      =currentUser.name.full
+    br
+    a.site-title( href='/' )=ioco.config.site.title
+
+  #desktop-control(style="display:none")
+    a#minimize-window-button( href='#' )
+      img( src='/images/icons/win_minimize.svg' )
+    a#maximize-window-button( href='#' )
+      img( src='/images/icons/win_maximize.svg' )
+    a#close-window-button( href='#' )
+      img( src='/images/icons/win_close.svg' )

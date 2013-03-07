@@ -1,0 +1,54 @@
+ul.top-tabs-action-nav
+  li.action-nav
+    a.btn.green(data-bind='click: submitSaveForm')
+      =t('save')
+  li.action-nav
+    a.btn(data-bind='click: hideForm')
+      =t('cancel')
+
+h1( data-bind='text: name().full' )
+
+form.ioco-form( data-bind='submit: saveForm' )
+
+  .span6.pull-right
+    div(style='margin-left: 50px')
+      p.desc=t('user.roles.title')
+
+      table
+        -each role in ioco.config.userRoles
+          tr
+            td
+              input(type='checkbox', data-bind='value: "'+role+'", checked: roles')
+            td( style='padding-right: 20px')=t('user.roles.'+role)
+
+      p=t('user.options')
+
+      p
+        input(type='checkbox', data-bind='checked: suspended')
+        span.desc=t('user.suspended')
+
+
+  p.span6
+    label=t('user.nick')
+    br
+    input(type='text', data-bind='value: name().nick')
+  table.span6
+    tr
+      td
+        label=t('user.firstname')
+      td
+        label=t('user.lastname')
+    tr
+      td
+        input(type='text', data-bind='value: name().first')
+      td
+        input(type='text', data-bind='value: name().last')
+
+  p.span6
+    label=t('user.email')
+    br
+    input(type='text', data-bind='value: email')
+
+  p.span6
+    input(type='checkbox', data-bind="checked: sendConfirmationEmail")
+    label=t('user.send_confirmation_email')
