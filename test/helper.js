@@ -24,7 +24,10 @@ var testHelper = {
 
       setup.User.create( {name: {nick: 'henry'}, password: 'henry', email: 'henry@v.com'}, function( err, user ){
         setup.userA = user;
-        done( setup );
+        setup.User.create( {name: {nick: 'john'}, password: 'john', email: 'john@v.com'}, function( err, user ){
+          setup.userB = user;
+          done( setup );
+        });
       });
 
     });

@@ -260,26 +260,89 @@ describe('ioco labels', function(){
 
   });
 
-  describe('labeling', function(){
-
-  });
-
   describe('access control', function(){
+
+    before( function( done ){
+      var setup = this;
+      setup.Label.create({'name': 'l4', holder: setup.userA}, function( err, label ){
+        setup.l4 = label;
+        done();
+      });
+    });
 
     describe('sharing, publishing and listing', function(){
       it('lists current access', function(){
+        this.l4.access.should.be.lengthOf(1);
+        this.l4.access[0]._user.toString().should.eql( this.userA._id.toString() );
       });
 
-      it('grants access to a user for this label', function(){
+      it('grants read access to a user for this label', function( done ){
+        this.l4.canRead( this.userB ).should.eql( false );
+        this.l4.share( this.userB, 'r' );
+        this.l4.canRead( this.userB ).should.eql( true );
+        this.l4.canWrite( this.userB ).should.eql( false );
+        this.l4.canShare( this.userB ).should.eql( false );
+        this.l4.canCreate( this.userB ).should.eql( false );
+        this.l4.canDelete( this.userB ).should.eql( false );
+        this.l4.save( function( err ){
+          should.not.exist( err );
+          done();
+        })
       });
 
-      it('revokes access for a user for this label', function(){
+      it('revokes access for a user for this label', function( done ){
+        this.l4.canRead( this.userB ).should.eql( true );
+        this.l4.unshare( this.userB );
+        this.l4.canRead( this.userB ).should.eql( false );
+        this.l4.save( function( err ){
+          should.not.exist( err );
+          done();
+        });
       });
 
-      it('publishes a document', function(){
+
+      describe('publish', function(){
+        it('publishes a document', function( done ){
+          var setup = this;
+          setup.l4.public.should.eql(false);
+          this.Label.findById(this.l4).execWithUser( ioco.db.model('User').anybody, function( err, label ){
+            should.not.exist( err );
+            should.not.exist( label );
+            setup.l4.publish();
+            setup.l4.public.should.eql(true);
+            setup.l4.save( function( err ){
+              should.not.exist( err );
+              setup.Label.findById(setup.l4._id).execWithUser( ioco.db.model('User').anybody, function( err, label ){
+                should.not.exist( err );
+                label.name.should.eql( setup.l4.name );
+                done();
+              });
+
+            });
+          });
+        });
+
       });
 
-      it('unpublishes a document', function(){
+      describe('unpublish', function(){
+
+        it('unpublishes a document', function( done ){
+          var setup = this;
+          this.Label.findById(this.l4).execWithUser( ioco.db.model('User').anybody, function( err, label ){
+            should.not.exist( err );
+            label.should.be.an.instanceOf(setup.Label);
+            setup.l4.publish(false);
+            setup.l4.save( function( err ){
+              should.not.exist( err );
+              setup.Label.findById(this.l4).execWithUser( ioco.db.model('User').anybody, function( err, label ){
+                should.not.exist( err );
+                should.not.exist( label );
+                done();
+              });
+            });
+          });
+        });
+
       });
 
       it('creates a new user, if creating user has privileges to invite new users', function( done ){
@@ -290,7 +353,7 @@ describe('ioco labels', function(){
 
     describe('dealing with documents in access control enabled scopes', function(){
 
-      it('wont deal with access control if document has no @private property set', function(done){
+      it('wont deal with access control if document has no @public property set', function(done){
         done();
       });
 

@@ -172,7 +172,7 @@ UserSchema.method('encryptPassword', function(password) {
 /**
  * anybody user id
  */
-UserSchema.statics.anybodyId = 'a00000000000';
+UserSchema.statics.anybodyId = 'a00000000000000000000000';
 
 /**
  * the anybody user
@@ -180,12 +180,12 @@ UserSchema.statics.anybodyId = 'a00000000000';
  * access to an object, it will be schown to the public.
  *
  */
-UserSchema.statics.anybody = { name: { full: 'anybody', nick: 'anybody' }, _id: UserSchema.statics.anybodyId, id: UserSchema.statics.anybodyId };
+UserSchema.statics.anybody = { name: { full: 'anybody', nick: 'anybody' }, _id: UserSchema.statics.anybodyId };
 
 /**
  * system user id
  */
-UserSchema.statics.systemId = 's00000000000';
+UserSchema.statics.systemId = 's00000000000000000000000';
 
 /**
  * the system user
@@ -193,12 +193,12 @@ UserSchema.statics.systemId = 's00000000000';
  * being logged in)
  *
  */
-UserSchema.statics.system = { name: { full: 'system', nick: 'system'}, _id: UserSchema.statics.systemId, id: UserSchema.statics.systemId };
+UserSchema.statics.system = { name: { full: 'system', nick: 'system'}, _id: UserSchema.statics.systemId };
 
 /**
  * everybody user id
  */
-UserSchema.statics.everybodyId = 'e00000000000';
+UserSchema.statics.everybodyId = 'e00000000000000000000000';
 
 /**
  * the everybody user
@@ -211,6 +211,6 @@ UserSchema.statics.everybodyId = 'e00000000000';
  * nor can everybody-user get deletion privileges
  *
  */
-UserSchema.statics.everybody = { name: {full: 'everybody', nick: 'everybody'}, _id: UserSchema.statics.everybodyId, id: UserSchema.statics.everybodyId };
+UserSchema.statics.everybody = { name: {full: 'everybody', nick: 'everybody'}, _id: UserSchema.statics.everybodyId };
 
 module.exports = db.model('User', UserSchema);
