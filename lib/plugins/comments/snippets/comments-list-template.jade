@@ -4,7 +4,7 @@ script( type='text/html', id='commentsListTemplate' )
     img.pull-left.userpic( data-bind='attr: { src: \'/users/\'+userId()+\'/pic\'}' )
     .content
       if( typeof(currentUser) !== 'undefined' && currentUser )
-        .actions( data-bind='if: userId === "#{currentUser._id}" || #{currentUser.roles.indexOf("manager") >= 0}')
+        .actions( data-bind='if: userId === "#{currentUser._id}" || #{currentUser.groups.indexOf("manager") >= 0}')
           a.live-tipsy( data-bind='click: toggleFollowUpComment', original-title=t('comments.follow_up'))
             span.icn.icn-reply
           a.live-tipsy( data-bind='click: toggleEditComment', original-title=t('comments.edit'))

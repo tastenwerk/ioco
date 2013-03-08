@@ -38,14 +38,10 @@ h1.title=t('user.profile_of', {name: user.name.full})
 
     div(style='margin-left: 160px')
       p
-        label=t('user.roles.title')
-
-      table
-        -each role in ioco.config.userRoles
-          tr
-            td( style='padding-right: 20px')=t('user.roles.'+role)
-            td
-              span.icn.icn-checkbox( class=(user.roles.indexOf(role) >= 0 ? 'checked' : null) )
+        label=t('user.groups')
+      p
+        each group in user.groups
+          span.lbl=group
 
 script
   $('#ioco-menubar').find('.active').removeClass('active');

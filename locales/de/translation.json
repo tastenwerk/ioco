@@ -136,14 +136,7 @@
       "edit": "Bearbeiten",
       "edit_desc": "Sie können den sichtbaren Bereich markieren, indem Sie mit dem Mauszeiger über dem Bild einen Rahmen ziehen, bzw. diesen in Größe und Proportion verändern"
     },
-    "roles": {
-      "title": "Rollen",
-      "prawn": "Bauer/Bäurin",
-      "manager": "AdministratorIn",
-      "user": "StandardbenutzerIn",
-      "editor": "EditorIn",
-      "title": "Rollen"
-    },
+    "groups": "Gruppen",
     "key_not_found": "Die angegebene Kombination aus Schlüssel und Email führte zu keinem Ergebnis",
     "change_password": "Passwort ändern",
     "complete_registration": "Registration abschließen",

@@ -1,15 +1,15 @@
 .content-padding
   form
     input(type='hidden', name='_csrf', value=_csrf)
-    if( currentUser.roles.indexOf('manager') > 0 )
+    if( currentUser.groups.indexOf('manager') > 0 )
       .pull-right
-        h1=t('user.roles.title')
+        h1=t('user.groups.title')
         table
           -each role in ioco.config.userRoles
             tr
               td
-                input(type='checkbox', name='user[roles][]', value=role, checked=(user.roles.indexOf(role) < 0 ? false : true) )
-              td( style='padding-right: 20px')=t('user.roles.'+role)
+                input(type='checkbox', name='user[groups][]', value=role, checked=(user.groups.indexOf(role) < 0 ? false : true) )
+              td( style='padding-right: 20px')=t('user.groups.'+role)
     p
       label.desc=t('user.nick')
       br

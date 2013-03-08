@@ -903,8 +903,8 @@ h1 {
   margin-left: 23px;
 }
 #ioco-top-panel #logo img {
-  width: 40px;
-  height: 40px;
+  width: 150px;
+  height: 57px;
 }
 #ioco-top-panel .dashboard {
   cursor: pointer;
@@ -1977,17 +1977,19 @@ input[type=password]:hover {
   color: #fff;
 }
 .notice-wrap {
-  position: fixed;
-  top: 50px;
+  position: absolute;
+  top: 0;
   right: 0;
-  width: 250px;
+  left: 0;
+  margin: auto;
+  width: 70%;
   z-index: 9999;
 }
 * html .notice-wrap {
   position: absolute;
 }
 .notice-item {
-  min-height: 60px;
+  max-height: 40px;
   background-color: #01a31c;
   color: #fff;
   padding: 10px 20px;
@@ -2003,13 +2005,18 @@ input[type=password]:hover {
 .notice-item a {
   color: #fff;
 }
+.notice-item p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .notice-item-close {
   position: absolute;
   font-family: Arial;
   font-size: 20px;
   font-weight: bold;
-  right: 2px;
-  top: 2px;
+  right: 4px;
+  top: 4px;
   cursor: pointer;
   padding: 2px 7px 0;
 }

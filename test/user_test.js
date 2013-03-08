@@ -5,7 +5,7 @@ describe('ioco users', function(){
 
   before( function( done ){
     ioco.db.open( 'mongodb://localhost:27017/ioco_testdb' );
-    ioco.init();
+    ioco.initModels();
     this.User = ioco.db.model('User');
     this.User.remove( function( err ){
       if( err ) console.log( err );

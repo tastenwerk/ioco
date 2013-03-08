@@ -162,8 +162,8 @@ h1
     float: left
     margin-left: 23px
     img
-      width: 40px
-      height: 40px
+      width: 150px
+      height: 57px
   .dashboard
     cursor: pointer
 
@@ -1043,17 +1043,19 @@ input[type=text],input[type=password]
 
 // jquery.notice
 .notice-wrap
-  position: fixed
-  top: 50px
+  position: absolute
+  top: 0
   right: 0
-  width: 250px
+  left: 0
+  margin: auto
+  width: 70%
   z-index: 9999
 
 * html .notice-wrap
   position: absolute
  
 .notice-item
-  min-height: 60px
+  max-height: 40px
   background-color: #01A31C
   color: white
   padding: 10px 20px
@@ -1068,13 +1070,16 @@ input[type=text],input[type=password]
   a
     color: white
 
+  p
+    TEXT_OVERFLOW()
+
 .notice-item-close
   position: absolute
   font-family: Arial
   font-size: 20px
   font-weight: bold
-  right: 2px
-  top: 2px
+  right: 4px
+  top: 4px
   cursor: pointer
   padding: 2px 7px 0
   &:hover

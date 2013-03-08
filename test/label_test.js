@@ -7,7 +7,7 @@ describe('ioco labels', function(){
 
   before( function( done ){
     ioco.db.open( 'mongodb://localhost:27017/ioco_testdb' );
-    ioco.init();
+    ioco.initModels();
     this.Label = ioco.db.model('Label');
     var setup = this;
     this.Label.remove( function( err ){

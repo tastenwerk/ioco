@@ -86,6 +86,7 @@ var UserSchema = db.Schema({
         createdAt: Date,
         ip: String
       },
+      groups: {type: Array, default: []},
       confirmation: {
         key: String,
         expires: Date,

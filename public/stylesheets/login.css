@@ -17,8 +17,8 @@ html {
   margin-left: 10px;
 }
 #login-content #login-logo img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 57px;
 }
 #login-content #login-logo-text {
   font-size: 30px;
@@ -26,7 +26,7 @@ html {
   margin: 30px 0 0 120px;
 }
 #login-content form {
-  margin-top: 25px;
+  margin-top: 70px;
   background: #fafafa;
 }
 #login-content form .desc {
