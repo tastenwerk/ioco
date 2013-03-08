@@ -8,7 +8,7 @@
       -for( var i in ioco.plugins )
         -if( ioco.plugins[i].docklets )
           -for( var j=0, docklet; docklet=ioco.plugins[i].docklets[j]; j++ )
-            -dockletPath = ioco.plugins[i].name+'/docklets/'+docklet;
+            -var dockletPath = ioco.plugins[i].name+'/docklets/'+docklet;
             li(data-docklet-path=dockletPath)
               span.icn.icn-checkbox.pull-left( class=(currentUser.preferences.docklets && currentUser.preferences.docklets.indexOf( dockletPath ) >= 0 ? 'checked' : null) )
               span=t(ioco.plugins[i].name+'.docklets.'+docklet+'.title')

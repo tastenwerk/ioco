@@ -214,7 +214,7 @@ function openConnection( configfile, username, password ){
       console.log();
       process.exit(0);
     } else
-      User.create({ email: username+'@'+domainName, name: {nick: username}, roles: ['user','manager'], password: password}, function( err, user ){
+      User.create({ email: username+'@'+domainName, name: {nick: username}, groups: ['manager'], password: password}, function( err, user ){
         if( err )
           exitError( 'error creating user: ' + err + ' email: ' + username+'@'+settings.site.domain );
         else
