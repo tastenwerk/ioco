@@ -194,15 +194,15 @@ function openConnection( configfile, username, password ){
   var username = username || 'manager'
     , password = password || 'mgr'
     , settings = JSON.parse( fs.readFileSync( configfile ) )
-    , iomapper = require('iomapper')
-    , User = iomapper.models.User
+    , ioco = require(__dirname+'/../lib/ioco')
+    , User = ioco.db.model('User')
     , domain = settings.hostname.split(':')[1];
 
   domain = domain ? domain.replace('//','') : 'localhost.loc';
 
   if( !settings.db )
     return exitError( configfile + ' does not provide db information. Please check')
-  iomapper.connect( settings.db.url );
+  ioco.db.open( settings.db.url );
 
   User.findOne({ email: username+'@'+domain }, function( err, user ){
     var domainName = domain;
