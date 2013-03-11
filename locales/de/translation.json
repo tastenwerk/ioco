@@ -22,6 +22,7 @@
   "you_are_creating": "Sie erstellen diese Seite gerade",
   "last_edited_ago": "Zuletzt geändert __mins__ von __by__",
   "last_edited_at": "Zuletzt geändert am __date__",
+  "new_document": "Neues Dokument",
   "by": "von",
   "of": "von",
   "never": "nie",
@@ -278,7 +279,7 @@
     "failed_to_save_rel_path": "Konnte relativen Pfad für __name__ nicht setzen",
     "already_exists_path": "Eine Datei dem Namen __name__ existiert bereits in diesem Pfad"
   },
-  "web_pages": {
+  "webpages": {
     "title": "Webseiten",
     "new": "Neue Webseite"
   },
