@@ -12,14 +12,14 @@ form.ioco-form( data-bind='submit: saveForm' )
 
   .span6.pull-right
     div(style='margin-left: 50px')
-      p.desc=t('user.roles.title')
+      p.desc=t('user.groups')
 
       table
-        -each role in ioco.config.userRoles
+        -each group in groups
           tr
             td
-              input(type='checkbox', data-bind='value: "'+role+'", checked: roles')
-            td( style='padding-right: 20px')=t('user.roles.'+role)
+              input(type='checkbox', data-bind='value: "'+group+'", checked: groups')
+            td( style='padding-right: 20px')=group
 
       p=t('user.options')
 

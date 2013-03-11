@@ -27,6 +27,9 @@ var app_js = [
 "var server = require('http').createServer(app)",
 ", io = require('socket.io').listen(server);",
 "",
+"ioco.db.open( ioco.config.db.url );",
+"ioco.initModels();",
+"",
 "server.listen(app.get('port'), function(){",
 "  console.log('ioco server listening on port ' + app.get('port'));",
 "  ioco.startDBConnection();",
@@ -80,7 +83,7 @@ var settings_json = [
 '  "session": {',
 '    "timeout": {',
 '      "mins": 30',
-'    }',
+'    },',
 '    "secret": "ioco"',
 '  },',
 '  "datastore": {',
@@ -193,18 +196,17 @@ function openConnection( configfile, username, password ){
 
   var username = username || 'manager'
     , password = password || 'mgr'
-    , settings = JSON.parse( fs.readFileSync( configfile ) )
     , ioco = require(__dirname+'/../lib/ioco')
-    , User = ioco.db.model('User')
-    , domain = settings.hostname.split(':')[1];
+    , domain = ioco.config.hostname.split(':')[1];
 
   domain = domain ? domain.replace('//','') : 'localhost.loc';
 
-  if( !settings.db )
+  if( !ioco.config.db )
     return exitError( configfile + ' does not provide db information. Please check')
-  ioco.db.open( settings.db.url );
+  ioco.db.open( ioco.config.db.url );
+  ioco.initModels();
 
-  User.findOne({ email: username+'@'+domain }, function( err, user ){
+  ioco.db.model('User').findOne({ email: username+'@'+domain }, function( err, user ){
     var domainName = domain;
     if( domainName === 'localhost' )
       domainName = 'localhost.loc';
@@ -214,9 +216,9 @@ function openConnection( configfile, username, password ){
       console.log();
       process.exit(0);
     } else
-      User.create({ email: username+'@'+domainName, name: {nick: username}, groups: ['manager'], password: password}, function( err, user ){
+      ioco.db.model('User').create({ email: username+'@'+domainName, name: {nick: username}, groups: ['manager'], password: password}, function( err, user ){
         if( err )
-          exitError( 'error creating user: ' + err + ' email: ' + username+'@'+settings.site.domain );
+          exitError( 'error creating user: ' + err + ' email: ' + username+'@'+ioco.config.site.domain );
         else
           console.log('   \033[36mcreate\033[0m : user:' + user.name.nick + ' email:' + user.email + ' with password:' + password );
         console.log();

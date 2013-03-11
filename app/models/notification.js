@@ -36,6 +36,4 @@ NotificationSchema.pre('save', function( next ){
   next();
 });
 
-var Notification = db.model( 'Notification', NotificationSchema );
-
-module.exports = exports = Notification;
+db.model( 'Notification', NotificationSchema );

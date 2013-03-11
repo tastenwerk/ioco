@@ -13,9 +13,9 @@ var db = require( __dirname + '/../../lib/db' )
   , LabelIdiomPlugin = require( __dirname + '/../../lib/db/plugins/label_idiom');
 
 var FileSchema = db.Schema({ 
-  description: {type: ioco.db.Schema.Types.Mixed, default: { default: '' } },
-  copyright: {type: ioco.db.Schema.Types.Mixed, default: { default: '' } },
-  picCropCoords: { type: ioco.db.Schema.Types.Mixed, default: { w: 0, h: 0, x: 0, y: 0 } },
+  description: {type: db.Schema.Types.Mixed, default: { default: '' } },
+  copyright: {type: db.Schema.Types.Mixed, default: { default: '' } },
+  picCropCoords: { type: db.Schema.Types.Mixed, default: { w: 0, h: 0, x: 0, y: 0 } },
   backgroundPosition: { type: String, default: '0 0' },
   dimension: { type: String, default: '' },
   fileSize: Number,

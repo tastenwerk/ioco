@@ -35,7 +35,7 @@ script(type='text/html', id='userItemTemplate')
         // ko if: suspended()
         span.icn.icn-locked( data-bind='css: {unlocked: !suspended()}' )
         // /ko
-        // ko if: roles().indexOf('manager') >= 0
+        // ko if: groups().indexOf('manager') >= 0
         span.icn.icn-user.role-admin(style='opacity:0.3')
         // /ko
       a.link-trigger( href='#', data-bind='text: name().nick, click: showForm' )
@@ -65,7 +65,7 @@ script(type='text/javascript')
     url: '/users.json',
     saveUrl: '/users/',
     saveKey: 'user',
-    saveAttrs: ['name', 'email', 'sendConfirmationEmail', 'roles', 'suspended'],
+    saveAttrs: ['name', 'email', 'sendConfirmationEmail', 'groups', 'suspended'],
     defaultValues: { name: {nick: ''}, email: ''},
     before: function( tree ){
       tree.treeViewModel.showSuspended = ko.observable(false);
