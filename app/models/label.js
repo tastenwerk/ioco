@@ -8,14 +8,14 @@
  */
 
 var db = require( __dirname + '/../../lib/db' )
+  , DefaultPlugin = require( __dirname + '/../../lib/db/plugins/default_idiom')
   , AccessIdiomPlugin = require( __dirname + '/../../lib/db/plugins/access_idiom')
   , VersioningIdiomPlugin = require( __dirname + '/../../lib/db/plugins/versioning_idiom')
   , LabelIdiomPlugin = require( __dirname + '/../../lib/db/plugins/label_idiom');
 
-var LabelSchema = db.Schema({
-  name: String
-});
+var LabelSchema = db.Schema({});
 
+LabelSchema.plugin( DefaultPlugin );
 LabelSchema.plugin( AccessIdiomPlugin );
 LabelSchema.plugin( LabelIdiomPlugin );
 LabelSchema.plugin( VersioningIdiomPlugin );
