@@ -1,31 +1,29 @@
 ioco = typeof(ioco) !== 'undefined' && ioco || {};
 
-ioco.mode = 'remote';
-
-ioco.main = {
-    show: function( text, options, callback ){
-      if( !callback && options && typeof(options) === 'function' )
-        callback = options;
-      $('#ioco-main-content').fadeOut(200, function(){
-        $('#ioco-main-content').html( text ).fadeIn( 200, function(){
+ioco.mainContainer = {
+  show: function( text, options, callback ){
+    if( !callback && options && typeof(options) === 'function' )
+      callback = options;
+    $('#ioco-main-content').fadeOut(200, function(){
+      $('#ioco-main-content').html( text ).fadeIn( 200, function(){
+        if( callback && typeof(callback) === 'function' )
+          callback( $('#ioco-main-content') );
+      });
+    });
+  },
+  load: function( url, callback ){
+    $('#ioco-main-content').fadeOut( 200, function(){
+      $('#ioco-main-content').load( url, function(){
+        $('#ioco-main-content').fadeIn( 200, function(){
           if( callback && typeof(callback) === 'function' )
             callback( $('#ioco-main-content') );
         });
       });
-    },
-    load: function( url, callback ){
-      $('#ioco-main-content').fadeOut( 200, function(){
-        $('#ioco-main-content').load( url, function(){
-          $('#ioco-main-content').fadeIn( 200, function(){
-            if( callback && typeof(callback) === 'function' )
-              callback( $('#ioco-main-content') );
-          });
-        });
-      });
-    }
+    });
+  }
 };
 
-ioco.mainHeight = function(){ return $(window).height() - 70 };
+ioco.mainContainerHeight = function(){ return $(window).height() - 70 };
 
 ioco.hideSidebar = function(){ 
   ioco.menubar.animate({ left: '-40%' }); 
@@ -57,11 +55,8 @@ ioco.setupAjaxHelpers = function setupAjaxHelpers(){
     else if( e === 'timeout' )
       ioco.notify('Request Time out.', 'error');
   });
-  $('.ajax-button').live('click', function(){
-    $(this).addClass('want-to-load-ajax');
-  });
 
-  $('form[data-remote=true]').live('submit', function(e){
+  $(document).on('submit', 'form[data-remote=true]', function(e){
     e.preventDefault();
     var data = $(this).serializeArray();
     data.push({name: '_csrf', value: $('#_csrf').val() });
@@ -74,7 +69,7 @@ ioco.setupAjaxHelpers = function setupAjaxHelpers(){
          type: $(this).attr('method') });
   });
 
-  $('a[data-remote=true]').live('click', function(e){
+  $(document).on('click', 'a[data-remote=true]', function(e){
     e.preventDefault();
     var elem = this;
     ioco.ajaxLoad( this );
@@ -128,137 +123,7 @@ ioco.loadRemoteAfterHashChange = function loadRemoteAfterHashChange(){
   if( params.app )
     ioco.menubar.load( $('#app-icn-'+params.app), url );
   else
-    ioco.main.load( url );
-
-};
-
-/**
- * add a notification message to the
- * notification system
- */
-ioco.notify = function notify( msg, type ){
-  if( typeof(msg) === 'object' ){
-    if( msg.error && msg.error instanceof Array && msg.error.length > 0 )
-      msg.error.forEach( function( err ){
-        ioco.notify( err, 'error' );
-      });
-    if( msg.notice && msg.notice instanceof Array && msg.notice.length > 0 )
-      msg.notice.forEach( function( notice ){
-        ioco.notify( notice );
-      });
-    return;
-  }
-
-  $.noticeAdd({
-    text: msg,
-    stay: (type && type !== 'notice'),
-    type: type
-  });
-};
-
-/**
- * adds a blocking modal box to the whole
- * screen
- *
- * @param {String} [html] the html string to be rendered to this modal
- * also, action strings are valid:
- *
- * @param {Object} [options] options are:
- * * height: desired height of modal window
- * * before: callback function, before modal will be shown
- * * completed: callback function, after modal has been shown and is visible
- * to the user.
- * * url: remote url, if this modal should be loaded from url
- * 
- * @param {Function} [callback] the callback that should be triggered
- * after modal has been rendered.
- *
- * @example
- *  ioco.modal('close')
- * closes the modal.
- */
-ioco.modal = function( html, options ){
-
-  function closeModal(){
-    $('.ioco-modal').fadeOut(300);
-    setTimeout( function(){
-      $('.ioco-modal').remove();
-    }, 300);
-    $(window).off( 'resize', checkModalHeight );
-  }
-
-  function checkModalHeight(){
-    if( $('#ioco-modal').height() > $(window).height() - 40 )
-      $('#ioco-modal').animate({ height: $(window).height() - 40 }, 200);
-    else
-      $('#ioco-modal').animate({ height: $('#ioco-modal').data('origHeight') }, 200);
-  }
-
-  function setupModalActions(){
-    if( $('#ioco-modal .modal-sidebar').length > 0 ){
-      $('#ioco-modal .modal-sidebar > .sidebar-nav li').on('click', function(){
-        $(this).closest('ul').find('.active').removeClass('active');
-        $('#ioco-modal .sidebar-content > div').hide();
-        $($('#ioco-modal .sidebar-content > div')[$(this).index()]).show();
-        $(this).addClass('active');
-      }).first().click();
-    }
-    if( options && options.completed && typeof(options.completed) === 'function' )
-      setTimeout(function(){ options.completed( $('#ioco-modal') ); }, 500 );
-  }
-
-  if( html === 'close' )
-    return closeModal();
-  else if( typeof(html) === 'object' ){
-    options = html;
-    html = null;
-  }
-
-  $('.ioco-modal').remove();
-  $('body').append('<div id="ioco-modal-overlay" class="ioco-modal"/>')
-    .append('<div id="ioco-modal" class="ioco-modal"><div class="modal-inner-wrapper" /></div>');
-  var closeModalBtn = $('<a class="close-icn">&times;</a>');
-  $('#ioco-modal').prepend(closeModalBtn);
-  if( options.windowControls ){
-    var countWinCtrlBtns = 1;
-    for( ctrl in options.windowControls ){
-      var winCtrlBtn = $('<a winCtrl="'+ctrl+'" class="modal-win-ctrl live-tipsy" href="#" original-title="'+options.windowControls[ctrl].title+'"><span class="icn '+options.windowControls[ctrl].icn+'" /></a>');
-      winCtrlBtn.css( { right: 16*(countWinCtrlBtns++)+32 } );
-      $('#ioco-modal').prepend(winCtrlBtn);
-      winCtrlBtn.on('click', function(e){
-        e.preventDefault();
-        options.windowControls[$(this).attr('winCtrl')].callback( $('#ioco-modal') );
-      })
-    }
-  }
-  closeModalBtn.on('click', closeModal);
-  $('#ioco-modal-overlay').fadeIn(200).on('click', closeModal);
-  if( options && options.title )
-    $('#ioco-modal').prepend('<span class="modal-title">'+options.title+'</span>');
-
-
-  // height configuration      
-  if( options && options.height && typeof(options.height) === 'number' )
-    $('#ioco-modal').css( 'height', options.height );
-  $('#ioco-modal').data('origHeight', $('#ioco-modal').height());
-
-  checkModalHeight();
-  $(window).on( 'resize', checkModalHeight );
-
-  if( options.url ){
-    $('#ioco-modal .modal-inner-wrapper').load( options.url, function(){
-      if( options && options.before && typeof(options.before) === 'function' )
-        options.before( $('#ioco-modal') );
-      $('#ioco-modal').fadeIn( 200 );
-      setupModalActions();
-    });
-  } else {
-    html = html || options.data || options.html;
-    $('#ioco-modal .modal-inner-wrapper').html( html ).fadeIn(200);
-    if( options && options.before && typeof(options.before) === 'function' )
-      options.before( $('#ioco-modal') );
-    setupModalActions();
-  }
+    ioco.mainContainer.load( url );
 
 };
 
@@ -390,16 +255,6 @@ $(function(){
 */
 
   $('.js-get-focus:first').focus();
-
-  if( ioco.mode === 'desktop' ){
-    $('#desktop-control').show();
-    $(document).on('keydown', function(e){
-      if( e.metaKey && e.keyCode === 82 )
-        location.reload();
-      if( e.metaKey && e.keyCode == 87 )
-        window.close();
-    })
-  }
 
   if( ioco.menubar )
     ioco.menubar.init();

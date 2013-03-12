@@ -1,5 +1,11 @@
 ( function(){
 
+
+  /**
+   * draw a nice windows like loader
+   */
+  var loader = '<div class="loader"><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /></div>';
+
   /**
   * adds a blocking modal box to the whole
   * screen
@@ -123,6 +129,9 @@
       return;
     }
 
+    if( typeof(msg) === 'undefined' || msg.length < 1 )
+      return;
+
     $.noticeAdd({
       text: msg,
       stay: (type && type !== 'notice'),
@@ -130,19 +139,34 @@
     });
   };
 
+  /**
+   * translates doms with .translation class
+   * to loaded i18n
+   */
+  function translate( $obj ){
+    if( $obj.hasClass('translate') ){
+      if( $obj.attr('data-ns') )
+        $obj.html( $.i18n.t( $obj.attr('data-ns') + '.' + $obj.text() ) );
+      else
+        $obj.html( $.i18n.t( $obj.text() ) );
+      $obj.removeClass('translate');
+    }
+  }
+
+  function parseTranslations(){
+    $('.translate').each( function(){
+      translate( $(this) );
+    });
+  }
+
   var root = this; // window of browser
 
   if( !root.ioco || typeof( root.ioco ) !== 'object' )
     root.ioco = {};
   root.ioco.notify = notify;
   root.ioco.modal = modal;
-
-
-  $(document).ready( function(){  
-    $('.live-tipsy').tipsy({live: true});
-    $('.live-tipsy-l').tipsy({live: true, gravity: 'e'});
-    $('.live-tipsy-r').tipsy({live: true, gravity: 'w'});
-  });
-
+  root.ioco.loaderHtml = loader;
+  root.ioco.translate = translate;
+  root.ioco.parseTranslations = parseTranslations;
 
 })();

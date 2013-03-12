@@ -17,7 +17,7 @@ ioco.menubar = {
     setTimeout(function(){ ioco.ignoreHashChange = false; }, 500);
     location.hash = url;
     $('#ioco-dashboard').hide();
-    ioco.main.load( url, function(){
+    ioco.mainContainer.load( url, function(){
       $('#ioco-main-container').show();
       $(iconId).find('.loader').remove().end().find('img').fadeIn(300);
       setTimeout( function(){ $(iconId).removeClass('loading'); }, 300 );

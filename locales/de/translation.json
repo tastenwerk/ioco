@@ -26,6 +26,8 @@
   "by": "von",
   "of": "von",
   "never": "nie",
+  "type": "Typ",
+  "autogenerate": "Automatisch generieren",
   "undo": "rückgängig machen",
   "history": "Verlauf",
   "finished": "fertig",
