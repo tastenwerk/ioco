@@ -2052,7 +2052,15 @@ input[type=password]:hover {
   left: 50px;
   right: 0;
 }
-.top-tabs-nav > li {
+.top-tabs-nav .top-tabs-nav-title {
+  float: left;
+  font-size: 20px;
+  margin: 8px 30px 8px 0;
+}
+.top-tabs-nav ul {
+  list-style: none;
+}
+.top-tabs-nav li {
   float: left;
   margin: 0 5px;
   padding: 7px 20px 12px;
@@ -2061,11 +2069,11 @@ input[type=password]:hover {
   position: relative;
   border-radius: 2px;
 }
-.top-tabs-nav > li.active {
+.top-tabs-nav li.active {
   background: #333;
   color: #fff;
 }
-.top-tabs-nav > li.active .active-caret {
+.top-tabs-nav li.active .active-caret {
   border-color: transparent transparent #f8f8f8 transparent;
   border-style: solid;
   border-width: 8px;

@@ -70,7 +70,7 @@ $(function(){
         setTimeout( function(){
           form.find('input[type=text]:first').focus();
           if( options.afterShowForm && typeof(options.afterShowForm) === 'function' )
-            options.afterShowForm( item && item.name ? item : {name: $.i18n.t('new_document')}, form );
+            options.afterShowForm( item, form, tree );
         },200);
       },
 
