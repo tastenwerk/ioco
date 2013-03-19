@@ -19,6 +19,9 @@
   * * completed: callback function, after modal has been shown and is visible
   * to the user.
   * * url: remote url, if this modal should be loaded from url
+  * * on:
+  *   new callback function. specify exact action by parsing the parameter
+  *   on('close', function( $modal ) )
   *
   * @param {Function} [callback] the callback that should be triggered
   * after modal has been rendered.
@@ -30,6 +33,8 @@
   function modal( html, options ){
 
     function closeModal(){
+      if( typeof(options.on) === 'function' )
+        options.on('close', $('#ioco-modal') );
       $('.ioco-modal').fadeOut(300);
       setTimeout( function(){
         $('.ioco-modal').remove();

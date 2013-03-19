@@ -1,5 +1,3 @@
-ioco = typeof(ioco) !== 'undefined' && ioco || {};
-
 ioco.mainContainer = {
   show: function( text, options, callback ){
     if( !callback && options && typeof(options) === 'function' )
@@ -181,6 +179,17 @@ $(function(){
       native: document.location.protocol+'//'+document.location.host,
       master: $('#_host_master').val()
   };
+
+  /**
+   * knockout globals
+   *
+   */
+  ioco.ko = {
+    plainAttrsArr: [ '_id', 'access', 'createdAt', 'updatedAt', 'rootWebBitId' ],
+    plainAttrsRegExp: function plainAttrsRegExp(){
+      return new RegExp( this.plainAttrsArr.join('|') );
+    }
+  }
 
   ioco._csrf = $('#_csrf').val();
 

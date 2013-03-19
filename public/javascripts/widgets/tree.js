@@ -96,7 +96,7 @@ $(function(){
           for( var j=data.comments.length-1,comment; comment=data.comments[j]; j-- ){
             self.comments.push( new IOComment( comment, self ) );
           }
-        else if( i.match(/_id|acl|createdAt|updatedAt|holder/) )
+        else if( i.match(ioco.ko.plainAttrsRegExp()) )
           self[i] = data[i];
         else if( data[i] instanceof Array )
           self[i] = ko.observableArray(data[i]);
