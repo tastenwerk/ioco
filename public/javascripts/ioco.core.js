@@ -17,6 +17,9 @@
   * * height: desired height of modal window
   * * before: callback function, before modal will be shown
   * * completed: callback function, after modal has been shown and is visible
+  * * html: the html content (optional can be passed as first argument)
+  * * $content: a dom object to be appended
+  *
   * to the user.
   * * url: remote url, if this modal should be loaded from url
   * * on:
@@ -33,7 +36,7 @@
   function modal( html, options ){
 
     function closeModal(){
-      if( typeof(options.on) === 'function' )
+      if( options && typeof(options.on) === 'function' )
         options.on('close', $('#ioco-modal') );
       $('.ioco-modal').fadeOut(300);
       setTimeout( function(){
@@ -109,7 +112,11 @@
       });
     } else {
       html = html || options.data || options.html;
-      $('#ioco-modal .modal-inner-wrapper').html( html ).fadeIn(200);
+      if( options.$content )
+        $('#ioco-modal .modal-inner-wrapper').append( options.$content );
+      else if( html )
+        $('#ioco-modal .modal-inner-wrapper').html( html ).fadeIn(200);
+
       if( options && options.before && typeof(options.before) === 'function' )
         options.before( $('#ioco-modal') );
       setupModalActions();

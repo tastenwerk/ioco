@@ -59,6 +59,8 @@ $(function(){
        * returns a new data item
        */
       newItemForm: options.newItemForm || function( item, e ){
+        if( typeof(options.replaceNewItemForm) === 'function' )
+          return options.replaceNewItemForm( item, form, tree );
         var form = $('.ioco-content:visible .item-form');
         $('.ioco-content:visible .click-for-details').hide();
         $(e.target).closest('.ioco-tree').find('.selected').removeClass('selected');
