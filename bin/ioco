@@ -46,7 +46,7 @@ var app_js = [
 "  ioco.inject( express, app, io ); // inject app with ioco defaults and plugins",
 "",
 "  // load external ioweb plugins",
-"  ioco.registerPlugin( app, require('ioco-web') );",
+"  ioco.registerPlugin( app, require('ioco-web').ioco.plugins );",
 "",
 "  app.use( express.favicon( __dirname + '/public/favicon.ico' ));",
 "",
@@ -82,7 +82,7 @@ var settings_json = [
 '    "timeout": {',
 '      "mins": 30',
 '    },',
-'    "secret": "ioco"',
+'    "secret": "__secret__"',
 '  },',
 '  "datastore": {',
 '    "absolutePath": "__absolutePath__",',
@@ -140,7 +140,7 @@ program
     mkdir( name + '/public/images');
     write( name + '/app.js', app_js );
     write( name + '/public/stylesheets/ioco-page.styl', 'body\n  .ioco-page\n    margin: 0' );
-    write( name + '/config/settings.json', settings_json.replace( /__appName__/g, normalizedName ).replace(/__absolutePath__/g, process.cwd()+path.sep+normalizedName) );
+    write( name + '/config/settings.json', settings_json.replace( /__appName__/g, normalizedName ).replace(/__absolutePath__/g, process.cwd()+path.sep+normalizedName).replace('__secret__', (new Date().getTime().toString(32))) );
     write( name + '/package.json', package_json.replace( /__appName__/g, name.replace(/ /g, '_') ) );
     write( name + '/README.md', name + ' README' );
     console.log();
