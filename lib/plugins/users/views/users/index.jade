@@ -70,7 +70,19 @@ script(type='text/javascript')
     before: function( tree ){
       tree.treeViewModel.showSuspended = ko.observable(false);
       tree.TreeItemModel.prototype.toggleSuspendUser = function( item, e ){
-        console.log('toggle suspend');
+        item.suspended(!item.suspended );
       };
+      tree.TreeItemModel.prototype.addGroup = function( item, e ){
+        var name = prompt( 'Name', '' );
+        if( name && name.length > 0 )
+          if( this.groups().indexOf( name ) < 0 )
+            this.groups.push( name );
+
+      };
+      tree.TreeItemModel.prototype.removeGroup = function( item, e ){
+        var self = ko.dataFor( $('.ioco-content:visible .item-form').get(0) );
+        if( $(e.target).closest('.lbl').length )
+          self.groups.splice( self.groups().indexOf( item ), 1);
+      }
     }
   })

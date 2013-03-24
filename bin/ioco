@@ -31,7 +31,6 @@ var app_js = [
 "",
 "server.listen(app.get('port'), function(){",
 "  console.log('ioco server listening on port ' + app.get('port'));",
-"  ioco.startDBConnection();",
 "});",
 "",
 "app.configure(function(){",
@@ -112,7 +111,7 @@ var package_json = [
 '    "jade": "0.27.x",',
 '    "stylus": "0.30.x",',
 '    "ioco": "git://github.com/tastenwerk/ioco.git#0.1.0",',
-'    "ioweb": "git://github.com/tastenwerk/ioweb.git#0.1.1"',
+'    "ioco-web": "git://github.com/tastenwerk/ioco-web.git#0.1.0"',
 '  },',
 '  "license": "GPL3",',
 '  "engine": {',
@@ -140,7 +139,7 @@ program
     mkdir( name + '/public/images');
     write( name + '/app.js', app_js );
     write( name + '/public/stylesheets/ioco-page.styl', 'body\n  .ioco-page\n    margin: 0' );
-    write( name + '/config/settings.json', settings_json.replace( /__appName__/g, normalizedName ).replace(/__absolutePath__/g, process.cwd()+path.sep+normalizedName).replace('__secret__', (new Date().getTime().toString(32))) );
+    write( name + '/config/settings.json', settings_json.replace( /__appName__/g, normalizedName ).replace(/__absolutePath__/g, process.cwd()+path.sep+normalizedName+path.sep+'datastore').replace('__secret__', (new Date().getTime().toString(32))) );
     write( name + '/package.json', package_json.replace( /__appName__/g, name.replace(/ /g, '_') ) );
     write( name + '/README.md', name + ' README' );
     console.log();

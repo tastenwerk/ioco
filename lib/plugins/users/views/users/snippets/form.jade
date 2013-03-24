@@ -8,20 +8,22 @@ ul.top-tabs-action-nav
 
 h1( data-bind='text: name().full' )
 
-form.ioco-form( data-bind='submit: saveForm' )
+form.ioco-form.ioco-user-form( data-bind='submit: saveForm' )
 
   .span6.pull-right
-    div(style='margin-left: 50px')
-      p.desc=t('user.groups')
+    fieldset(style='margin-left: 50px')
+      legend
+        a.pull-right.btn(href="#", style='margin: 0 0 0 20px', data-bind='click: addGroup')
+          span.icn.icn-plus.pull-right
+        span=t('user.groups')
 
-      table
-        -each group in groups
-          tr
-            td
-              input(type='checkbox', data-bind='value: "'+group+'", checked: groups')
-            td( style='padding-right: 20px')=group
+      div( data-bind='foreach: groups')
+        span.group-lbl.lbl
+          span.title(data-bind='text: $data')
+          span.remove-group(data-bind='click: $parent.removeGroup') &times;
 
-      p=t('user.options')
+    fieldset(style='margin-left: 50px')
+      legend=t('user.options')
 
       p
         input(type='checkbox', data-bind='checked: suspended')
