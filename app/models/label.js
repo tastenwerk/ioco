@@ -21,3 +21,5 @@ LabelSchema.plugin( LabelIdiomPlugin );
 LabelSchema.plugin( VersioningIdiomPlugin );
 
 db.model( 'Label', LabelSchema );
+
+db.model( 'Label' ).setVersionAttrs(['name','properties']);

@@ -270,11 +270,22 @@ $(function(){
   ioco.setupAjaxHelpers();
 
   ioco.usersCache = {};
-  $.getJSON( '/users/friends.json?include_self=true', function( response ){
-    if( response.success )
-      for( var i in response.users )
-        ioco.usersCache[response.users[i]._id] = response.users[i];
-  });
+
+  ioco.initUsersCache = function initUsersCache( callback ){
+    if( Object.keys(ioco.usersCache).length )
+      if( typeof(callback) === 'function' )
+        callback( null, ioco.usersCache )
+      else
+        return;
+
+    $.getJSON( '/users/friends.json?include_self=true', function( response ){
+      if( response.success )
+        for( var i in response.users )
+          ioco.usersCache[response.users[i]._id] = response.users[i];
+      if( typeof(callback) === 'function' )
+        callback( null, ioco.usersCache );
+    });
+  }
 
   if( location.hash.length > 0 )
     ioco.loadRemoteAfterHashChange();
