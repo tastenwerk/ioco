@@ -87,7 +87,7 @@ describe('ioco versions', function(){
 
       it( 'does not store current attributes if no saveCurrent option was passed', function(){
 
-        this.label.versions.should.be.lengthOf(2);
+        this.label.versions.should.be.lengthOf(3);
 
       });
 
@@ -101,7 +101,7 @@ describe('ioco versions', function(){
         this.label.switchVersion(0, {saveCurrent: true});
         this.label.name.should.eql('vLabel');
         
-        this.label.versions.should.be.lengthOf(3);
+        this.label.versions.should.be.lengthOf(4);
 
       });
 
