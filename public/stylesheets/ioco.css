@@ -1145,7 +1145,7 @@ h1 {
   -o-transition-duration: 0.3s;
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  background: #eaeaea;
+  background: #e5e5e5;
   z-index: 3;
   font-size: 12px;
 }
@@ -1179,6 +1179,7 @@ h1 {
 #ioco-main-content .ioco-info .title .rename {
   display: none;
   margin-left: 5px;
+  cursor: pointer;
 }
 #ioco-main-content .ioco-info .title:hover .rename {
   display: inline-block;
@@ -1250,6 +1251,64 @@ h1 {
 }
 #ioco-account-info .user-actions a:hover {
   opacity: 1;
+}
+.ioco-multiselect {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+.ioco-multiselect input[type=text] {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
+}
+.ioco-multiselect input[type=text]:hover,
+.ioco-multiselect input[type=text]:focus {
+  outline: none;
+  border: none;
+}
+.ioco-multiselect label {
+  position: relative;
+  text-indent: nowrap;
+  padding: 2px 20px 2px 5px;
+  background-color: #8a0;
+  margin-right: 5px;
+}
+.ioco-multiselect label span {
+  color: #fff;
+}
+.ioco-multiselect label .remove-label {
+  position: absolute;
+  right: 5px;
+  top: 3px;
+}
+.ioco-dropdown {
+  position: absolute;
+  background: #fafafa;
+  z-index: 99;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+}
+.ioco-dropdown ul {
+  list-style: none;
+  padding: 5px;
+}
+.ioco-dropdown ul li {
+  font-size: 12px;
+  margin: 5px 0;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  min-width: 150px;
+}
+.ioco-dropdown ul li:last-child {
+  border: none;
+}
+.ioco-dropdown ul li.selected {
+  background-color: #8a0;
+  background-image: -moz-linear-gradient(center top, #8a0, #9b1);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#8a0), to(#9b1));
+  background-repeat: repeat-x;
+  color: #fff;
 }
 ul#ioco-menubar {
   position: absolute;

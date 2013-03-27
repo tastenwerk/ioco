@@ -203,6 +203,7 @@
   },
   "document": {
     "rename": "__name__ umbenennen",
+    "labels": "Labels",
     "click_for_details": "Klicken Sie auf ein Dokument um Details anzeigen",
     "order": {
       "saving": {
@@ -210,6 +211,8 @@
         "failed": "Sortierung konnte nicht gespeichert werden"
       }
     },
+    "labeled": "__name__ wurde mit __label__ gelabelet",
+    "label_removed": "__label__ wurde als Label von __name__ entfernt",
     "tags": {
       "title": "Tags"
     },

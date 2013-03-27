@@ -86,8 +86,11 @@ $(function(){
       var self = this;        
       $.extend( this, DocumentBaseModel(self) );
 
-      self.children = ko.observableArray([]);
+      if( typeof(data._labelIds) === 'object' )
+        self.labels = ko.observableArray([]);
+
       self.comments = ko.observableArray([]);
+      self.children = ko.observableArray([]);
 
       if( options.saveAttrs )
         for( var i in options.saveAttrs )
@@ -180,12 +183,12 @@ $(function(){
           return;
         }
         $(e.target).addClass('loading');
-        $.getJSON( '/webpages.json?parentId='+model._id, function( data ){
+        $.getJSON( '/webpages.json?parentId='+model._id, function( json ){
           self.children.removeAll();
-          if( data.length === 0 )
+          if( json.data.length === 0 )
             $(e.target).removeClass('loading').css('opacity',0);
-          for( var i in data )
-            self.children.push( new tree.TreeItemModel( data[i] ) );
+          for( var i in json.data )
+            self.children.push( new tree.TreeItemModel( json.data[i] ) );
           $(e.target).removeClass('loading').addClass('open');
         });
       };
@@ -213,6 +216,44 @@ $(function(){
       ko.applyBindings( this, $infoDiv.get(0) );
       setTimeout( function(){ $infoDiv.removeClass('hidden'); }, 10);
       ioco.parseTooltips();
+      
+      var self = this;
+
+      // get labels if document has labels property
+      if( self.labels ){
+        $infoDiv.find('.ioco-labels').append(ioco.loaderHTML);
+        $.getJSON('/documents/'+self._id+'/labels.json', function(json){
+          if( json.success ){
+            for( var i in json.labels )
+              self.labels.push( json.labels[i] );
+            $infoDiv.find('.ioco-labels').iocoMultiSelect({ 
+              labels: self.labels,
+              url: '/documents.json',
+              save: function( item, callback ){
+                $.ajax({ url: '/documents/'+self._id+'/labels/'+item._id,
+                         data: { _csrf: ioco._csrf },
+                         type: 'post',
+                         success: function( json ){
+                            ioco.notify( json.flash );
+                            callback();
+                         }
+                });
+              },
+              delete: function( item, callback ){
+                $.ajax({ url: '/documents/'+self._id+'/labels/'+item._id,
+                         data: { _csrf: ioco._csrf },
+                         type: 'delete',
+                         success: function( json ){
+                            ioco.notify( json.flash );
+                            callback();
+                         }
+                });
+              }
+            });
+          }
+        });
+      }
+
       $('.ioco-info:visible .side-tabs').iocoSideTabs();
     }
 
@@ -227,6 +268,11 @@ $(function(){
         return;
 
       var $item = this.getTreeItem( e );
+      if( $item.hasClass('selected') ){
+        tree.treeViewModel.selectedItems.remove( this );
+        $item.removeClass('selected');
+        return;
+      }
       if( !e.ctrlKey && !e.metaKey ){
         tree.treeViewModel.selectedItems.removeAll();
         $item.closest('.ioco-tree').find('.selected').removeClass('selected');

@@ -358,7 +358,7 @@ h1
     width: 250px
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5)
     IO_TRANSITION(0.3s)
-    background: IO_GREY_BG
+    background: #e5e5e5
     z-index: 3
     font-size: 12px
 
@@ -391,7 +391,8 @@ h1
       .rename
         display: none
         margin-left: 5px
-        
+        cursor: pointer
+
       &:hover
         .rename
           display: inline-block
@@ -456,7 +457,54 @@ h1
       &:hover
         opacity: 1
 
+.ioco-multiselect
+  border: 1px solid #ddd
+  padding: 5px
 
+  input[type=text]
+    border: none
+    outline: none
+    background: none
+    padding: 0
+    &:hover, &:focus
+      outline: none
+      border: none
+
+  label
+    position: relative
+    text-indent: nowrap
+    padding: 2px 20px 2px 5px
+    background-color: IO_GREEN
+    margin-right: 5px
+    span
+      color: white
+
+    .remove-label
+      position: absolute
+      right: 5px
+      top: 3px
+
+.ioco-dropdown
+  position: absolute
+  background: #fafafa
+  z-index: 99
+  box-shadow: 2px 2px 3px rgba( 0, 0, 0, 0.5 )
+  ul
+    list-style: none
+    padding: 5px
+    li
+      font-size: 12px
+      margin: 5px 0
+      padding: 5px
+      border-bottom: 1px solid #ddd
+      cursor: pointer
+      min-width: 150px
+      &:last-child
+        border: none
+      &.selected
+        IO_GRADIENT(#8a0, #9b1)
+        //IO_GRADIENT(#118be7, #007ad6)
+        color: white
 
 
 ul#ioco-menubar

@@ -7,7 +7,6 @@ IocoComment = function( attrs, parent, followsUp ){
   self.createdAt = new Date();
 
   if( !attrs._id )
-    console.log('i am new', attrs);
   $.extend( this, DocumentBaseModel(self) );
 
   self.comments = ko.observableArray([]);

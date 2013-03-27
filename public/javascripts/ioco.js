@@ -185,7 +185,7 @@ $(function(){
    *
    */
   ioco.ko = {
-    plainAttrsArr: [ '_id', 'access', 'createdAt', 'updatedAt', 'rootWebBitId' ],
+    plainAttrsArr: [ '_id', '_type', 'access', 'createdAt', 'updatedAt', 'rootWebBitId' ],
     plainAttrsRegExp: function plainAttrsRegExp(){
       return new RegExp( this.plainAttrsArr.join('|') );
     }
