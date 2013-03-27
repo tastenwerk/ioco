@@ -2,7 +2,7 @@ ioco.usersCache = ioco.usersCache || {};
 /**
  * IO comment model
  */
-IOComment = function( attrs, parent, followsUp ){
+IocoComment = function( attrs, parent, followsUp ){
   var self = this;
   self.createdAt = new Date();
 
@@ -16,7 +16,7 @@ IOComment = function( attrs, parent, followsUp ){
 
   if( attrs.comments && attrs.comments.length > 0 )
     for( var i in attrs.comments )
-      self.comments.unshift( new IOComment( attrs.comments[i], parent, self ) );
+      self.comments.unshift( new IocoComment( attrs.comments[i], parent, self ) );
 
   for( var i in attrs )
     if( i === 'comments' )
@@ -123,7 +123,7 @@ IOComment = function( attrs, parent, followsUp ){
   };
 
   self.newFollowUp = function(){
-    return new IOComment( {content: ''}, parent, self );
+    return new IocoComment( {content: ''}, parent, self );
   };
 
   self.simpleFormattedContent = ko.computed( function(){

@@ -18,6 +18,7 @@
   "dependencies": {
     "colors": "*",
     "mongoose": "3.5.7",
+    "mongoose-json-select": "0.2.0",
     "commander": "1.1.1",
     "moment": "1.7.2",
     "stylus": "0.31.0",

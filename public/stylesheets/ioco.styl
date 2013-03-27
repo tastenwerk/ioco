@@ -337,6 +337,7 @@ h1
     bottom: 0
     width: 250px
     background: IO_GREY_BG
+    z-index: 4
 
     .title
       font-weight: 100
@@ -345,14 +346,70 @@ h1
       padding: 0 5px
       border-bottom: 1px solid #ccc
 
-  .ioco-content
+  .ioco-info, .ioco-content
     position: absolute
     top: 0
     left: 250px
     bottom: 0
-    right: 0
     border-left: 1px solid #ccc
     padding: 10px
+
+  .ioco-info
+    width: 250px
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5)
+    IO_TRANSITION(0.3s)
+    background: IO_GREY_BG
+    z-index: 3
+    font-size: 12px
+
+    .side-tabs
+      position: absolute
+      top: 50px
+      left: 0
+      right: 0
+      bottom: 0
+
+    &.hidden
+      left: 0
+      width: 230px
+
+    .title
+      font-weight: 100
+      font-size: 16px
+      margin: 5px 10px
+      padding: 0 5px
+      border-bottom: 1px solid #ccc
+
+      .close
+        margin: 0 -5px
+        padding: 0 7px
+        &:hover
+          background: IO_GREEN
+          color: white
+          cursor: pointer
+
+      .rename
+        display: none
+        margin-left: 5px
+        
+      &:hover
+        .rename
+          display: inline-block
+
+    p.item
+      margin: 5px 0
+
+    label
+      color: #777
+      font-size: 12px
+      font-weight: 300
+      &.pull-left
+        width: 80px
+
+
+  .ioco-content
+    z-index: 2
+    right: 0
 
     h1
       font-weight: 100
@@ -503,7 +560,8 @@ ul#ioco-menubar
     position: absolute
     top: 10px
     left: 10px
-    font-weight: 900
+    font-size: 1.2em
+    font-weight: 100
 
   .modal-inner-wrapper
     IO_POS_ABSOLUTE()
@@ -801,6 +859,10 @@ input[type=text],input[type=password]
 
     .title
       font-size: 14px
+
+    .type-icn
+      margin-right: 5px
+
     a.show-details-arr
       padding-left: 3px
       border-left: 1px solid rgba(0,0,0,0.1)
@@ -821,6 +883,8 @@ input[type=text],input[type=password]
         border-color: transparent transparent transparent rgba(255,255,255,0.5)
       .show-options-trigger .caret
         border-color: rgba(255,255,255,0.5) transparent transparent transparent
+      .icn
+        background-image: url('/images/icons/ioco-icons16x16w.png')
     &.show-options
       IO_TRANSITION(0.3s)
       height: 45px
@@ -992,9 +1056,23 @@ input[type=text],input[type=password]
     height: 5em
 
 
+.ask-div
+  position: absolute
+  background: IO_GREY_BG
+  box-shadow: IO_BOX_SHADOW
+  z-index: 5
 
-
-
+  ul
+    list-style: none
+    margin: 5px
+    li
+      padding: 5px 10px
+      margin: 5px 0
+      cursor: pointer 
+      font-size: 12px
+      &:hover
+        IO_GRADIENT(#118be7, #007ad6)
+        color: white
 
 #info-modal-caret
   position: absolute

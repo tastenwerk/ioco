@@ -6,6 +6,12 @@ Basically you can use ioco for pretty anything that needs to deal with some kind
 of content management. We at TASTENWERK write project management tools, calendaring
 tools, ticket-managemnt tools and many other things on the basis of ioco.
 
+# LICENSE
+
+ioco is licensed under the GPLv3 license
+
+http://opensource.org/licenses/GPL-3.0
+
 # Content Repository
 
 ioco is a almost fully featured content repository.

@@ -60,7 +60,7 @@ $(function(){
        */
       newItemForm: options.newItemForm || function( item, e ){
         if( typeof(options.replaceNewItemForm) === 'function' )
-          return options.replaceNewItemForm( item, form, tree );
+          return options.replaceNewItemForm( item, form, tree, e );
         var form = $('.ioco-content:visible .item-form');
         $('.ioco-content:visible .click-for-details').hide();
         $(e.target).closest('.ioco-tree').find('.selected').removeClass('selected');
@@ -96,7 +96,7 @@ $(function(){
       for( var i in data )
         if( i === 'comments' )
           for( var j=data.comments.length-1,comment; comment=data.comments[j]; j-- ){
-            self.comments.push( new IOComment( comment, self ) );
+            self.comments.push( new IocoComment( comment, self ) );
           }
         else if( i.match(ioco.ko.plainAttrsRegExp()) )
           self[i] = data[i];
@@ -170,25 +170,6 @@ $(function(){
         $(e.target).closest('.item-form').prev('.no-item-form').fadeIn( 200 );
       }
 
-      self.markSelected = options.markSelected || function markSelected(elem, e){
-        if( $(e.target).hasClass('tree-trigger') )
-          return;
-        var treeItem = self.getTreeItem( e );
-        if( treeItem.hasClass('selected') )
-          tree.treeViewModel.selectedItems.remove( this );
-        else
-          tree.treeViewModel.selectedItems.push( this );
-        treeItem.toggleClass('selected');
-      }
-
-      self.getTreeItem = function getTreeItem( e ){
-        var treeItem = $(e.target).closest('.tree-item');
-        if( $(e.target).hasClass('tree-item') )
-          treeItem = $(e.target)
-        return treeItem;
-      }
-
-
       /**
        * toggles all children of this node
        */       
@@ -223,8 +204,44 @@ $(function(){
         return self.children.slice().sort(self.sortFunction);
       }, self );
 
-
     }
+
+    tree.TreeItemModel.prototype.showProperties = function showProperties(){
+      $('.ioco-info:visible').remove();
+      var $infoDiv = $('<div/>').addClass('ioco-info hidden').attr('data-bind', 'template: {name: "infoTemplate"}');
+      $('.ioco-sidebar:visible').after( $infoDiv );
+      ko.applyBindings( this, $infoDiv.get(0) );
+      setTimeout( function(){ $infoDiv.removeClass('hidden'); }, 10);
+      ioco.parseTooltips();
+      $('.ioco-info:visible .side-tabs').iocoSideTabs();
+    }
+
+    tree.TreeItemModel.prototype.closeProperties = function closeProperties(){
+      $('.ioco-info:visible').addClass('hidden');
+      setTimeout( function(){ $('.ioco-info:visible').remove(); }, 500);
+    }
+
+    tree.TreeItemModel.prototype.markSelected = function markSelected(elem, e){
+      // remove selected items if no ctrl or apple cmd key was pressed
+      if( $(e.target).hasClass('tree-trigger') )
+        return;
+
+      var $item = this.getTreeItem( e );
+      if( !e.ctrlKey && !e.metaKey ){
+        tree.treeViewModel.selectedItems.removeAll();
+        $item.closest('.ioco-tree').find('.selected').removeClass('selected');
+      }
+      tree.treeViewModel.selectedItems.push( this );
+      $item.toggleClass('selected');
+    }
+
+    tree.TreeItemModel.prototype.getTreeItem = function getTreeItem( e ){
+      var treeItem = $(e.target).closest('.tree-item');
+      if( $(e.target).hasClass('tree-item') )
+        treeItem = $(e.target)
+      return treeItem;
+    }
+
 
     if( options.before && typeof(options.before) === 'function' )
       options.before( tree );

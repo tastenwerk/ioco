@@ -136,6 +136,11 @@ video {
 .icn.icn-library {
   background-position: 0 -112px;
 }
+.icn.icn-folder,
+.icn.icn-label,
+.icn.icn-lbl {
+  background-position: -16px -112px;
+}
 .icn.icn-document {
   background-position: 0 -96px;
 }
@@ -267,6 +272,10 @@ video {
 }
 .icn.icn-user.role-admin {
   background-position: -32px -32px;
+}
+.icn.icn-users,
+.icn.icn-access {
+  background-position: -32px -112px;
 }
 .icn.icn-arr-right {
   background-position: -32px -96px;
@@ -1105,6 +1114,7 @@ h1 {
   bottom: 0;
   width: 250px;
   background: #eaeaea;
+  z-index: 4;
 }
 #ioco-main-content .ioco-sidebar .title {
   font-weight: 100;
@@ -1113,14 +1123,80 @@ h1 {
   padding: 0 5px;
   border-bottom: 1px solid #ccc;
 }
+#ioco-main-content .ioco-info,
 #ioco-main-content .ioco-content {
   position: absolute;
   top: 0;
   left: 250px;
   bottom: 0;
-  right: 0;
   border-left: 1px solid #ccc;
   padding: 10px;
+}
+#ioco-main-content .ioco-info {
+  width: 250px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  background: #eaeaea;
+  z-index: 3;
+  font-size: 12px;
+}
+#ioco-main-content .ioco-info .side-tabs {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#ioco-main-content .ioco-info.hidden {
+  left: 0;
+  width: 230px;
+}
+#ioco-main-content .ioco-info .title {
+  font-weight: 100;
+  font-size: 16px;
+  margin: 5px 10px;
+  padding: 0 5px;
+  border-bottom: 1px solid #ccc;
+}
+#ioco-main-content .ioco-info .title .close {
+  margin: 0 -5px;
+  padding: 0 7px;
+}
+#ioco-main-content .ioco-info .title .close:hover {
+  background: #8a0;
+  color: #fff;
+  cursor: pointer;
+}
+#ioco-main-content .ioco-info .title .rename {
+  display: none;
+  margin-left: 5px;
+}
+#ioco-main-content .ioco-info .title:hover .rename {
+  display: inline-block;
+}
+#ioco-main-content .ioco-info p.item {
+  margin: 5px 0;
+}
+#ioco-main-content .ioco-info label {
+  color: #777;
+  font-size: 12px;
+  font-weight: 300;
+}
+#ioco-main-content .ioco-info label.pull-left {
+  width: 80px;
+}
+#ioco-main-content .ioco-content {
+  z-index: 2;
+  right: 0;
 }
 #ioco-main-content .ioco-content h1 {
   font-weight: 100;
@@ -1291,7 +1367,8 @@ ul#ioco-menubar li .loader .circle:after {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-weight: 900;
+  font-size: 1.2em;
+  font-weight: 100;
 }
 #ioco-modal .modal-inner-wrapper {
   position: absolute;
@@ -1685,6 +1762,9 @@ input[type=password]:hover {
 .ioco-tree .tree-item .title {
   font-size: 14px;
 }
+.ioco-tree .tree-item .type-icn {
+  margin-right: 5px;
+}
 .ioco-tree .tree-item a.show-details-arr {
   padding-left: 3px;
   border-left: 1px solid rgba(0,0,0,0.1);
@@ -1713,6 +1793,9 @@ input[type=password]:hover {
 }
 .ioco-tree .tree-item.selected .show-options-trigger .caret {
   border-color: rgba(255,255,255,0.5) transparent transparent transparent;
+}
+.ioco-tree .tree-item.selected .icn {
+  background-image: url("/images/icons/ioco-icons16x16w.png");
 }
 .ioco-tree .tree-item.show-options {
   -webkit-transition-property: all;
@@ -1930,6 +2013,29 @@ input[type=password]:hover {
   border: 1px solid rgba(255,255,255,0.7);
   width: 100%;
   height: 5em;
+}
+.ask-div {
+  position: absolute;
+  background: #eaeaea;
+  box-shadow: -1px 1px 3px rgba(0,0,0,0.5);
+  z-index: 5;
+}
+.ask-div ul {
+  list-style: none;
+  margin: 5px;
+}
+.ask-div ul li {
+  padding: 5px 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  font-size: 12px;
+}
+.ask-div ul li:hover {
+  background-color: #118be7;
+  background-image: -moz-linear-gradient(center top, #118be7, #007ad6);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#118be7), to(#007ad6));
+  background-repeat: repeat-x;
+  color: #fff;
 }
 #info-modal-caret {
   position: absolute;

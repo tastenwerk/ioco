@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="ioco-icons16x16.svg"
-   inkscape:export-filename="/Users/zerha/devel/tw/node_modules/ioco/public/images/icons/ioco-icons16x16.png"
+   inkscape:export-filename="C:\Users\thorsten\devel\node_modules\ioco\public\images\icons\ioco-icons16x16.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -55,9 +55,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313708"
-     inkscape:cx="52.4512"
-     inkscape:cy="54.670348"
+     inkscape:zoom="2.828427"
+     inkscape:cx="-38.578305"
+     inkscape:cy="45.258969"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -100,7 +100,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1335,37 +1335,12 @@
        height="11.318197"
        width="11.318197"
        id="rect3239"
-       style="fill:#666666;stroke:none" />
-    <g
-       id="g3255"
-       transform="translate(-64.257813,16)">
-      <rect
-         ry="0.48603135"
-         y="974.82806"
-         x="66.545143"
-         height="11.318197"
-         width="11.318197"
-         id="rect3257"
-         style="fill:#666666;stroke:none" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path3259"
-         d="m 68.257181,977.65742 8.503843,0"
-         style="fill:#ffffff;stroke:#ffffff;stroke-width:1.70076859;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         sodipodi:nodetypes="cc" />
-      <path
-         sodipodi:nodetypes="cc"
-         style="fill:#ffffff;stroke:#ffffff;stroke-width:1.70076859;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         d="m 68.257181,980.55384 5.629166,0"
-         id="path3261"
-         inkscape:connector-curvature="0" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path3263"
-         d="m 68.257181,983.48353 6.803074,0"
-         style="fill:#ffffff;stroke:#ffffff;stroke-width:1.70076859;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         sodipodi:nodetypes="cc" />
-    </g>
+       style="fill:#4d4d4d;stroke:none" />
+    <path
+       style="fill:#666666;stroke:none"
+       d="M 2.78125 98.46875 C 2.5119886 98.46875 2.28125 98.66823 2.28125 98.9375 L 2.28125 109.3125 C 2.28125 109.5818 2.5119886 109.78125 2.78125 109.78125 L 13.125 109.78125 C 13.394261 109.78125 13.59375 109.5818 13.59375 109.3125 L 13.59375 98.9375 C 13.59375 98.66823 13.394261 98.46875 13.125 98.46875 L 2.78125 98.46875 z M 4 100.4375 L 12.5 100.4375 L 12.5 102.125 L 4 102.125 L 4 100.4375 z M 4 103.34375 L 9.625 103.34375 L 9.625 105.03125 L 4 105.03125 L 4 103.34375 z M 4 106.25 L 10.8125 106.25 L 10.8125 107.96875 L 4 107.96875 L 4 106.25 z "
+       id="rect3257"
+       transform="translate(0,892.36218)" />
     <text
        xml:space="preserve"
        style="font-size:8.04236412px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
@@ -1699,5 +1674,12 @@
        id="path8422"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccccccccc" />
+    <path
+       transform="translate(0,892.36218)"
+       style="opacity:1;fill:#333333;fill-opacity:1;stroke:none;stroke-opacity:1"
+       d="m 18,115.21875 4.875001,0 1.3125,1.53125 5.875,0.0625 0,8.3125 -12.062501,0 z"
+       id="rect7054"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
   </g>
 </svg>

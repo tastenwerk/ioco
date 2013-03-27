@@ -25,6 +25,10 @@ function DocumentBaseModel( self ){
     t: function( text ){
       return $.i18n.t( text );
     },
+
+    getUser: function( id ){
+      return ioco.usersCache[ id ];
+    },
     
     // -------------------------------------------------------- PUBLIC STATUS */
     /**
@@ -79,26 +83,38 @@ function DocumentBaseModel( self ){
     },
 
     renameItem: function(){
-      var renameForm = $('<form class="content-padding" data-bind="submit: saveName"/>');
-      renameForm.append($('<p/>').append('<label>'+$.i18n.t('name')+'</label>')
-                .append('<input type="text" data-bind="value: name" />'));
-      ioco.modal({title: $.i18n.t('rename_item', {name: self.name}),
-                   data: renameForm,
-                   completed: function( modal ){
-                    modal.find('.js-get-focus').focus();
-                   },
-                   windowControls: {
-                      save: {
-                        icn: 'icn-save',
-                        title: $.i18n.t('save'),
-                        callback: function( modal ){
-                          modal.find('form').submit();
-                          ioco.modal('close');
-                        }
+      var self = this;
+
+      var $renameForm = $('<form class="content-padding" data-bind="submit: saveName"/>');
+      $renameForm.append($('<p/>').append('<label>'+$.i18n.t('name')+'</label><br/>')
+                .append('<input class="span-full" type="text" name="name" value="'+self.name()+'" /></p><p>')
+                .append('<input class="btn pull-right" type="submit" value="'+$.i18n.t('rename')+'" /></p>'));
+
+      ioco.prompt( $.i18n.t('document.rename', {name: self.name()}), $renameForm, {
+        onSubmit: function( $modal, e ){
+          var name = $modal.find('[name=name]').val();
+          $.ajax({ url: '/documents/'+self._id,
+                   data: { doc: { name: name },
+                           _csrf: ioco._csrf },
+                   type: 'put',
+                   success: function( json ){
+                      if( json.success ){
+                        ioco.modal( 'close' );
+                        self.name( name );
                       }
-                    }
+                      ioco.notify( json.flash );
+                   }
+
+          });
+        }
       });
+    },
+
+    createComment: function(){
+      return( new IocoComment( {content: ''}, self ));
     }
+
+
   }
 
 }

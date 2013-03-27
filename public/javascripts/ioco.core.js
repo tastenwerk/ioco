@@ -171,12 +171,35 @@
     });
   }
 
+  /**
+   * prompt for user input
+   */
+  function prompt( title, $content, options ){
+    ioco.modal({
+      title: title,
+      height: 200,
+      width: 300,
+      $content: $content,
+      completed: function( $modal ){
+        $modal.find('input[type=text]:first').focus();
+        $modal.find('form').on('submit', function(e){
+          if( typeof(options.onSubmit) === 'function' ){
+            e.preventDefault();
+            options.onSubmit( $modal, e );
+          }
+        });
+      }
+    });
+  }
+
+
   var root = this; // window of browser
 
   if( !root.ioco || typeof( root.ioco ) !== 'object' )
     root.ioco = {};
   root.ioco.notify = notify;
   root.ioco.modal = modal;
+  root.ioco.prompt = prompt;
   root.ioco.loaderHtml = loader;
   root.ioco.translate = translate;
   root.ioco.parseTranslations = parseTranslations;

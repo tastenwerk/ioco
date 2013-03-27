@@ -16,7 +16,7 @@
   "close": "Schließen",
   "preview": "Vorschau",
   "refresh": "Aktualisieren",
-  "updatedAt": "Letzte Änderung",
+  "updatedAt": "Änderung",
   "createdAt": "Erstellt",
   "privileges": "Zugriffsrechte",
   "security_transgression": "Zugriffsverletzung: __name__ (nicht genügend Rechte)",
@@ -202,6 +202,7 @@
     "title": "Nachrichtenstrom"
   },
   "document": {
+    "rename": "__name__ umbenennen",
     "click_for_details": "Klicken Sie auf ein Dokument um Details anzeigen",
     "order": {
       "saving": {
@@ -221,7 +222,10 @@
     "publishing_failed_unknown": "Veröffentlichung ist aus unbekanntem Grund fehlgeschlagen",
     "info": {
       "general": "Allgemein",
-      "comments": "Kommentare"
+      "history": "Verlauf",
+      "access": "Zugriff",
+      "comments": "Kommentare",
+      "owner": "BesitzerIn"
     }
   },
   "dashboard": {

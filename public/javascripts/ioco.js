@@ -191,13 +191,17 @@ $(function(){
     }
   }
 
+  ioco.parseTooltips = function(){
+    $('.tooltip,.live-tipsy').tooltipster();
+    $('.tooltip-l,.live-tipsy-l').tooltipster({position: 'left'});
+    $('.tooltip-r,.live-tipsy-r').tooltipster({position: 'right'});
+  }
+
   ioco._csrf = $('#_csrf').val();
 
   $.i18n.init({ dynamicLoad: true, useLocalStorage: false, fallbackLng: 'de', load: 'unspecific', resGetPath: ioco.host.native+'/translations.json?lng=__lng__&ns=__ns__' });
 
-  $('.live-tipsy').tooltipster();
-  $('.live-tipsy-l').tooltipster({position: 'left'});
-  $('.live-tipsy-r').tooltipster({position: 'right'});
+  ioco.parseTooltips();
 
   moment.lang('de');
 

@@ -214,4 +214,7 @@ UserSchema.statics.everybodyId = 'e00000000000000000000000';
  */
 UserSchema.statics.everybody = { name: {full: 'everybody', nick: 'everybody'}, _id: UserSchema.statics.everybodyId };
 
+var jsonSelect = require('mongoose-json-select');
+UserSchema.plugin(jsonSelect, '-hashedPassword -salt -confirmation -loginLog');
+
 module.exports = db.model('User', UserSchema);
