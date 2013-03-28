@@ -1,0 +1,58 @@
+script(type='text/html', id='infoTemplate')
+  .title
+    span.close.pull-right(data-bind='click: closeProperties') &times;
+    span( data-bind='text: name' )
+    a.icn.icn-pencil.rename.tooltip( data-bind='click: renameItem, attr: {title: t("rename")}' )
+
+  .side-tabs
+
+    ul.side-tabs-nav
+      li.tooltip-r(data-bind='attr: { title: t("document.info.general")}')
+        span.icn.icn-preferences
+      // ko if: typeof( versions ) !== 'undefined'
+      li.tooltip-r(data-bind='attr: { title: t("document.info.history")}')
+        span.icn.icn-history
+      // /ko
+      li.tooltip-r(data-bind='attr: { title: t("document.info.access")}')
+        span.icn.icn-access
+      li.tooltip-r(data-bind='attr: { title: t("document.info.comments")}')
+        span.icn.icn-comments
+
+    .side-tabs-content
+
+      div
+        p.item
+          label.pull-left=t('createdAt')
+          span(data-bind='text: formattedDate( createdAt )')
+        p.item
+          label.pull-left=t('document.info.owner')
+          span(data-bind='text: getUser( _createdBy() ).name.nick')
+        p.item
+          label.pull-left=t('updatedAt')
+          span(data-bind='text: formattedDate( updatedAt )')
+        p.item
+          label.pull-left=t('by')
+          span(data-bind='text: getUser( _updatedBy() ).name.nick')
+
+        p.item
+
+        p.item
+          label=t('labels')
+          br
+          .ioco-labels
+
+      // ko if: typeof( versions ) !== 'undefined'
+      div
+        ul.versions-list(data-bind='template: { name: "versionsListTemplate", foreach: versions  }')
+      // /ko
+
+      div        
+        p.item
+          label.pull-left=t('document.public_status')
+          span.tooltip.lbl.public-status(data-bind='attr: { title: t("document.click_to_change_public_status") }, click: changePublicStatus, css: {locked: !published()}, text: (published() ? t("document.published") : t("document.locked"))')
+        
+      div
+        h1=t('document.info.comments')
+
+        div(data-bind='template: { name: "commentFormTemplate", data: createComment() }')
+        ul.comments-list(data-bind='template: { name: "commentsListTemplate", foreach: comments  }')
