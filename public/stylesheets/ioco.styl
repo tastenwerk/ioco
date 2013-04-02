@@ -358,7 +358,7 @@ h1
     width: 250px
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5)
     IO_TRANSITION(0.3s)
-    background: #e5e5e5
+    background: #f0f0f0
     z-index: 3
     font-size: 12px
 
@@ -400,12 +400,49 @@ h1
     p.item
       margin: 5px 0
 
+      .no-color
+        border: 1px solid #999
+        padding: 1px
+
+      .color-sel-item
+        float: left
+        width: 14px
+        height: 14px
+        padding: 2px
+        cursor: pointer
+        margin: 2px
+        border-radius: 1px
+
+        &.selected, &:hover
+          border: 2px solid #333
+          padding: 0px
+
     label
       color: #777
       font-size: 12px
       font-weight: 300
       &.pull-left
         width: 80px
+
+    ul.access-list, ul.versions-list
+      list-style: none
+
+      li
+        margin: 5px 0
+        padding: 5px 0
+        border-bottom: 1px solid #ccc
+        font-size: 10px
+        min-height: 50px
+
+        img.userpic
+          width: 50px
+          height: 50px
+          float: left
+          margin-right: 10px
+
+        .name
+          font-size: 12px
+
 
 
   .ioco-content
@@ -745,9 +782,12 @@ ul#ioco-menubar
     transition: none 0s ease 0s;
     z-index: 2;
   &.w-icn-only
-    padding: 4px 8px 2px
+    position: relative
     .icn
       opacity: 0.5
+      position: absolute
+      top: 4px
+      left: 4px
   &.no-bg
     background: none
     box-shadow: none
@@ -874,6 +914,9 @@ input[type=text],input[type=password]
     a
       text-decoration: none
       color: #333
+    .item-name
+      float: left
+      max-width: 110px
       TEXT_OVERFLOW()
   > ul
     list-style: none
@@ -1181,7 +1224,7 @@ input[type=text],input[type=password]
  
 .notice-item
   max-height: 40px
-  background-color: #01A31C
+  background-color: #7b2
   color: white
   padding: 10px 20px
   font-family: 'SegoeUI', sans-serif

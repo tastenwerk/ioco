@@ -192,9 +192,6 @@ $(function(){
   }
 
   ioco.parseTooltips = function(){
-    $('.tooltip,.live-tipsy').tooltipster();
-    $('.tooltip-l,.live-tipsy-l').tooltipster({position: 'left'});
-    $('.tooltip-r,.live-tipsy-r').tooltipster({position: 'right'});
   }
 
   ioco._csrf = $('#_csrf').val();

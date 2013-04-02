@@ -40,19 +40,30 @@ $(function(){
 
         if( options.deleteSelected && typeof(options.deleteSelected === 'function' ))
           return options.deleteSelected( tree, item, e );
-        for( var i in tree.treeViewModel.selectedItems() )
-          $.ajax({ url: options.saveUrl+tree.treeViewModel.selectedItems()[i]._id,
-                   type: 'delete',
-                   dataType: 'json',
-                   data: { _csrf: $('#_csrf').val() },
-                   success: function( response ){
-                      if( response.success ){
-                        tree.treeViewModel.items.remove( tree.treeViewModel.selectedItems()[i] );
-                        tree.treeViewModel.selectedItems.remove( tree.treeViewModel.selectedItems()[i] );
-                      }
-                      ioco.notify( response.flash );
-                   }
-          });
+
+        var i=0;
+
+        function removeNextItem(){
+          if( tree.treeViewModel.selectedItems().length > 0 )
+            $.ajax({ url: options.saveUrl+tree.treeViewModel.selectedItems()[0]._id,
+                     type: 'delete',
+                     dataType: 'json',
+                     data: { _csrf: $('#_csrf').val() },
+                     success: function( response ){
+                        if( response.success ){
+                          tree.treeViewModel.items.remove( tree.treeViewModel.selectedItems()[0] );
+                          tree.treeViewModel.selectedItems.remove( tree.treeViewModel.selectedItems()[0] );
+                        }
+                        i++;
+                        removeNextItem();
+                     }
+            });
+          else
+            ioco.notify( { notice: [ $.i18n.t('document.removed_num_items', {num: i}) ] } );
+        }
+
+        removeNextItem();
+
       },
 
       /**

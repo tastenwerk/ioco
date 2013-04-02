@@ -1,5 +1,17 @@
 function DocumentBaseModel( self ){
 
+  var hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
+
+  //Function to convert hex format to a rgb color
+  function rgb2hex(rgb) {
+   rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+   return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+  }
+
+  function hex(x) {
+    return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+  }
+
   return {
 
     restrictedAttributes: ['_id', 'acl', 'createdAt', '_creator', '_updater', 'updatedAt', 'deletedAt', 'logs', '_type', 'paths' ],
@@ -27,6 +39,8 @@ function DocumentBaseModel( self ){
     },
 
     getUser: function( id ){
+      if( id === 'a00000000000000000000000' )
+        return { _id: 'a00000000000000000000000', name: { nick: $.i18n.t('anybody') } };
       return ioco.usersCache[ id ];
     },
     
@@ -52,6 +66,24 @@ function DocumentBaseModel( self ){
                     ioco.notify({ error: $.i18n.t('document.publishing_failed_unknown')});
                 }
       })
+    },
+
+    selColor: function selectColor( item, e ){
+      var tmp = this.properties() || {};
+      if( $(e.target).css('backgroundColor').length > 0 )
+        tmp.selectedColor = rgb2hex( $(e.target).css('backgroundColor').toLowerCase() );
+      else
+        tmp.selectedColor = null;
+      this.properties( tmp );
+      $.ajax({ url: '/documents/'+self._id,
+               type: 'put',
+               dataType: 'json',
+               data: { _csrf: ioco._csrf, doc: { properties: self.properties() } },
+               success: function( json ){
+                 if( !json.success )
+                  ioco.notify( json.flash );
+               }
+      });
     },
 
     // -------------------------------------------------------- HUMAN readable PATH

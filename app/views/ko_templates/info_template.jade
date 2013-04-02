@@ -7,7 +7,7 @@ script(type='text/html', id='infoTemplate')
   .side-tabs
 
     ul.side-tabs-nav
-      li.tooltip-r(data-bind='attr: { title: t("document.info.general")}')
+      li.tooltip-r(data-bind='attr: { title: t("document.info.general") }')
         span.icn.icn-preferences
       // ko if: typeof( versions ) !== 'undefined'
       li.tooltip-r(data-bind='attr: { title: t("document.info.history")}')
@@ -35,21 +35,41 @@ script(type='text/html', id='infoTemplate')
           span(data-bind='text: getUser( _updatedBy() ).name.nick')
 
         p.item
+        p.item
 
         p.item
-          label=t('labels')
+          label=t('document.labels')
           br
           .ioco-labels
 
+        p.item
+        p.item
+
+        p.item
+          label=t('document.color')
+          br
+          span.color-sel-item.no-color( data-bind='click: selColor, css: { selected: !properties() || !properties().selectedColor }' )
+          span.color-sel-item( style='background: #c64847', data-bind='click: selColor, css: { selected: properties() && properties().selectedColor && "#c64847" === properties().selectedColor }' )
+          span.color-sel-item( style='background: #1f497c', data-bind='click: selColor, css: { selected: properties() && properties().selectedColor && "#1f497c" === properties().selectedColor }' )
+          span.color-sel-item( style='background: #4f81bd', data-bind='click: selColor, css: { selected: properties() && properties().selectedColor && "#4f81bd" === properties().selectedColor }' )
+          span.color-sel-item( style='background: #9bbb59', data-bind='click: selColor, css: { selected: properties() && properties().selectedColor && "#9bbb59" === properties().selectedColor }' )
+          span.color-sel-item( style='background: #8064a2', data-bind='click: selColor, css: { selected: properties() && properties().selectedColor && "#8064a2" === properties().selectedColor }' )
+          span.color-sel-item( style='background: #4bacc6', data-bind='click: selColor, css: { selected: properties() && properties().selectedColor && "#4bacc6" === properties().selectedColor }' )
+          span.color-sel-item( style='background: #f79646', data-bind='click: selColor, css: { selected: properties() && properties().selectedColor && "#f79646" === properties().selectedColor }' )
+          span.color-sel-item( style='background: #8e736a', data-bind='click: selColor, css: { selected: properties() && properties().selectedColor && "#8e736a" === properties().selectedColor }' )
+
+
       // ko if: typeof( versions ) !== 'undefined'
       div
-        ul.versions-list(data-bind='template: { name: "versionsListTemplate", foreach: versions  }')
+        ul.versions-list(data-bind='template: { name: "versionListTemplate", foreach: versions  }')
       // /ko
 
       div        
         p.item
           label.pull-left=t('document.public_status')
           span.tooltip.lbl.public-status(data-bind='attr: { title: t("document.click_to_change_public_status") }, click: changePublicStatus, css: {locked: !published()}, text: (published() ? t("document.published") : t("document.locked"))')
+
+        ul.access-list(data-bind='template: {name: "accessListTemplate", foreach: access }')
         
       div
         h1=t('document.info.comments')

@@ -1,0 +1,14 @@
+script(type='text/html', id='accessListTemplate')
+  // ko if: typeof(_user) !== 'undefined'
+  li
+    img.userpic(data-bind='attr:{ src: "/users/"+_user+"/pic"}')
+    strong.name(data-bind='text: $parent.getUser( _user ).name.nick')
+    br
+    span.privileges(data-bind='text: $parent.t("privileges")')
+    &nbsp;
+    span.lbl(data-bind='text: privileges')
+    br
+    span.since(data-bind='text: $parent.t("since")')
+    &nbsp;
+    span(data-bind='text: $parent.formattedDate(createdAt)')
+  // /ko

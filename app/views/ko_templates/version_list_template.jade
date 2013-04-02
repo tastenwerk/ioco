@@ -1,0 +1,5 @@
+script(type='text/html', id='versionListTemplate')
+  li
+    span(data-bind='text:  $parent.formattedDate(createdAt)')
+    br
+    strong(data-bind='text: $parent.getUser(_createdBy).name.nick')

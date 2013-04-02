@@ -1145,7 +1145,7 @@ h1 {
   -o-transition-duration: 0.3s;
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  background: #e5e5e5;
+  background: #f0f0f0;
   z-index: 3;
   font-size: 12px;
 }
@@ -1187,6 +1187,24 @@ h1 {
 #ioco-main-content .ioco-info p.item {
   margin: 5px 0;
 }
+#ioco-main-content .ioco-info p.item .no-color {
+  border: 1px solid #999;
+  padding: 1px;
+}
+#ioco-main-content .ioco-info p.item .color-sel-item {
+  float: left;
+  width: 14px;
+  height: 14px;
+  padding: 2px;
+  cursor: pointer;
+  margin: 2px;
+  border-radius: 1px;
+}
+#ioco-main-content .ioco-info p.item .color-sel-item.selected,
+#ioco-main-content .ioco-info p.item .color-sel-item:hover {
+  border: 2px solid #333;
+  padding: 0px;
+}
 #ioco-main-content .ioco-info label {
   color: #777;
   font-size: 12px;
@@ -1194,6 +1212,29 @@ h1 {
 }
 #ioco-main-content .ioco-info label.pull-left {
   width: 80px;
+}
+#ioco-main-content .ioco-info ul.access-list,
+#ioco-main-content .ioco-info ul.versions-list {
+  list-style: none;
+}
+#ioco-main-content .ioco-info ul.access-list li,
+#ioco-main-content .ioco-info ul.versions-list li {
+  margin: 5px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+  font-size: 10px;
+  min-height: 50px;
+}
+#ioco-main-content .ioco-info ul.access-list li img.userpic,
+#ioco-main-content .ioco-info ul.versions-list li img.userpic {
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-right: 10px;
+}
+#ioco-main-content .ioco-info ul.access-list li .name,
+#ioco-main-content .ioco-info ul.versions-list li .name {
+  font-size: 12px;
 }
 #ioco-main-content .ioco-content {
   z-index: 2;
@@ -1615,10 +1656,13 @@ ul#ioco-menubar li .loader .circle:after {
   z-index: 2;
 }
 .btn.w-icn-only {
-  padding: 4px 8px 2px;
+  position: relative;
 }
 .btn.w-icn-only .icn {
   opacity: 0.5;
+  position: absolute;
+  top: 4px;
+  left: 4px;
 }
 .btn.no-bg {
   background: none;
@@ -1767,6 +1811,10 @@ input[type=password]:hover {
 .ioco-tree li a {
   text-decoration: none;
   color: #333;
+}
+.ioco-tree li .item-name {
+  float: left;
+  max-width: 110px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2161,7 +2209,7 @@ input[type=password]:hover {
 }
 .notice-item {
   max-height: 40px;
-  background-color: #01a31c;
+  background-color: #7b2;
   color: #fff;
   padding: 10px 20px;
   font-family: 'SegoeUI', sans-serif;

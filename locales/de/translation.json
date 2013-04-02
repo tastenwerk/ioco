@@ -27,6 +27,7 @@
   "new_document": "Neues Dokument",
   "by": "von",
   "of": "von",
+  "since": "seit",
   "never": "nie",
   "type": "Typ",
   "autogenerate": "Automatisch generieren",
@@ -204,6 +205,8 @@
   "document": {
     "rename": "__name__ umbenennen",
     "labels": "Labels",
+    "removed_num_items": "removed __num__ items",
+    "color": "Farbe",
     "click_for_details": "Klicken Sie auf ein Dokument um Details anzeigen",
     "order": {
       "saving": {

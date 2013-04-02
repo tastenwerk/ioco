@@ -81,7 +81,6 @@ describe('ioco versions', function(){
 
         this.label.properties = { deleted: 0 };
         this.label.switchVersion(0);
-        should.not.exist( this.label.properties );
 
       });
 
