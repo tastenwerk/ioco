@@ -57,6 +57,8 @@ function DocumentBaseModel( self ){
                 success: function( data ){
                   if( data.success ){
                     self.published( data.published );
+                    if( $(e.target).hasClass('w-icn-only') || $(e.target).closest('.w-icn-only').length )
+                      return ioco.notify( data.flash );
                     if( data.published )
                       $(e.target).removeClass('locked').text($.i18n.t('document.published'));
                     else

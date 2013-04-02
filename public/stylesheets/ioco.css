@@ -2323,6 +2323,13 @@ input[type=password]:hover {
   padding: 7px 0 12px;
   cursor: pointer;
 }
+.top-tabs-content .top-tabs-action-nav li .close-btn {
+  float: right;
+  line-height: 17px;
+  font-size: 19px;
+  padding: 4px 7px;
+  color: rgba(0,0,0,0.7);
+}
 .ioco-form label {
   font-weight: 100;
   font-size: 14px;
