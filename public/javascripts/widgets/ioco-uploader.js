@@ -1,69 +1,76 @@
 /**
  * uploads files and deals with file
  * representation
+ *
+ * options:
+ * * url: the url of the route to post to
+ * * model: the webFilesViewModel
+ * * $modal: the jquery $modal element
+ * * _labelId: the type and id of the label this file should be attached (expl: WebBit:20wietjowiet023820 )
+ *
  */
 ioco = ioco || {};
 ioco.uploader = {
 
-  init: function( _id, parentPath, parentName, modal, webFilesViewModel ){
+  init: function( options ){
 
-    modal.find('.path-info')
-          .find('span.lbl').text( parentName ).end()
+    var webFilesViewModel = options.model;
+    var $modal = options.$modal;
+
+    $modal.find('.path-info')
+          .find('span.lbl').text( 'TODO parent' ).end()
           .show()
           .end()
-          .find('input.parent').val( parentPath );
+          .find('input.parent').val( 'set parent (TODO)' );
 
-    modal.find('#uploader').fineUploader({
+    $modal.find('#uploader').fineUploader({
 
       dragAndDrop: {
         hideDropzones: false
       },
 
       request: {
-        endpoint: '/webelements/'+_id+'/files',
+        endpoint: options.url,
         params: {
           _csrf: ioco._csrf,
-          parent: parentPath
+          labelId: options._labelId || null
         }
       },
 
       text: ioco.fineUploaderText()
 
     }).on('upload', function(){
-      modal.find('#uploader').slideUp(200);
-      modal.find('#upload-progress').show();
-      modal.find('.qq-upload-list').remove();
+      $modal.find('#uploader').slideUp(200);
+      $modal.find('#upload-progress').show();
+      $modal.find('.qq-upload-list').remove();
     }).on('progress', function( e, id, fileName, uploadedBytes, totalBytes ){
       var percent = uploadedBytes / (totalBytes / 100);
-      modal.find('#upload-progress .bar').css('width', percent+'%');
+      $modal.find('#upload-progress .bar').css('width', percent+'%');
     }).on('complete', function( e, id, fileName, response ){
 
-      if( response.flash.error && response.flash.error.length > 0 ){
-        $('#ioco-modal form').slideDown(200);
-        $('#upload-progress').hide();
-        return;
-      }
+      $modal.find('#upload-progress .bar').css('width', '100%');
+      $modal.find('#upload-progress').hide();
 
-      modal.find('#uploader').slideDown(200);
-      modal.find('#upload-progress').hide();
+      if( response.flash.error && response.flash.error.length > 0 )
+        return ioco.notify( response.flash );
 
       var contentType = (response.data && (response.data.contentType.indexOf('image') === 0 ? 'images' : 'files'));
 
-      modal.find('#web-'+contentType+'-container ul#web-'+contentType).append('<li class="loading"><div class="loader"><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /></div>');
+      $modal.find('#web-'+contentType+'-container ul#web-'+contentType).append('<li class="loading"><div class="loader"><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /></div>');
 
       if( contentType === 'images' )
-        $(modal.find('.sidebar-nav li')[1]).click();
+        $($modal.find('.sidebar-nav li')[1]).click();
       else
-        $(modal.find('.sidebar-nav li')[2]).click();
+        $($modal.find('.sidebar-nav li')[2]).click();
       setTimeout( function(){
-        modal.find('#web-'+contentType+'-container ul li.loading:first').remove();
+        $modal.find('#uploader').show();
+        $modal.find('#web-'+contentType+'-container ul li.loading:first').remove();
         webFilesViewModel.files.push( new WebFileModel( response.data ) );
-      }, 4000 );
+      }, 2000 );
 
-      modal.find('#upload-progress .bar').css('width', '100%');
       ioco.notify(response.flash);
 
-      setTimeout( function(){ modal.find('#upload-progress').after('<p>'+$.i18n.t('finished')+'</p>'); }, 1500 );
+      //setTimeout( function(){ $modal.find('#upload-progress').after('<p>'+$.i18n.t('finished')+'</p>'); }, 1500 );
     });
   },
 
@@ -79,9 +86,9 @@ ioco.uploader = {
   /**
    * setup actions for file browser
    */
-  setupFileActions: function setupFileActions( modal, webFilesViewModel ){
+  setupFileActions: function setupFileActions( $modal, webFilesViewModel ){
 
-    modal.find('.web-files,.web-images').on('click', 'li', function(e){
+    $modal.find('.web-files,.web-images').on('click', 'li', function(e){
       var container = $(this).closest('.web-files-container');
 
       $(this).toggleClass('selected');
@@ -118,12 +125,12 @@ ioco.uploader = {
 
     });
 
-    $(modal).find('.web-files-control').on('click', '.refresh', function(e){
+    $modal.find('.web-files-control').on('click', '.refresh', function(e){
       e.preventDefault();
       webFilesViewModel.refresh();
     });
 
-    $(modal).find('.web-files-control').on('click', '.delete-selected.enabled', function(e){
+    $modal.find('.web-files-control').on('click', '.delete-selected.enabled', function(e){
       e.preventDefault();
       var self = this
         , complete = 0
@@ -135,7 +142,7 @@ ioco.uploader = {
           webFilesViewModel.files.remove( ko.dataFor( elem ) );
           if( complete === total ){
 
-            data.flash.notice.push($.i18n.t('web.files.deleted', {count: complete}));
+            //data.flash.notice.push($.i18n.t('web.files.deleted', {count: complete}));
             $(self).closest('.web-files-container')
                   .find('.web-files,.web-images li').removeClass('opaque').end()
                   .find('.selected-counter').hide();
@@ -147,13 +154,13 @@ ioco.uploader = {
       $(self).closest('.web-files-container').find('li.selected').each( function( index, fileElem ){
         $.ajax({ url: '/documents/'+$(fileElem).attr('data-id'),
                  type: 'delete',
-                 data: {_csrf: $('#_csrf').val() },
+                 data: {_csrf: ioco._csrf },
                  success: function( data ){ checkCompleteAndUpdate(data, fileElem); } 
         });
       });
     });
 
-    $(modal).find('.web-files,.web-images').on('dragstart', 'li.web-file', function(e){
+    $modal.find('.web-files,.web-images').on('dragstart', 'li.web-file', function(e){
       var imgUrl = $(this).css('background-image').replace('url(','').replace(')','').replace(/\"/g,'');
       e.originalEvent.dataTransfer.setData('text/plain',imgUrl);
     })

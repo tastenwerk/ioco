@@ -1657,6 +1657,8 @@ ul#ioco-menubar li .loader .circle:after {
 }
 .btn.w-icn-only {
   position: relative;
+  width: 20px;
+  height: 20px;
 }
 .btn.w-icn-only .icn {
   opacity: 0.5;

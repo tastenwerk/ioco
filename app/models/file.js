@@ -10,7 +10,8 @@
 var db = require( __dirname + '/../../lib/db' )
   , AccessIdiomPlugin = require( __dirname + '/../../lib/db/plugins/access_idiom')
   , VersioningIdiomPlugin = require( __dirname + '/../../lib/db/plugins/versioning_idiom')
-  , LabelIdiomPlugin = require( __dirname + '/../../lib/db/plugins/label_idiom');
+  , LabelIdiomPlugin = require( __dirname + '/../../lib/db/plugins/label_idiom')
+  , DefaultPlugin = require( __dirname + '/../../lib/db/plugins/default_idiom');
 
 var FileSchema = db.Schema({ 
   description: {type: db.Schema.Types.Mixed, default: { default: '' } },
@@ -24,6 +25,7 @@ var FileSchema = db.Schema({
   _subtype: String
 });
 
+FileSchema.plugin( DefaultPlugin );
 FileSchema.plugin( AccessIdiomPlugin );
 FileSchema.plugin( LabelIdiomPlugin );
 FileSchema.plugin( VersioningIdiomPlugin );
