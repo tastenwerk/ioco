@@ -1535,6 +1535,7 @@ ul#ioco-menubar li .loader .circle:after {
   left: 0;
   bottom: 0;
   width: 150px;
+  height: 100% !important;
   -webkit-transition-property: all;
   -moz-transition-property: all;
   -o-transition-property: all;
@@ -2331,6 +2332,14 @@ input[type=password]:hover {
   font-size: 19px;
   padding: 4px 7px;
   color: rgba(0,0,0,0.7);
+}
+.top-tabs-content form.wide {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  overflow: auto;
 }
 .ioco-form label {
   font-weight: 100;
