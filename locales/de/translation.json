@@ -4,9 +4,9 @@
   "name": "Name",
   "unnamed": "Unbenannt",
   "cancel": "Abbrechen",
-  "edit": "bearbeiten",
-  "rename": "umbenennen",
-  "create": "erstellen",
+  "edit": "Bearbeiten",
+  "rename": "Umbenennen",
+  "create": "Erstellen",
   "reason": "Grund",
   "really_delete": "Wirklich löschen?",
   "delete": "löschen",
@@ -169,6 +169,11 @@
     "set": "Setzen",
     "set_desc": "Sie können jetzt ein neues Passwort festlegen.",
     "reset_finished": "Sie haben Ihr Passwort erfolgreich geändert"
+  },
+  "initial_setup": {
+    "desc": "Sie starten ioco zum ersten Mal. Bitte legen Sie einen Account an",
+    "title": "Einrichtung (erster Start)",
+    "done": "Die Einrichtung ist abgeschlossen. Ein Account mit dem Namen <b>__name__</b> wurde erstellt. Sie können sich nun anmelden"
   },
   "users": {
     "title": "Accounts",

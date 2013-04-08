@@ -32,13 +32,13 @@ block content
     -for( var i=0,msg; msg=flash.error[i]; i++ )
       script
         $(function(){
-          ioco.notify('#{msg}', 'error');
+          ioco.notify('!{msg}', 'error');
         });
   -else if( flash.notice )
     -for( var i=0,msg; msg=flash.notice[i]; i++ )
       script
         $(function(){
-          ioco.notify('#{msg}');
+          ioco.notify('!{msg}');
         });
 
   script

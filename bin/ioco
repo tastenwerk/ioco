@@ -149,14 +149,17 @@ program
 
 program
   .command('setup [username] [password]')
-  .description('setup a manager user and if specified in the configuration website and -pages. If config/tas10_settings.json is not present, it should be passed as argument')
+  .description('DEPRECATED - setup a manager user and if specified in the configuration website and -pages. If config/tas10_settings.json is not present, it should be passed as argument')
   .action( function setupScaffold( username, password ){
+    /*
     console.log();
     configfile = './config/settings.json';
     if( !fs.existsSync( './' + configfile ) )
       return console.log('   \033[31merror\033[0m : ', configfile, ' was not found (if not config/settings.json, please pass it as argment)');
     openConnection( configfile, username, password );
     console.log();
+    */
+    console.log('this command is deprecated! Just start ioco instead!')
   })
 
 program.parse(process.argv);

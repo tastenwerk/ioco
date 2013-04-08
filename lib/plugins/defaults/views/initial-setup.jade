@@ -1,0 +1,42 @@
+extends ../../../../app/views/layout
+
+block header
+  link(rel='stylesheet', href='/stylesheets/login.css')
+
+block content
+
+  #login-content
+
+    #login-logo
+      img( src='/images/logo_200x76w.png')
+
+    form.content-padding( action='/ioco-initial-setup', method='post' )
+      input( type='hidden', name='_csrf', value=_csrf )
+
+      h1=t('initial_setup.title')
+      p.desc!=t('initial_setup.desc')
+      p
+        label=t('user.name')
+        br
+        input.js-get-focus( type='text', name='user[name]', value='manager' )
+      p
+        label=t('user.password')
+        br
+        input.js-get-focus( type='password', name='user[password]' )
+
+      p(style='text-align: right')
+        a.btn( href='/login' )= t('cancel')
+        button.btn(type='submit')= t('create')
+
+
+  -if( flash.error )
+    -for( var i=0,msg; msg=flash.error[i]; i++ )
+      script
+        $(function(){
+          ioco.notify('#{msg}', 'error');
+        });
+
+  script
+    $(function(){
+      $('.js-get-focus:first').focus();
+    })
