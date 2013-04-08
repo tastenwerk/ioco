@@ -110,7 +110,7 @@ var package_json = [
 '    "express": "3.0.x",',
 '    "jade": "0.27.x",',
 '    "stylus": "0.30.x",',
-'    "ioco": "git://github.com/tastenwerk/ioco.git#0.0.2",',
+'    "ioco": "git://github.com/tastenwerk/ioco.git#0.0.4",',
 '    "ioco-web": "git://github.com/tastenwerk/ioco-web.git#0.0.2"',
 '  },',
 '  "license": "GPL3",',
