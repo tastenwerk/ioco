@@ -110,8 +110,8 @@ var package_json = [
 '    "express": "3.0.x",',
 '    "jade": "0.27.x",',
 '    "stylus": "0.30.x",',
-'    "ioco": "git://github.com/tastenwerk/ioco.git#0.0.4",',
-'    "ioco-web": "git://github.com/tastenwerk/ioco-web.git#0.0.2"',
+'    "ioco": "git://github.com/tastenwerk/ioco.git#0.0.5",',
+'    "ioco-web": "git://github.com/tastenwerk/ioco-web.git#0.0.3"',
 '  },',
 '  "license": "GPL3",',
 '  "engine": {',
@@ -125,6 +125,7 @@ program
   .description('create a new ioco scaffold')
   .action( function createScaffold( name ){
     var normalizedName = name.replace(/ /g, '_');
+    console.log();
     mkdir( name );
     mkdir( name + '/app');
     mkdir( name + '/app/plugins');
@@ -144,6 +145,8 @@ program
     write( name + '/README.md', name + ' README' );
     console.log();
     console.log('   \x1b[32msuccess\x1b[0m');
+    console.log();
+    console.log('   run \x1b[1mcd '+name+' && npm install\x1b[0m next!')
     console.log();
   });
 
