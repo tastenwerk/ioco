@@ -231,3 +231,4 @@ function openConnection( configfile, username, password ){
 function exitError( msg ){
   console.log('   \033[31merror\033[0m : ' + msg );
 }
+

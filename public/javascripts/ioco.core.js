@@ -6,6 +6,56 @@
    */
   var loader = '<div class="loader"><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /></div>';
 
+  var _required = [];
+
+  /**
+   * require a javascript file
+   *
+   *
+   * @param {String} path - the path object to require.
+   * if path is an absolute path, it will be required as is
+   * if not, /javascripts/ will be prepended
+   *
+   * @param {function( err )} - callback
+   *
+   */
+  function require( path, callback ){
+    callback = callback || function(){};
+    if( path.indexOf('/') < 0 )
+      path = '/javascripts/ioco.' + path + '.js';
+    else if( path.indexOf('/') > 0 )
+      path = '/javascripts/' + path + '.js';
+    if( _required.indexOf( path ) >= 0 )
+      callback( null );
+    else
+      $.getScript( path, function(){
+        console.log('paths', _required);
+        ioco.log('loaded script', path);
+        _required.push( path );
+        callback( null ); 
+      });
+  } 
+
+  /**
+   * log a string to the console
+   *
+   * Examples:
+   *
+   *     ioco.log('error', 'something has gone wrong');
+   *
+   *
+   * @param {String} - code: e.g.: 'error' (optional)
+   * @param {String} - message
+   * @api public
+   */
+  function log( code, message ){
+    var args = Array.prototype.slice.call(arguments);
+    if( code.match(/error/) )
+      args.splice(0,1);
+    console.log.apply( this, ['[ioco]'+ (code.match(/error/) ? (' ' + code) : '') + ':'].concat( args ));
+
+  }
+
   /**
   * adds a blocking modal box to the whole
   * screen
@@ -203,5 +253,7 @@
   root.ioco.loaderHtml = loader;
   root.ioco.translate = translate;
   root.ioco.parseTranslations = parseTranslations;
+  root.ioco.require = require;
+  root.ioco.log = log;
 
 })();
