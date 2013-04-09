@@ -16,25 +16,21 @@
    * if path is an absolute path, it will be required as is
    * if not, /javascripts/ will be prepended
    *
-   * @param {function( err )} - callback
-   *
    */
-  function require( path, callback ){
-    callback = callback || function(){};
+  function require( path ){
     if( path.indexOf('/') < 0 )
       path = '/javascripts/ioco.' + path + '.js';
     else if( path.indexOf('/') > 0 )
       path = '/javascripts/' + path + '.js';
     if( _required.indexOf( path ) >= 0 )
-      callback( null );
-    else
-      $.getScript( path, function(){
-        console.log('paths', _required);
-        ioco.log('loaded script', path);
-        _required.push( path );
-        callback( null ); 
-      });
-  } 
+      return;
+    else{
+      _required.push( path );
+      var scriptTag = '<script type="text/javascript" src="'+path+'"></script>';
+      ioco.log('loaded script', path);
+      $('body').append(scriptTag);
+    }
+  }
 
   /**
    * log a string to the console
@@ -55,6 +51,66 @@
     console.log.apply( this, ['[ioco]'+ (code.match(/error/) ? (' ' + code) : '') + ':'].concat( args ));
 
   }
+
+  /**
+   * a window modal
+   *
+   * can be used as a small dialog window
+   * or a large configuration modal
+   *
+   * Examples:
+   *     
+   *     ioco.window({ type: 'dialog', text: 'Are you sure?' })
+   *       .on('submit', function( name ){
+   *         console.log(name);
+   *       });
+   *
+   * @param {Object}
+   * * type: 'dialog', null (dialog creates a preformatted form)
+   * * content: the text for the dialog. can also be a full jQuery object
+   * * submit: function( name )
+   *
+   */
+  function window( options ){
+
+    _defaults = { width: '400px', title: 'Attention required' };
+
+    for( var i in options )
+      _defaults[i] = options[i];
+
+    var $win = $('<div class="ioco-win" />');
+
+    if( options.type && options.type === 'dialog' ){
+      $win.append('<form class="dialog-form"><p><label>'+options.content+'</label><br /><input type="text" name="name" /></p>'+
+                  '<p><a class="submit-btn btn">'+ (options.submitText || 'OK') +'</a></p>')
+        .find('.submit-btn').on('click', function( e ){
+          $(this).closest('form').submit();
+        }).end()
+        .find('form').on('submit', function(e){
+          e.preventDefault();
+          if( typeof(options.submit) === 'function' )
+            options.submit( $(this).find('[name=name]').val() );
+          $win.data("kendoWindow").close();
+        });
+    } else
+      $win.append( options.content );
+
+    $('body').append( $win );
+    $win.kendoWindow({
+      width: _defaults.width,
+      title: _defaults.title,
+      modal: (options.type && options.type === 'dialog'),
+      center: true,
+      resizeable: false,
+      activate: function(){
+        if( options.type && options.type === 'dialog' )
+          $win.find('[name=name]').focus();
+        $win.data('kendoWindow').center();
+      }
+    });
+    
+
+  } 
 
   /**
   * adds a blocking modal box to the whole
@@ -252,6 +308,7 @@
   root.ioco.prompt = prompt;
   root.ioco.loaderHtml = loader;
   root.ioco.translate = translate;
+  root.ioco.window = window;
   root.ioco.parseTranslations = parseTranslations;
   root.ioco.require = require;
   root.ioco.log = log;

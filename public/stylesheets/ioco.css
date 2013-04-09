@@ -264,6 +264,9 @@ video {
 .icn.icn-exit {
   background-position: -128px -80px;
 }
+.icn.icn-tree {
+  background-position: -64px -112px;
+}
 .icn.icn-user {
   background-position: 0px -32px;
 }
@@ -276,6 +279,9 @@ video {
 .icn.icn-users,
 .icn.icn-access {
   background-position: -32px -112px;
+}
+.icn.icn-close {
+  background-position: -48px -112px;
 }
 .icn.icn-arr-right {
   background-position: -32px -96px;
@@ -2364,6 +2370,20 @@ input[type=password]:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.k-window-titlebar {
+  margin-top: 6px;
+}
+.ioco-win .dialog-form {
+  margin: 20px 10px;
+}
+.ioco-win .dialog-form .k-window-title,
+.ioco-win .dialog-form input[type=text] {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  text-inset: 5px;
+  padding: 5px 0;
 }
 /* ------------------------------------------------ tipys */
 .tipsy {
