@@ -92,8 +92,20 @@
             options.submit( $(this).find('[name=name]').val() );
           $win.data("kendoWindow").close();
         });
-    } else
+    } else{
       $win.append( options.content );
+
+      console.log( $win.find('.side-tabs') );
+      if( $win.find('.side-tabs').length ){
+        $win.find('.side-tabs-nav > li').on('click', function(){
+          $(this).closest('ul').find('.active').removeClass('active');
+          $win.find('.side-tabs-content > div').hide();
+          $($win.find('.side-tabs-content > div')[$(this).index()]).show();
+          $(this).addClass('active');
+        }).first().click();
+      }
+
+    }
 
     $('body').append( $win );
     $win.kendoWindow({

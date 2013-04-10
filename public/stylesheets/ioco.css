@@ -1620,6 +1620,12 @@ ul#ioco-menubar li .loader .circle:after {
 .side-tabs .side-tabs-content >div {
   display: none;
 }
+.ioco-win .side-tabs .side-tabs-nav {
+  width: 100px;
+}
+.ioco-win .side-tabs .side-tabs-content {
+  left: 101px;
+}
 #ioco-modal-overlay {
   position: absolute;
   top: 0;
