@@ -73,7 +73,7 @@
    */
   function window( options ){
 
-    _defaults = { width: '400px', title: 'Attention required' };
+    _defaults = { width: '400px', title: 'Attention required', actions: ['Close'] };
 
     for( var i in options )
       _defaults[i] = options[i];
@@ -95,7 +95,6 @@
     } else{
       $win.append( options.content );
 
-      console.log( $win.find('.side-tabs') );
       if( $win.find('.side-tabs').length ){
         $win.find('.side-tabs-nav > li').on('click', function(){
           $(this).closest('ul').find('.active').removeClass('active');
@@ -114,10 +113,17 @@
       modal: (options.type && options.type === 'dialog'),
       center: true,
       resizeable: false,
+      actions: options.actions,
       activate: function(){
         if( options.type && options.type === 'dialog' )
           $win.find('[name=name]').focus();
+        if( typeof( options.activate ) === 'function' )
+          options.activate( $win );
         $win.data('kendoWindow').center();
+      },
+      deactivate: function(){
+        if( typeof( options.deactivate ) === 'function' )
+          options.deactivate( $win );
       }
     });
     
