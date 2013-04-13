@@ -48,7 +48,9 @@
     var args = Array.prototype.slice.call(arguments);
     if( code.match(/error/) )
       args.splice(0,1);
-    console.log.apply( this, ['[ioco]'+ (code.match(/error/) ? (' ' + code) : '') + ':'].concat( args ));
+    try{
+      console.log.apply( this, ['[ioco]'+ (code.match(/error/) ? (' ' + code) : '') + ':'].concat( args ));
+    } catch(e){ console.log('logging not supported')}
 
   }
 
