@@ -1,3 +1,13 @@
+/**
+ * ioco.core.js
+ *
+ * main features and wrappers for the ioco system
+ *
+ * (c) TASTENWERK 2013
+ *
+ * web: http://iocojs.org
+ *
+ */
 ( function(){
 
 

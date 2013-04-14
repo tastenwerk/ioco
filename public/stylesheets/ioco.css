@@ -144,7 +144,7 @@ video {
 .icn.icn-document {
   background-position: 0 -96px;
 }
-.icn.icn-web_element,
+.icn.icn-webpage,
 .icn.icn-webelement {
   background-position: -112px -64px;
 }
@@ -297,6 +297,15 @@ video {
 }
 .icn32.icn-trash {
   background-position: -96px -64px;
+}
+.k-sprite {
+  background-image: url("/images/icons/ioco-icons16x16.png");
+}
+.k-sprite.Label {
+  background-position: -16px -112px;
+}
+.k-sprite.Webpage {
+  background-position: -112px -64px;
 }
 .dropdown {
   position: relative;
@@ -2033,16 +2042,33 @@ input[type=password]:hover {
 .ioco-tree .tree-controls .enableable.enabled {
   opacity: 0.8;
 }
+.ioco-k-tree .k-treeview {
+  margin: 20px;
+}
 .ioco-k-tree .controls {
   height: 16px;
   padding: 0 5px;
+  background: none;
+  border: none;
+}
+.ioco-k-tree .controls .k-item {
+  border: none;
+}
+.ioco-k-tree .controls .k-item > .k-link > .k-i-arrow-s {
+  margin-top: -7px;
+}
+.ioco-k-tree .controls .k-link {
+  font-size: 14px;
+}
+.ioco-k-tree .controls .k-link .inner-icn {
+  margin: 1px 5px 0 0;
 }
 .ioco-k-tree .controls .btn {
   background: none;
+  border: none;
   opacity: 0.8;
   float: right;
-  padding: 5px 7px 3px;
-  border: 1px solid #ddd;
+  padding: 5px 5px 5px 10px;
   margin: 2px 5px 0 0;
   cursor: pointer;
 }
@@ -2413,6 +2439,11 @@ input[type=password]:hover {
 }
 .k-window-titlebar {
   margin-top: 6px;
+}
+.k-state-hover > .icn,
+.k-state-hover > a > .icn,
+.k-state-hover > span > .icn {
+  background-image: url("/images/icons/ioco-icons16x16w.png");
 }
 .ioco-win .dialog-form {
   margin: 20px 10px;

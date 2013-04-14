@@ -1060,16 +1060,33 @@ input[type=text],input[type=password]
 
 
 .ioco-k-tree
+
+  .k-treeview
+    margin: 20px
+
   .controls
     height: 16px
     padding: 0 5px
+    background: none
+    border: none
+
+    .k-item
+      border: none
+
+    .k-item > .k-link > .k-i-arrow-s
+      margin-top: -7px
+
+    .k-link
+      font-size: 14px
+      .inner-icn
+        margin: 1px 5px 0 0
 
     .btn
       background: none
+      border: none
       opacity: 0.8
       float: right
-      padding: 5px 7px 3px
-      border: 1px solid #ddd
+      padding: 5px 5px 5px 10px
       margin: 2px 5px 0 0
       cursor: pointer
       .icn
@@ -1396,7 +1413,8 @@ input[type=text],input[type=password]
 
 .k-window-titlebar
   margin-top: 6px
-
+.k-state-hover > .icn, .k-state-hover > a > .icn, .k-state-hover > span > .icn
+    background-image: url('/images/icons/ioco-icons16x16w.png')
 
 .ioco-win .dialog-form
   margin: 20px 10px

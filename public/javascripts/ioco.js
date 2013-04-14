@@ -232,12 +232,12 @@ $(function(){
     $('.tipsy').remove();
   }).on('keydown', function(e){
     if( e.keyCode === 27 ){ // ESC
-      ioco.modal('close');
-      ioco.advancedPanel.hide();
+      //ioco.modal('close');
+      //ioco.advancedPanel.hide();
       return false;
     }
     if( (e.ctrlKey || e.metaKey) && e.keyCode === 70 ){ // CTRL-f
-      ioco.advancedPanel.show();
+      //ioco.advancedPanel.show();
       return false;
     }
   })

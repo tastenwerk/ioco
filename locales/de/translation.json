@@ -207,6 +207,10 @@
     },
     "title": "Nachrichtenstrom"
   },
+  "label": {
+    "title": "Label",
+    "new": "Neues Label"
+  },
   "document": {
     "rename": "__name__ umbenennen",
     "labels": "Labels",
