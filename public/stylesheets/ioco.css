@@ -2033,6 +2033,31 @@ input[type=password]:hover {
 .ioco-tree .tree-controls .enableable.enabled {
   opacity: 0.8;
 }
+.ioco-k-tree .controls {
+  height: 16px;
+  padding: 0 5px;
+}
+.ioco-k-tree .controls .btn {
+  background: none;
+  opacity: 0.8;
+  float: right;
+  padding: 5px 7px 3px;
+  border: 1px solid #ddd;
+  margin: 2px 5px 0 0;
+  cursor: pointer;
+}
+.ioco-k-tree .controls .btn .icn {
+  opacity: 0.8;
+}
+.ioco-k-tree .controls .btn:hover {
+  opacity: 1;
+}
+.ioco-k-tree .controls .enableable {
+  opacity: 0.2;
+}
+.ioco-k-tree .controls .enableable.enabled {
+  opacity: 0.8;
+}
 .second-sidebar {
   width: 25%;
   position: absolute;

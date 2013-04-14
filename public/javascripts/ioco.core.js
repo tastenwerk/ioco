@@ -8,6 +8,9 @@
 
   var _required = [];
 
+  // used for global datasources namespace
+  var sources = {};
+
   /**
    * require a javascript file
    *
@@ -331,6 +334,7 @@
   root.ioco.window = window;
   root.ioco.parseTranslations = parseTranslations;
   root.ioco.require = require;
+  root.ioco.sources = sources;
   root.ioco.log = log;
 
 })();
