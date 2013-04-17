@@ -308,8 +308,8 @@ describe('ioco labels', function(){
           this.Label.findById(this.l4).execWithUser( ioco.db.model('User').anybody, function( err, label ){
             should.not.exist( err );
             should.not.exist( label );
-            setup.l4.publish();
-            setup.l4.public.should.eql(true);
+            setup.l4.publish( true );
+            setup.l4.published.should.eql(true);
             setup.l4.save( function( err ){
               should.not.exist( err );
               setup.Label.findById(setup.l4._id).execWithUser( ioco.db.model('User').anybody, function( err, label ){
