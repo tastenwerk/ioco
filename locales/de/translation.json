@@ -337,6 +337,8 @@
     "Common": "Allgemein",
     "new_label": "Neues Label",
     "new_webpage": "Neue Webseite",
-    "select_template": "Vorlage"
+    "select_template": "Vorlage",
+    "Meta Description": "Beschreibung (META)",
+    "Meta Keywords": "Schlüsselwörter (META)"
   }
 }
