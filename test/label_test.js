@@ -254,6 +254,82 @@ describe('ioco labels', function(){
 
     });
 
+    describe('children ids and labels', function(){
+
+      before( function( done ){
+        var setup = this;
+        setup.Label.create({name: 'cl1', holder: this.userA}, function( err, l ){
+          setup.cl1 = l;
+          setup.Label.create({name: 'cl2', holder: setup.userA}, function( err, l){
+            setup.cl2 = l;
+            setup.Label.create({name: 'cl3', holder: setup.userA}, function( err, l ){
+              setup.cl3 = l;
+              done();
+            })
+          })
+        })
+      });
+
+      it('labels cl2 with cl1 and sets children for cl1', function(){
+        this.cl2.addLabel(this.cl1);
+        this.cl2._addedLabels.should.eql([this.cl1.labelPath]);
+      });
+
+      it('updates cl1 childrenIds when cl2 is saved', function(done){
+        this.cl2._addedLabels.should.eql([this.cl1.labelPath]);
+        var setup = this;
+        this.cl2.save( function( err ){
+          should.not.exist(err);
+          setup.cl2.labels( function( err, labels ){
+            labels[0]._id.toString().should.eql( setup.cl1._id.toString() );
+            labels[0]._childrenIds.should.have.lengthOf(1);
+            labels[0]._childrenIds[0].should.eql( setup.cl2.labelPath )
+            done();
+          })
+        })
+      });
+
+      it('labels cl3 with cl1 through strings', function(done){
+        this.cl3.addLabel(this.cl1.labelPath);
+        var setup = this;
+        this.cl3.save( function( err ){
+          should.not.exist(err);
+          setup.cl3.labels( function( err, labels ){
+            labels[0]._id.toString().should.eql( setup.cl1._id.toString() );
+            labels[0]._childrenIds.should.have.lengthOf(2);
+            labels[0]._childrenIds[1].should.eql( setup.cl3.labelPath )
+            done();
+          });
+        });
+      });
+
+      it('unlabels cl3 if cl1 removes cl3 as child', function(done){
+        var setup = this;
+        this.Label.findById( this.cl1._id, function( err, cl1 ){
+          cl1.removeChild(setup.cl3.labelPath);
+          cl1._removedChildren.should.eql([setup.cl3.labelPath]);
+          cl1.save( function( err ){
+            should.not.exist(err);
+            setup.Label.findById( setup.cl3._id, function( err, cl3 ){
+              cl3._labelIds.should.have.lengthOf(0);
+              done();
+            });
+          });
+        });
+      });
+
+      it('wont label with itself if is object', function(){
+        var setup = this;
+        ( function(){ setup.cl1.addLabel( setup.cl1 ) } ).should.throw(setup.cl1.name+' cannot be labeled with itself');
+      });
+
+      it('wont label with itself if is string', function(){
+        var setup = this;
+        ( function(){ setup.cl1.addLabel( setup.cl1.labelPath ) } ).should.throw(setup.cl1.name+' cannot be labeled with itself');
+      });
+
+    });
+
   });
 
   describe('versioning', function(){
