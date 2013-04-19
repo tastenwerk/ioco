@@ -2407,6 +2407,18 @@ ul.action-nav li .close-btn {
   margin: 5px 0;
   padding: 3px;
 }
+.properties-win.k-window-content ul.k-panelbar {
+  max-height: 45%;
+  overflow: auto;
+}
+.properties-win.k-window-content ul[data-addon-for-webbit] {
+  display: none;
+}
+.properties-win.k-window-content h2 {
+  font-size: 14px;
+  font-weight: 100;
+  margin: 10px 0 5px;
+}
 .ioco-action-subcontent {
   position: absolute;
   top: 40px;
