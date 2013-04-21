@@ -87,7 +87,7 @@ var settings_json = [
 '    "secret": "__secret__"',
 '  },',
 '  "datastore": {',
-'    "absolutePath": "__absolutePath__",',
+'    "path": "./datastore",',
 '    "maxUploadSizeMB": 50,',
 '    "resizeDefaultPX": 500',
 '  },',
