@@ -340,7 +340,7 @@
     "select_template": "Vorlage",
     "Meta Description": "Beschreibung (META)",
     "Meta Keywords": "Schlüsselwörter (META)",
-    "Addon Settings": "Addon Einstellungen"
-
+    "Addon Settings": "Addon Einstellungen",
+    "revision": "Revision"
   }
 }

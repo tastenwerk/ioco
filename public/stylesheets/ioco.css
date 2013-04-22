@@ -2398,7 +2398,8 @@ ul.action-nav li .close-btn {
   padding: 4px 7px;
   color: rgba(0,0,0,0.7);
 }
-.properties-win.k-window-content input[type=text] {
+.properties-win.k-window-content input[type=text],
+.properties-win.k-window-content .k-dropdown {
   padding: 2px 0;
   text-indent: 2px;
   width: 99%;
