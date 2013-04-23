@@ -343,6 +343,8 @@
     "Addon Settings": "Addon Einstellungen",
     "revision": "Revision",
     "view": "Ansicht",
-    "lang": "Sprache"
+    "lang": "Sprache",
+    "edit text": "Text bearbeiten",
+    "edit source": "Quellcode bearbeiten"
   }
 }
