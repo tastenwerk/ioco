@@ -33,7 +33,7 @@ section,summary,time,mark,audio,video
 
 html
   font-family: "OpenSans", 'Arial', sans-serif
-  font-size: 100%
+  font-size: 12px
   background-color: IO_BLACK
 
 [draggable]
@@ -797,6 +797,11 @@ ul#ioco-menubar
       position: absolute
       top: 4px
       left: 4px
+  &.active
+    background: #444
+    color: #fff
+    .icn
+      background-image: url('/images/icons/ioco-icons16x16w.png')
   &.no-bg
     background: none
     box-shadow: none
@@ -1366,7 +1371,7 @@ ul.action-nav
   height: 31px
   li
     float: right
-    margin: 2px 5px 0 0;
+    margin: 7px 5px 0 0;
     cursor: pointer
     .close-btn
       float: right
@@ -1374,14 +1379,15 @@ ul.action-nav
       font-size: 19px
       padding: 4px 7px
       color: rgba( 0, 0, 0, 0.7 )
+    &:first-child
+      margin-top: 2px
 
 .properties-win.k-window-content
   input[type=text], .k-dropdown
-    padding: 2px 0
     text-indent: 2px
     width: 99%
   p.item
-    margin: 5px 0
+    margin: 0
     padding: 3px
 
   ul.k-panelbar

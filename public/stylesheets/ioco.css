@@ -799,7 +799,7 @@ ul.dropdown-menu.right-hand {
 }
 html {
   font-family: "OpenSans", 'Arial', sans-serif;
-  font-size: 100%;
+  font-size: 12px;
   background-color: #333;
 }
 [draggable] {
@@ -1692,6 +1692,15 @@ ul#ioco-menubar li .loader .circle:after {
   top: 4px;
   left: 4px;
 }
+.btn.active,
+.dialog-form .k-link.active {
+  background: #444;
+  color: #fff;
+}
+.btn.active .icn,
+.dialog-form .k-link.active .icn {
+  background-image: url("/images/icons/ioco-icons16x16w.png");
+}
 .btn.no-bg,
 .dialog-form .k-link.no-bg {
   background: none;
@@ -2388,7 +2397,7 @@ ul.action-nav {
 }
 ul.action-nav li {
   float: right;
-  margin: 2px 5px 0 0;
+  margin: 7px 5px 0 0;
   cursor: pointer;
 }
 ul.action-nav li .close-btn {
@@ -2398,14 +2407,16 @@ ul.action-nav li .close-btn {
   padding: 4px 7px;
   color: rgba(0,0,0,0.7);
 }
+ul.action-nav li:first-child {
+  margin-top: 2px;
+}
 .properties-win.k-window-content input[type=text],
 .properties-win.k-window-content .k-dropdown {
-  padding: 2px 0;
   text-indent: 2px;
   width: 99%;
 }
 .properties-win.k-window-content p.item {
-  margin: 5px 0;
+  margin: 0;
   padding: 3px;
 }
 .properties-win.k-window-content ul.k-panelbar {
