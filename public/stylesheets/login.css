@@ -9,12 +9,15 @@ html {
   right: 0;
   bottom: 0;
   width: 380px;
-  height: 350px;
+  height: 500px;
   margin: auto;
+  border: 1px solid #aaa;
+  box-shadow: 0 0 10px #000;
+  padding: 20px;
+  background-color: #fff;
 }
 #login-content #login-logo {
-  float: left;
-  margin-left: 10px;
+  margin: 10px;
 }
 #login-content #login-logo img {
   width: 150px;
@@ -27,7 +30,6 @@ html {
 }
 #login-content form {
   margin-top: 70px;
-  background: #fafafa;
 }
 #login-content form .desc {
   font-size: 12px;
@@ -45,7 +47,7 @@ html {
 #login-content input[type=password]:hover,
 #login-content input[type=text]:focus,
 #login-content input[type=password]:focus {
-  background: #ffe;
+  border-color: #aaa;
   color: #333;
 }
 #login-content a {
@@ -63,5 +65,6 @@ html {
 }
 #login-content label {
   color: #777;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 100;
 }

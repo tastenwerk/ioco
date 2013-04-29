@@ -171,7 +171,7 @@
     "reset_finished": "Sie haben Ihr Passwort erfolgreich geändert"
   },
   "initial_setup": {
-    "desc": "Sie starten ioco zum ersten Mal. Bitte legen Sie einen Account an",
+    "desc": "Sie starten die TASTENbox zum ersten Mal. Bitte legen Sie einen Account an",
     "title": "Einrichtung (erster Start)",
     "done": "Die Einrichtung ist abgeschlossen. Ein Account mit dem Namen <b>__name__</b> wurde erstellt. Sie können sich nun anmelden"
   },

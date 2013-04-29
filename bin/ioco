@@ -35,30 +35,21 @@ var app_js = [
 "",
 "app.configure(function(){",
 "",
-"  //app.use(express.logger({stream: access_logfile }));",
-"  app.use(express.logger('dev'));",
-"",
-"  // use app's static files and routes first",
-"  app.use( stylus.middleware( __dirname + '/public' ) );",
-"  app.use( express.static( __dirname + '/public' ) );",
-"",
 "  ioco.inject( express, app, io ); // inject app with ioco defaults and plugins",
 "",
 "  // load external ioweb plugins",
 "  ioco.registerPlugin( app, require('ioco-web').ioco.plugins );",
 "",
-"  app.use( express.favicon( __dirname + '/public/favicon.ico' ));",
-"",
-"  // override ioco's views with your own views",
-"  // and devine new ones.",
-"  ioco.view.paths = [ __dirname + '/app/views' ].concat( ioco.view.paths );",
-"",
-"  app.use(express.methodOverride());",
-"  app.use(app.router);",
 "});",
 "",
 "app.configure('development', function(){",
+"  app.use(express.logger('dev'));",
 "  app.use(express.errorHandler());",
+"  app.locals.pretty = true;",
+"});",
+"",
+"app.configure('development', function(){",
+"  app.use(express.logger({stream: access_logfile }));",
 "  app.locals.pretty = true;",
 "});",
 "",
@@ -67,6 +58,13 @@ var app_js = [
 "});",
 ""
 ].join(eol);
+
+var gitignore = [
+'node_modules',
+'Thumbs.db',
+'.DS_Store',
+'datastore'
+];
 
 var settings_json = [
 '{',
@@ -144,6 +142,7 @@ program
     write( name + '/app.js', app_js );
     write( name + '/public/stylesheets/ioco-page.styl', 'body\n  .ioco-page\n    margin: 0' );
     write( name + '/config/settings.json', settings_json.replace( /__appName__/g, normalizedName ).replace(/__absolutePath__/g, process.cwd()+path.sep+normalizedName+path.sep+'datastore').replace('__secret__', (new Date().getTime().toString(32))) );
+    write( name + '/.gitignore', gitignore );
     write( name + '/package.json', package_json.replace( /__appName__/g, name.replace(/ /g, '_') ) );
     write( name + '/README.md', name + ' README' );
     console.log();
