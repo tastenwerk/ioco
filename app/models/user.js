@@ -102,7 +102,13 @@ var UserSchema = db.Schema({
  * constructs a string which is definitely not null
  * and represents a (not unique) name of this user
  */
-UserSchema.virtual('name.full').get( getUserFullName );
+UserSchema.virtual('name.full').get( getUserFullName ).set( function( name ){
+  if( name.split(' ') ){
+    this.name.first = name.split(' ')[0];
+    this.name.last = name.split(' ')[1];
+  } else
+    this.name.first = name;
+});
 
 /**
  * show the number of unread messages
