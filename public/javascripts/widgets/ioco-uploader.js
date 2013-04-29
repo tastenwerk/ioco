@@ -9,7 +9,7 @@
  * * _labelId: the type and id of the label this file should be attached (expl: WebBit:20wietjowiet023820 )
  *
  */
-ioco = ioco || {};
+
 ioco.uploader = {
 
   init: function( options ){
