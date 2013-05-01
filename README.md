@@ -12,7 +12,13 @@ ioco is licensed under the GPLv3 license
 
 http://opensource.org/licenses/GPL-3.0
 
-# Content Repository
+# Getting started
+
+Please visit the [[Wiki|Home]]
+
+# Quick Overview
+
+## Content Repository
 
 ioco is a almost fully featured content repository.
 
@@ -36,7 +42,7 @@ There are 2 types of access control.
 1. Per Model access (if the model itself has an acl entry for the user or group)
 2. Per content (instance) access like in a filesystem
 
-### Examples:
+### Access on Model basis:
 
 Grant access to WebPage model
 
