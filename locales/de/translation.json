@@ -75,6 +75,7 @@
     "cannot_remove_yourself": "Sie können sich selbst nicht vom System löschen",
     "email": "Email Adresse",
     "email_invalid": "Email Adresse ungültig",
+    "nick_required": "Ein Name muss angegeben werden",
     "password": "Passwort",
     "login": "Anmelden",
     "login_required": "Anmeldung erforderlich",
