@@ -93,7 +93,8 @@ var UserSchema = db.Schema({
         tries: { type: Number, default: 3}
       },
       createdAt: { type: Date, default: Date.now },
-      suspended: { type: Boolean, default: false }
+      suspended: { type: Boolean, default: false },
+      description: String
 });
 
 /**
