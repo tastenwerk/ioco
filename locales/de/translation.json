@@ -95,7 +95,8 @@
     "too_many_tries": "Zu viele fehlgeschlagne Versuche. Support kontaktieren",
     "confirmation_sent_again": "Bestätigungsemail wurde noch einmal versandt an __email__ (__tries__ verbleibende Versuche)",
     "welcome": "Ein TASTENbox Account wurde für dich erstellt",
-    "welcome_text": "Hallo,\n\n__name__ hat einen Account für Sie erstellt. Sie können Ihr Passwort setzen und sich gleich anmelden, wenn Sie auf untenstehenden Link klicken",
+    "welcome_text": "Hallo,\n\n__name__ hat einen Account für Sie erstellt. \n\nSie können Ihr Passwort setzen und sich gleich anmelden, wenn Sie auf untenstehenden Link klicken",
+    "welcome_text_password_set": "Hallo,\n\n__name__ hat einen Account für Sie erstellt. \n\nIhr Passwort lautet: \t __pwd__\n\nIhr Login: \t __email__ \n\nWenn Sie das Passwort kopieren und einfügen, achten Sie darauf, dass sie keine Leerzeichen vor oder nach dem Passwort mit kopieren. \n Sie können sich anmelden, wenn Sie auf untenstehenden Link klicken",
     "confirmation_email": {
       "ok": "Einladungsemail wurde versandt"
     },
@@ -169,7 +170,7 @@
     "send": "Senden",
     "set": "Setzen",
     "set_desc": "Sie können jetzt ein neues Passwort festlegen.",
-    "reset_finished": "Sie haben Ihr Passwort erfolgreich geändert"
+    "reset_finished": "Sie haben Ihr Passwort erfolgreich geändert. Melden Sie sich nun mit diesem Passwort und Ihrer Email-Adresse __email__ an"
   },
   "initial_setup": {
     "desc": "Sie starten die TASTENbox zum ersten Mal. Bitte legen Sie einen Account an",

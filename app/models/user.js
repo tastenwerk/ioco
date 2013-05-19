@@ -144,6 +144,14 @@ UserSchema.virtual('password').get(function() {
 });
 
 /**
+ * returns if user is admin (in group admins)
+ *
+ */
+UserSchema.method('isAdmin', function(){
+  return this.groups.indexOf('manager') >= 0;
+});
+
+/**
  * authenticate user
  *
  * compares hashed password with given plain text password
