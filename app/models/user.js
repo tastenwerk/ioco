@@ -153,6 +153,14 @@ UserSchema.method('isAdmin', function(){
 });
 
 /**
+ * returns if user is admin (in group admins)
+ *
+ */
+UserSchema.method('isEditor', function(){
+  return this.groups.indexOf('editor') >= 0 || this.groups.indexOf('manager') >= 0;
+});
+
+/**
  * authenticate user
  *
  * compares hashed password with given plain text password
