@@ -1,6 +1,6 @@
 {
   "name": "ioco",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "preferGlobal": "true",
   "author": "thorsten zerha <thorsten.zerha@tastenwerk.com>",
   "description": "ioco is a content management system",
