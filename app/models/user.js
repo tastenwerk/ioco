@@ -73,7 +73,7 @@ var UserSchema = db.Schema({
       hashedPassword: {type: String, required: true},
       salt: {type: String, required: true},
       preferences: {type: db.Schema.Types.Mixed, default: { common: { locale: 'en', hosts: [] }, docklets: [ 'notification_service/docklets/summary' ] } },
-      picCropCoords: { type: db.Schema.Types.Mixed, default: { w: 0, h: 0, x: 0, y: 0 } },
+      picCropCoords: { type: db.Schema.Types.Mixed, default: { w: 50, h: 50, x: 0, y: 0 } },
       messages: [ UserMessagesSchema ],
       email: {type: String, 
               lowercase: true,
