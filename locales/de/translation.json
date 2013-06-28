@@ -94,9 +94,9 @@
     "send_confirmation_email": "Anmeldelink mit Option zum Passwort-setzen versenden",
     "too_many_tries": "Zu viele fehlgeschlagne Versuche. Support kontaktieren",
     "confirmation_sent_again": "Bestätigungsemail wurde noch einmal versandt an __email__ (__tries__ verbleibende Versuche)",
-    "welcome": "Ein TASTENbox Account wurde für dich erstellt",
-    "welcome_text": "Hallo,\n\n__name__ hat einen Account für Sie erstellt. \n\nSie können Ihr Passwort setzen und sich gleich anmelden, wenn Sie auf untenstehenden Link klicken",
-    "welcome_text_password_set": "Hallo,\n\n__name__ hat einen Account für Sie erstellt. \n\nIhr Passwort lautet: \t __pwd__\n\nIhr Login: \t __email__ \n\nWenn Sie das Passwort kopieren und einfügen, achten Sie darauf, dass sie keine Leerzeichen vor oder nach dem Passwort mit kopieren. \n Sie können sich anmelden, wenn Sie auf untenstehenden Link klicken",
+    "welcome": "Ein Konto wurde für Sie erstellt",
+    "welcome_text": "Hallo,\n\n__name__ hat ein Konto für Sie erstellt. \n\nSie können Ihr Passwort setzen und sich gleich anmelden, wenn Sie auf untenstehenden Link klicken",
+    "welcome_text_password_set": "Hallo,\n\n__name__ hat ein Konto für Sie erstellt. \n\nIhr Passwort lautet: \t __pwd__\n\nIhr Login: \t __email__ \n\nWenn Sie das Passwort kopieren und einfügen, achten Sie darauf, dass sie keine Leerzeichen vor oder nach dem Passwort mit kopieren. \n Sie können sich anmelden, wenn Sie auf untenstehenden Link klicken",
     "confirmation_email": {
       "ok": "Einladungsemail wurde versandt"
     },
